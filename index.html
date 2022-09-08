@@ -1,75 +1,126 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <META http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <style></style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"-->
+<!--            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"-->
+<!--            crossorigin="anonymous"></script>-->
 </head>
 <body>
-  <div>
-    <div class="m_container m_d-flex m_flex-wrap">
-        <span class="m_me-auto m_fs-1">Trade Audit</span>
-        <img alt="Get it on Google Play" height="60px" id="m_logo-img" src="https://ci6.googleusercontent.com/proxy/m0Ty6X4hyJ0KPwE2Qv5KHxxQFSecYvEEvxNBJov9WQgPQ6hkqutJvA4J4jZzd2qwAsj0kpa_p416Rhi3MpT79E3vBQdD6BS0F-XyXWmhh2uxi2DmJqb6HIKYjPNilftKunEw2QB52EuFpw=s0-d-e1-ft#https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
+<nav class="py-2 bg-light border-bottom">
+    <div class="container d-flex flex-wrap">
+        <span class="me-auto fs-1">Trade Audit</span>
+        <img alt="Get it on Google Play" height="60px" id="logo-img" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
     </div>
-
-    <div class="m_px-4 m_py-5 m_my-5 m_text-center">
-      <h1 class="m_display-5 m_fw-bold">Stock Trade Tracking for Twitter</h1>
-      <div class="m_col-lg-6 m_mx-auto">
-        <p class="m_lead m_mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-      </div>
+</nav>
+<!--
+<header class="py-3 mb-4 border-bottom">
+    <div class="container d-flex flex-wrap justify-content-center">
+        <span class="link-dark px-2">Top Stocks:</span>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active link-dark px-2" aria-current="page" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-dark px-2" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link link-dark px-2" href="#">Link</a>
+            </li>
+        </ul>
     </div>
-    
-    <!--
-<div class="m_px-4 m_py-5 m_my-5 m_text-center">
-  <h2 class="m_display-10 m_fw-bold">Top Stocks</h2>
+</header>
+-->
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold">Stock Trade Tracking for Twitter</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+  </div>
+</div>
+<div class="px-4 py-5 my-5 text-center">
+  <h2 class="display-10 fw-bold">Top Stocks</h2>
 
-  <div id="m_stock-symbols" class="m_btn-group" role="group" aria-label="Basic checkbox toggle button group">
+  <div id="stock-symbols" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
   </div>
 
-  <u></u>
-    <input type="checkbox" class="m_btn-check" id="m_btncheck1">
-    <label class="m_btn m_btn-outline-primary" for="m_btncheck1" id="m_stock-symbol"></label>
-    <div class="m_myClass">I like: </div>
-  <u></u>
-  
+  <template id="stock-symbol-template">
+    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btncheck1" id="stock-symbol"></label>
+    <div class="myClass">I like: </div>
+  </template>
+  <script>
+      var stockData = [
+      { "symbol": "SPY", "stockId": 17400 },
+      { "symbol": "QQQ", "stockId": 17400 },
+      { "symbol": "BAC", "stockId": 17400 },
+      { "symbol": "TSLA", "stockId": 17400 }
+      ];
+      var stockSymbolsGroup = document.querySelector("#stock-symbols");
+      var item, a;
+      var template = document.querySelector("#stock-symbol-template");
+      for (var i = 0; i < stockData.length; i++) {
+        var a = document.importNode(template, true);
+        stockSymbolsGroup.appendChild(a);
+        a.querySelector("stock-symbol").textContent += stockData[i].symbol;
+      }
+    </script>
 </div>
-<ul class="m_nav m_me-auto">
-  <li class="m_nav-item"><a href="#m__" class="m_nav-link m_link-dark m_px-2 m_active" rel="noreferrer">Home</a></li>
-  <li class="m_nav-item"><a href="#m__" class="m_nav-link m_link-dark m_px-2" rel="noreferrer">Features</a></li>
-  <li class="m_nav-item"><a href="#m__" class="m_nav-link m_link-dark m_px-2" rel="noreferrer">Pricing</a></li>
-  <li class="m_nav-item"><a href="#m__" class="m_nav-link m_link-dark m_px-2" rel="noreferrer">FAQs</a></li>
-  <li class="m_nav-item"><a href="#m__" class="m_nav-link m_link-dark m_px-2" rel="noreferrer">About</a></li>
+<ul class="nav me-auto">
+  <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
+  <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Features</a></li>
+  <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Pricing</a></li>
+  <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
+  <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>
 </ul>
-<p></p>
-<div class="m_py-5 m_text-center m_container">
-    <ul class="m_list-group">
-        <li class="m_list-group-item">
-            <div class="m_css-1dbjc4n m_r-18u37iz m_r-kzbkwu">
-                <div class="m_css-1dbjc4n m_r-1ny4l3l">
-                    <div class="m_css-1dbjc4n m_r-1adg3ll m_r-bztko3" style="height:48px;width:48px">
-                        <div class="m_r-1adg3ll m_r-13qz1uu" style="padding-bottom:100%"></div>
-                        <div class="m_r-1p0dtai m_r-1pi2tsx m_r-1d2f490 m_r-u8s1d m_r-ipm5af m_r-13qz1uu">
-                            <div class="m_css-1dbjc4n m_r-1adg3ll m_r-1pi2tsx m_r-1wyvozj m_r-bztko3 m_r-u8s1d m_r-1v2oles m_r-desppf m_r-13qz1uu">
-                                <div class="m_r-1adg3ll m_r-13qz1uu" style="padding-bottom:100%"></div>
-                                <div class="m_r-1p0dtai m_r-1pi2tsx m_r-1d2f490 m_r-u8s1d m_r-ipm5af m_r-13qz1uu">
-                                    <div class="m_css-1dbjc4n m_r-sdzlij m_r-ggadg3 m_r-1udh08x m_r-u8s1d m_r-8jfcpp" style="height:calc(100% - -4px);width:calc(100% - -4px)"><a href="https://www.google.com/url?q=https://twitter.com/TwitterSupport?ref_src%3Dtwsrc%255Etfw%257Ctwcamp%255Etweetembed%257Ctwterm%255E1144001040284450817%257Ctwgr%255Ed97f55d5f00e7c7037b326a13c29f4f72192be06%257Ctwcon%255Es1_%26ref_url%3Dhttps%253A%252F%252Fhelp.twitter.com%252Fen%252Fusing-twitter%252Fhow-to-embed-a-tweet&amp;source=gmail-html&amp;ust=1662729403652000&amp;usg=AOvVaw1GZs_PkgZKC-mOEKMObSIx" rel="noopener noreferrer nofollow noreferrer" aria-hidden="true" role="link" class="m_css-4rbku5 m_css-18t94o4 m_css-1dbjc4n m_r-1niwhzg m_r-1loqt21 m_r-1pi2tsx m_r-1ny4l3l m_r-o7ynqc m_r-6416eg m_r-13qz1uu" target="_blank">
-                                        <div class="m_css-1dbjc4n m_r-sdzlij m_r-1wyvozj m_r-1udh08x m_r-633pao m_r-u8s1d m_r-1v2oles m_r-desppf" style="height:calc(100% - 4px);width:calc(100% - 4px)">
-                                            <div class="m_css-1dbjc4n m_r-1pi2tsx m_r-13qz1uu" style="background-color:rgba(0,0,0,0)"></div>
+<p/>
+<div class="py-5 text-center container">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="css-1dbjc4n r-18u37iz r-kzbkwu">
+                <div class="css-1dbjc4n r-1ny4l3l">
+                    <div class="css-1dbjc4n r-1adg3ll r-bztko3" data-testid="UserAvatar-Container-TwitterSupport"
+                         style="height: 48px; width: 48px;">
+                        <div class="r-1adg3ll r-13qz1uu" style="padding-bottom: 100%;"></div>
+                        <div class="r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r-13qz1uu">
+                            <div class="css-1dbjc4n r-1adg3ll r-1pi2tsx r-1wyvozj r-bztko3 r-u8s1d r-1v2oles r-desppf r-13qz1uu">
+                                <div class="r-1adg3ll r-13qz1uu" style="padding-bottom: 100%;"></div>
+                                <div class="r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r-13qz1uu">
+                                    <div class="css-1dbjc4n r-sdzlij r-ggadg3 r-1udh08x r-u8s1d r-8jfcpp"
+                                         style="height: calc(100% - -4px); width: calc(100% - -4px);"><a
+                                            href="https://twitter.com/TwitterSupport?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1144001040284450817%7Ctwgr%5Ed97f55d5f00e7c7037b326a13c29f4f72192be06%7Ctwcon%5Es1_&amp;ref_url=https%3A%2F%2Fhelp.twitter.com%2Fen%2Fusing-twitter%2Fhow-to-embed-a-tweet"
+                                            rel="noopener noreferrer nofollow" target="_blank" aria-hidden="true"
+                                            role="link" tabindex="-1"
+                                            class="css-4rbku5 css-18t94o4 css-1dbjc4n r-1niwhzg r-1loqt21 r-1pi2tsx r-1ny4l3l r-o7ynqc r-6416eg r-13qz1uu"
+                                            style="">
+                                        <div class="css-1dbjc4n r-sdzlij r-1wyvozj r-1udh08x r-633pao r-u8s1d r-1v2oles r-desppf"
+                                             style="height: calc(100% - 4px); width: calc(100% - 4px);">
+                                            <div class="css-1dbjc4n r-1pi2tsx r-13qz1uu"
+                                                 style="background-color: rgba(0, 0, 0, 0);"></div>
                                         </div>
-                                        <div class="m_css-1dbjc4n m_r-sdzlij m_r-1wyvozj m_r-1udh08x m_r-633pao m_r-u8s1d m_r-1v2oles m_r-desppf" style="height:calc(100% - 4px);width:calc(100% - 4px)">
-                                            <div class="m_css-1dbjc4n m_r-14lw9ot m_r-1pi2tsx m_r-13qz1uu"></div>
+                                        <div class="css-1dbjc4n r-sdzlij r-1wyvozj r-1udh08x r-633pao r-u8s1d r-1v2oles r-desppf"
+                                             style="height: calc(100% - 4px); width: calc(100% - 4px);">
+                                            <div class="css-1dbjc4n r-14lw9ot r-1pi2tsx r-13qz1uu"></div>
                                         </div>
-                                        <div class="m_css-1dbjc4n m_r-14lw9ot m_r-sdzlij m_r-1wyvozj m_r-1udh08x m_r-633pao m_r-u8s1d m_r-1v2oles m_r-desppf" style="height:calc(100% - 4px);width:calc(100% - 4px)">
-                                            <div class="m_css-1dbjc4n m_r-1adg3ll m_r-1udh08x">
-                                                <div class="m_r-1adg3ll m_r-13qz1uu" style="padding-bottom:100%"></div>
-                                                <div class="m_r-1p0dtai m_r-1pi2tsx m_r-1d2f490 m_r-u8s1d m_r-ipm5af m_r-13qz1uu">
-                                                    <div aria-label="" class="m_css-1dbjc4n m_r-1p0dtai m_r-1mlwlqe m_r-1d2f490 m_r-1udh08x m_r-u8s1d m_r-zchlnj m_r-ipm5af m_r-417010">
-                                                        <div class="m_css-1dbjc4n m_r-1niwhzg m_r-vvn4in m_r-u6sd8q m_r-4gszlv m_r-1p0dtai m_r-1pi2tsx m_r-1d2f490 m_r-u8s1d m_r-zchlnj m_r-ipm5af m_r-13qz1uu m_r-1wyyakw" style="background-image:url(&quot;https://ci4.googleusercontent.com/proxy/BlO_6mgTEF31JtmMko5A12IhKsN-LbonWUz07rN9SaxoMsAmETvyTmFDnSBZfw8L89Oa0_O8SC8LTil4g2FaZz7NdZlZRoz32xlxG_dLk3d2qdHHyddhoDsKcwk=s0-d-e1-ft#https://pbs.twimg.com/profile_images/1354479896072884225/AaUbc7ao_x96.jpg&quot;)"></div>
-                                                        <img alt="" src="https://ci4.googleusercontent.com/proxy/BlO_6mgTEF31JtmMko5A12IhKsN-LbonWUz07rN9SaxoMsAmETvyTmFDnSBZfw8L89Oa0_O8SC8LTil4g2FaZz7NdZlZRoz32xlxG_dLk3d2qdHHyddhoDsKcwk=s0-d-e1-ft#https://pbs.twimg.com/profile_images/1354479896072884225/AaUbc7ao_x96.jpg" class="m_css-9pa8cd"></div>
+                                        <div class="css-1dbjc4n r-14lw9ot r-sdzlij r-1wyvozj r-1udh08x r-633pao r-u8s1d r-1v2oles r-desppf"
+                                             style="height: calc(100% - 4px); width: calc(100% - 4px);">
+                                            <div class="css-1dbjc4n r-1adg3ll r-1udh08x" style="">
+                                                <div class="r-1adg3ll r-13qz1uu" style="padding-bottom: 100%;"></div>
+                                                <div class="r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-ipm5af r-13qz1uu">
+                                                    <div aria-label=""
+                                                         class="css-1dbjc4n r-1p0dtai r-1mlwlqe r-1d2f490 r-1udh08x r-u8s1d r-zchlnj r-ipm5af r-417010"
+                                                         style="">
+                                                        <div class="css-1dbjc4n r-1niwhzg r-vvn4in r-u6sd8q r-4gszlv r-1p0dtai r-1pi2tsx r-1d2f490 r-u8s1d r-zchlnj r-ipm5af r-13qz1uu r-1wyyakw"
+                                                             style="background-image: url(&quot;https://pbs.twimg.com/profile_images/1354479896072884225/AaUbc7ao_x96.jpg&quot;);"></div>
+                                                        <img alt="" draggable="true"
+                                                             src="https://pbs.twimg.com/profile_images/1354479896072884225/AaUbc7ao_x96.jpg"
+                                                             class="css-9pa8cd"></div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="m_css-1dbjc4n m_r-sdzlij m_r-1wyvozj m_r-1udh08x m_r-u8s1d m_r-1v2oles m_r-desppf" style="height:calc(100% - 4px);width:calc(100% - 4px)">
-                                            <div class="m_css-1dbjc4n m_r-12181gd m_r-1pi2tsx m_r-1ny4l3l m_r-o7ynqc m_r-6416eg m_r-13qz1uu"></div>
+                                        <div class="css-1dbjc4n r-sdzlij r-1wyvozj r-1udh08x r-u8s1d r-1v2oles r-desppf"
+                                             style="height: calc(100% - 4px); width: calc(100% - 4px);">
+                                            <div class="css-1dbjc4n r-12181gd r-1pi2tsx r-1ny4l3l r-o7ynqc r-6416eg r-13qz1uu"></div>
                                         </div>
                                     </a></div>
                                 </div>
@@ -77,24 +128,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="m_css-1dbjc4n m_r-eqz5dr m_r-1777fci m_r-4amgru m_r-1kh6xel">
-                    <div class="m_css-1dbjc4n m_r-1ny4l3l">
-                        <div class="m_css-1dbjc4n m_r-1wbh5a2 m_r-dnmrzs m_r-1ny4l3l">
-                            <div class="m_css-1dbjc4n m_r-1wbh5a2 m_r-dnmrzs m_r-1ny4l3l"><a href="https://www.google.com/url?q=https://twitter.com/TwitterSupport?ref_src%3Dtwsrc%255Etfw%257Ctwcamp%255Etweetembed%257Ctwterm%255E1144001040284450817%257Ctwgr%255Ed97f55d5f00e7c7037b326a13c29f4f72192be06%257Ctwcon%255Es1_%26ref_url%3Dhttps%253A%252F%252Fhelp.twitter.com%252Fen%252Fusing-twitter%252Fhow-to-embed-a-tweet&amp;source=gmail-html&amp;ust=1662729403652000&amp;usg=AOvVaw1GZs_PkgZKC-mOEKMObSIx" rel="noopener noreferrer nofollow noreferrer" role="link" class="m_css-4rbku5 m_css-18t94o4 m_css-1dbjc4n m_r-1loqt21 m_r-1wbh5a2 m_r-dnmrzs m_r-1ny4l3l" target="_blank">
-                                <div class="m_css-1dbjc4n m_r-1awozwy m_r-18u37iz m_r-dnmrzs">
-                                    <div dir="auto" class="m_css-901oao m_r-1awozwy m_r-6koalj m_r-1qd0xha m_r-a023e6 m_r-b88u0q m_r-rjixqe m_r-bcqeeo m_r-1udh08x m_r-3s2u2q m_r-qvutc0" style="color:rgb(15,20,25)"><span class="m_css-901oao m_css-16my406 m_css-bfa6kz m_r-poiln3 m_r-bcqeeo m_r-qvutc0"><span class="m_css-901oao m_css-16my406 m_r-poiln3 m_r-bcqeeo m_r-qvutc0">Twitter Support</span></span>
+                <div class="css-1dbjc4n r-eqz5dr r-1777fci r-4amgru r-1kh6xel">
+                    <div class="css-1dbjc4n r-1ny4l3l">
+                        <div class="css-1dbjc4n r-1wbh5a2 r-dnmrzs r-1ny4l3l">
+                            <div class="css-1dbjc4n r-1wbh5a2 r-dnmrzs r-1ny4l3l"><a
+                                    href="https://twitter.com/TwitterSupport?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1144001040284450817%7Ctwgr%5Ed97f55d5f00e7c7037b326a13c29f4f72192be06%7Ctwcon%5Es1_&amp;ref_url=https%3A%2F%2Fhelp.twitter.com%2Fen%2Fusing-twitter%2Fhow-to-embed-a-tweet"
+                                    rel="noopener noreferrer nofollow" target="_blank" role="link"
+                                    class="css-4rbku5 css-18t94o4 css-1dbjc4n r-1loqt21 r-1wbh5a2 r-dnmrzs r-1ny4l3l">
+                                <div class="css-1dbjc4n r-1awozwy r-18u37iz r-dnmrzs">
+                                    <div dir="auto"
+                                         class="css-901oao r-1awozwy r-6koalj r-1qd0xha r-a023e6 r-b88u0q r-rjixqe r-bcqeeo r-1udh08x r-3s2u2q r-qvutc0"
+                                         style="color: rgb(15, 20, 25);"><span
+                                            class="css-901oao css-16my406 css-bfa6kz r-poiln3 r-bcqeeo r-qvutc0"><span
+                                            class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">Twitter Support</span></span>
                                     </div>
                                 </div>
                             </a>
-                                <div class="m_css-1dbjc4n m_r-1awozwy m_r-18u37iz m_r-1wbh5a2"><a href="https://www.google.com/url?q=https://twitter.com/TwitterSupport?ref_src%3Dtwsrc%255Etfw%257Ctwcamp%255Etweetembed%257Ctwterm%255E1144001040284450817%257Ctwgr%255Ed97f55d5f00e7c7037b326a13c29f4f72192be06%257Ctwcon%255Es1_%26ref_url%3Dhttps%253A%252F%252Fhelp.twitter.com%252Fen%252Fusing-twitter%252Fhow-to-embed-a-tweet&amp;source=gmail-html&amp;ust=1662729403652000&amp;usg=AOvVaw1GZs_PkgZKC-mOEKMObSIx" rel="noopener noreferrer nofollow noreferrer" role="link" class="m_css-4rbku5 m_css-18t94o4 m_css-1dbjc4n m_r-1loqt21 m_r-1wbh5a2 m_r-dnmrzs m_r-1ny4l3l" target="_blank">
-                                    <div class="m_css-1dbjc4n">
-                                        <div dir="ltr" class="m_css-901oao m_css-bfa6kz m_r-14j79pv m_r-18u37iz m_r-1qd0xha m_r-a023e6 m_r-16dba41 m_r-rjixqe m_r-bcqeeo m_r-qvutc0"><span class="m_css-901oao m_css-16my406 m_r-poiln3 m_r-bcqeeo m_r-qvutc0">@TwitterSupport</span>
+                                <div class="css-1dbjc4n r-1awozwy r-18u37iz r-1wbh5a2"><a
+                                        href="https://twitter.com/TwitterSupport?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1144001040284450817%7Ctwgr%5Ed97f55d5f00e7c7037b326a13c29f4f72192be06%7Ctwcon%5Es1_&amp;ref_url=https%3A%2F%2Fhelp.twitter.com%2Fen%2Fusing-twitter%2Fhow-to-embed-a-tweet"
+                                        rel="noopener noreferrer nofollow" target="_blank" role="link" tabindex="-1"
+                                        class="css-4rbku5 css-18t94o4 css-1dbjc4n r-1loqt21 r-1wbh5a2 r-dnmrzs r-1ny4l3l">
+                                    <div class="css-1dbjc4n">
+                                        <div dir="ltr"
+                                             class="css-901oao css-bfa6kz r-14j79pv r-18u37iz r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0"
+                                             style=""><span class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">@TwitterSupport</span>
                                         </div>
                                     </div>
                                 </a>
-                                    <div class="m_css-1dbjc4n m_r-18u37iz m_r-1q142lx">
-                                        <div dir="auto" aria-hidden="true" class="m_css-901oao m_r-14j79pv m_r-1q142lx m_r-1qd0xha m_r-a023e6 m_r-16dba41 m_r-rjixqe m_r-bcqeeo m_r-s1qlax m_r-qvutc0"><span class="m_css-901oao m_css-16my406 m_r-poiln3 m_r-bcqeeo m_r-qvutc0">·</span></div>
-                                        <a href="https://www.google.com/url?q=https://twitter.com/intent/follow?ref_src%3Dtwsrc%255Etfw%257Ctwcamp%255Etweetembed%257Ctwterm%255E1144001040284450817%257Ctwgr%255Ed97f55d5f00e7c7037b326a13c29f4f72192be06%257Ctwcon%255Es1_%26ref_url%3Dhttps%253A%252F%252Fhelp.twitter.com%252Fen%252Fusing-twitter%252Fhow-to-embed-a-tweet%26screen_name%3DTwitterSupport&amp;source=gmail-html&amp;ust=1662729403652000&amp;usg=AOvVaw3B7w-Tl72ZKlvWRbXxdsr5" dir="auto" rel="noopener noreferrer nofollow noreferrer" role="link" class="m_css-4rbku5 m_css-18t94o4 m_css-901oao m_r-1loqt21 m_r-1qd0xha m_r-a023e6 m_r-b88u0q m_r-rjixqe m_r-bcqeeo m_r-qvutc0" style="color:rgb(0,111,214)" target="_blank"><span class="m_css-901oao m_css-16my406 m_r-poiln3 m_r-bcqeeo m_r-qvutc0">Follow</span></a>
+                                    <div class="css-1dbjc4n r-18u37iz r-1q142lx">
+                                        <div dir="auto" aria-hidden="true"
+                                             class="css-901oao r-14j79pv r-1q142lx r-1qd0xha r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-s1qlax r-qvutc0"
+                                             style=""><span
+                                                class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">·</span></div>
+                                        <a href="https://twitter.com/intent/follow?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1144001040284450817%7Ctwgr%5Ed97f55d5f00e7c7037b326a13c29f4f72192be06%7Ctwcon%5Es1_&amp;ref_url=https%3A%2F%2Fhelp.twitter.com%2Fen%2Fusing-twitter%2Fhow-to-embed-a-tweet&amp;screen_name=TwitterSupport"
+                                           dir="auto" rel="noopener noreferrer nofollow" target="_blank" role="link"
+                                           class="css-4rbku5 css-18t94o4 css-901oao r-1loqt21 r-1qd0xha r-a023e6 r-b88u0q r-rjixqe r-bcqeeo r-qvutc0"
+                                           style="color: rgb(0, 111, 214);"><span
+                                                class="css-901oao css-16my406 r-poiln3 r-bcqeeo r-qvutc0">Follow</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -103,38 +173,37 @@
                 </div>
             </div>
         </li>
-        <li class="m_list-group-item">A second item</li>
-        <li class="m_list-group-item">A third item</li>
-        <li class="m_list-group-item">A fourth item</li>
-        <li class="m_list-group-item">And a fifth one</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
     </ul>
 </div>
--->
-  <footer class="m_d-flex m_flex-wrap m_justify-content-between m_align-items-center m_py-3 m_my-4 m_border-top">
-    <div class="m_col-md-4 m_d-flex m_align-items-center">
-      <a href="https://www.google.com/url?q=http:///&amp;source=gmail-html&amp;ust=1662729403652000&amp;usg=AOvVaw2gllmP2QUtHRaVtvzruIMA" class="m_mb-3 m_me-2 m_mb-md-0 m_text-muted m_text-decoration-none m_lh-1" target="_blank" rel="noreferrer">
-        <u></u><u></u><u></u><u></u>
+
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       </a>
-      <span class="m_mb-3 m_mb-md-0 m_text-muted">© 2022 Company, Inc</span>
+      <span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
     </div>
 
+<!--    <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+<!--      Hi!-->
+<!--    </a>-->
 
-
-
-
-    <ul class="m_nav m_col-md-4 m_justify-content-end">
-      <li class="m_nav-item"><a href="#m__" class="m_nav-link m_px-2 m_text-muted" rel="noreferrer">Home</a></li>
-      <li class="m_nav-item"><a href="#m__" class="m_nav-link m_px-2 m_text-muted" rel="noreferrer">Features</a></li>
-      <li class="m_nav-item"><a href="#m__" class="m_nav-link m_px-2 m_text-muted" rel="noreferrer">Pricing</a></li>
-      <li class="m_nav-item"><a href="#m__" class="m_nav-link m_px-2 m_text-muted" rel="noreferrer">FAQs</a></li>
-      <li class="m_nav-item"><a href="#m__" class="m_nav-link m_px-2 m_text-muted" rel="noreferrer">About</a></li>
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
     </ul>
-
-
-
-
-
+<!--    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">-->
+<!--      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>-->
+<!--      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>-->
+<!--      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>-->
+<!--    </ul>-->
   </footer>
-</div>
-
-</body></html>
+</body>
+</html>
