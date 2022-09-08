@@ -1,7 +1,9 @@
 ---
 layout: empty
-permalink: /cookie-policy
+permalink: /tradeaudit/cookie-policy
 title: "Cookie Policy"
+sitemap: false
+author_profile: false
 ---
 # Cookie Policy
 Please read this cookie policy (“cookie policy”, "policy") carefully before using [website] website (“website”, "service") operated by [name] ("us", 'we", "our").
