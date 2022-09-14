@@ -1,6 +1,6 @@
 ---
 layout: empty
-permalink: /tradeaudit/cookie-policy
+permalink: /cookie-policy
 title: "Cookie Policy"
 sitemap: false
 author_profile: false
