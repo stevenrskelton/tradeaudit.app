@@ -14,49 +14,49 @@ author_profile: false
     <p class="lead mb-4">Social media is full of "financial professionals" and "macro analysts".  Carefully curated twitter feeds promoting successful trades but hiding all losses.  Do your own due diligence and create your own audited trade record for accounts you follow.</p>
       
 </div>
-<div class="px-4 py-5 my-5 text-center">
 
-  <h2 class="display-10 fw-bold">Top User Ratings</h2>
-    <div class="input-group mb-3">
-      <button class="btn btn-outline-secondary" type="button">SPY</button>
-      <button class="btn btn-outline-secondary" type="button">QQQ</button>
-      <button class="btn btn-outline-secondary" type="button">TSLA</button>
-      <button class="btn btn-outline-secondary" type="button">AMC</button>
-      <button class="btn btn-outline-secondary" type="button">AAPL</button>
-      <button class="btn btn-outline-secondary" type="button">AMZN</button>
-      <button class="btn btn-outline-secondary" type="button">META</button>
-    </div>
-    
-  <div id="stock-symbols" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+
+<h2 class="display-10 fw-bold">Top User Ratings</h2>
+  <div class="input-group mb-3">
+    <button class="btn btn-outline-secondary" type="button">SPY</button>
+    <button class="btn btn-outline-secondary" type="button">QQQ</button>
+    <button class="btn btn-outline-secondary" type="button">TSLA</button>
+    <button class="btn btn-outline-secondary" type="button">AMC</button>
+    <button class="btn btn-outline-secondary" type="button">AAPL</button>
+    <button class="btn btn-outline-secondary" type="button">AMZN</button>
+    <button class="btn btn-outline-secondary" type="button">META</button>
   </div>
 
-  <template id="stock-symbol-template">
-    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-    <label class="btn btn-outline-primary" for="btncheck1" id="stock-symbol"></label>
-    <div class="myClass">I like: </div>
-  </template>
-  <script>
-      var stockData = [
-      { "symbol": "SPY", "stockId": 17400 },
-      { "symbol": "QQQ", "stockId": 17400 },
-      { "symbol": "BAC", "stockId": 17400 },
-      { "symbol": "TSLA", "stockId": 17400 }
-      ];
-      var stockSymbolsGroup = document.querySelector("#stock-symbols");
-      var item, a;
-      var template = document.querySelector("#stock-symbol-template");
-      for (var i = 0; i < stockData.length; i++) {
-        var a = document.importNode(template, true);
-        stockSymbolsGroup.appendChild(a);
-        a.querySelector("stock-symbol").textContent += stockData[i].symbol;
-      }
-    </script>
-    
-    <ul class="list-group">
-        <li class="list-group-item">A first user summary</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-    </ul>
+<div id="stock-symbols" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+</div>
+
+<template id="stock-symbol-template">
+  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+  <label class="btn btn-outline-primary" for="btncheck1" id="stock-symbol"></label>
+  <div class="myClass">I like: </div>
+</template>
+<script>
+    var stockData = [
+    { "symbol": "SPY", "stockId": 17400 },
+    { "symbol": "QQQ", "stockId": 17400 },
+    { "symbol": "BAC", "stockId": 17400 },
+    { "symbol": "TSLA", "stockId": 17400 }
+    ];
+    var stockSymbolsGroup = document.querySelector("#stock-symbols");
+    var item, a;
+    var template = document.querySelector("#stock-symbol-template");
+    for (var i = 0; i < stockData.length; i++) {
+      var a = document.importNode(template, true);
+      stockSymbolsGroup.appendChild(a);
+      a.querySelector("stock-symbol").textContent += stockData[i].symbol;
+    }
+  </script>
+
+  <ul class="list-group">
+      <li class="list-group-item">A first user summary</li>
+      <li class="list-group-item">A second item</li>
+      <li class="list-group-item">A third item</li>
+      <li class="list-group-item">A fourth item</li>
+      <li class="list-group-item">And a fifth one</li>
+  </ul>
 </div>
