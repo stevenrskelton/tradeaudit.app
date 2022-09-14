@@ -1,0 +1,35 @@
+{
+  "stocks": [
+    {
+      "stockId": 1,
+      "symbol": "SPY"
+    }, {
+      "stockId": 2,
+      "symbol": "QQQ"
+    }, {
+      "stockId": 3,
+      "symbol": "TSLA"
+    }, {
+      "stockId": 4,
+      "symbol": "AMC"
+    }, {
+      "stockId": 5,
+      "symbol": "META"
+    }, {
+      "stockId": 6,
+      "symbol": "AAPL"
+    }, {
+      "stockId": 7,
+      "symbol": "AMZN"
+    }, {
+      "stockId": 8,
+      "symbol": "NFLX"
+    }, {
+      "stockId": 9,
+      "symbol": "TLT"
+    }, {
+      "stockId": 10,
+      "symbol": "GOOG"
+    }
+  ]
+}
