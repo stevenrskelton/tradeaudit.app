@@ -8,55 +8,69 @@ author_profile: false
 
 <div class="px-4 py-5 my-5 text-center">
   <h1 class="display-5 fw-bold">Stock Tracking for Twitter</h1>
+  <h2>Social media is full of "financial professionals" and "macro analysts"</h2>
   <div class="col-lg-6 mx-auto">
-      
-      
-    <p class="lead mb-4">Social media is full of "financial professionals" and "macro analysts".  Carefully curated twitter feeds promoting successful trades but hiding all losses.  Do your own due diligence and create your own audited trade record for accounts you follow.</p>
+    <p class="lead mb-4">Carefully curated twitter feeds promoting successful trades but hiding all losses.  Do your own due diligence and create audited trade records for accounts you follow before you invest your money.</p>
       
 </div>
 
 
 <h2 class="display-10 fw-bold">Top User Ratings</h2>
-  <div class="input-group mb-3">
-    <button class="btn btn-outline-secondary" type="button">SPY</button>
-    <button class="btn btn-outline-secondary" type="button">QQQ</button>
-    <button class="btn btn-outline-secondary" type="button">TSLA</button>
-    <button class="btn btn-outline-secondary" type="button">AMC</button>
-    <button class="btn btn-outline-secondary" type="button">AAPL</button>
-    <button class="btn btn-outline-secondary" type="button">AMZN</button>
-    <button class="btn btn-outline-secondary" type="button">META</button>
-  </div>
 
-<div id="stock-symbols" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-</div>
+    <script type="module">
+        import {LitElement, html} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+        export class StockToolbar extends LitElement {
+            static properties = {
+                stocks: {state: true},
+                selectedStockId: {state: true},
+            };
 
-<template id="stock-symbol-template">
-  <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-  <label class="btn btn-outline-primary" for="btncheck1" id="stock-symbol"></label>
-  <div class="myClass">I like: </div>
-</template>
-<script>
-    var stockData = [
-    { "symbol": "SPY", "stockId": 17400 },
-    { "symbol": "QQQ", "stockId": 17400 },
-    { "symbol": "BAC", "stockId": 17400 },
-    { "symbol": "TSLA", "stockId": 17400 }
-    ];
-    var stockSymbolsGroup = document.querySelector("#stock-symbols");
-    var item, a;
-    var template = document.querySelector("#stock-symbol-template");
-    for (var i = 0; i < stockData.length; i++) {
-      var a = document.importNode(template, true);
-      stockSymbolsGroup.appendChild(a);
-      a.querySelector("stock-symbol").textContent += stockData[i].symbol;
-    }
-  </script>
+            constructor() {
+                super();
+                this.stocks = [];
 
-  <ul class="list-group">
-      <li class="list-group-item">A first user summary</li>
-      <li class="list-group-item">A second item</li>
-      <li class="list-group-item">A third item</li>
-      <li class="list-group-item">A fourth item</li>
-      <li class="list-group-item">And a fifth one</li>
-  </ul>
+                var url = 'https://tradeaudit.app/assets/stocks.json';
+
+                // Making our request
+                fetch(url, { method: 'GET' })
+                    .then(Result => Result.json())
+                    .then(string => {
+                        console.log(string);
+                        this.stocks = string.stocks;
+                    })
+                .catch(errorMsg => { console.log(errorMsg); });
+            }
+
+          render() {
+            return html`
+               <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+                <div class="input-group mb-3">
+                    ${this.stocks.map(
+                      (item) => html`
+                        <button
+                            @click=${() => this.toggleSelected(item.stockId)}
+                            class="btn btn-outline-secondary ${item.stockId == this.selectedStockId ? 'active' : ''}" type="button"
+                        >
+                            ${item.symbol}
+                        </button>`
+                    )}
+                </div>
+            `;
+          }
+
+          toggleSelected(stockId) {
+            if(this.selectedStockId == stockId){
+              this.selectedStockId = null;
+            }else{
+              this.selectedStockId = stockId;
+            }
+          }
+        }
+        customElements.define('stock-toolbar', StockToolbar);
+    </script>
+  
+    <stock-toolbar></stock-toolbar>
+  
 </div>
