@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<html class="h-100" lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -8,19 +8,21 @@
 <!--            crossorigin="anonymous"></script>-->
 </head>
 <body>
-  <nav class="py-2 bg-light border-bottom">
-    <div class="container d-flex flex-wrap">
-        <img src="https://tradeaudit.app/assets/query_stats_FILL0_wght400_GRAD0_opsz48.svg" class="align-bottom" width="60" height="60"/>
-        <a href="/" class="me-auto fs-1 fw-bold text-decoration-none link-dark">Trade Audit</a>
-        <img alt="Get it on Google Play" height="60px" id="logo-img" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
-    </div>
-  </nav>
+  <header>
+    <nav class="py-2 bg-light border-bottom">
+        <div class="container d-flex flex-wrap">
+            <img src="https://tradeaudit.app/assets/query_stats_FILL0_wght400_GRAD0_opsz48.svg" class="align-bottom" width="60" height="60"/>
+            <a href="/" class="me-auto fs-1 fw-bold text-decoration-none link-dark">Trade Audit</a>
+            <img alt="Get it on Google Play" height="60px" id="logo-img" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png">
+        </div>
+    </nav>
+  </header>
   
-  <div class="container g-5 mt-5">
+  <main class="container g-5 mt-5 flex-shrink-0">
     {{ content }}
-  </div>
+  </main>
   
-  <footer class="py-2 bg-light border-top">
+  <footer class="py-2 bg-light border-top footer mt-auto">
     <div class="container d-flex flex-wrap me-auto">
       <a href="/" class="nav nav-item nav-link text-muted me-auto">
         © 2022 Trade Audit
