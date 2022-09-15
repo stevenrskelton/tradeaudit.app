@@ -8,14 +8,12 @@ author_profile: false
 
 <div class="px-4 py-5 my-5 text-center">
   <h1 class="display-5 fw-bold">Stock Tracking for Twitter</h1>
-  <h2>Social media is full of "financial professionals" and "macro analysts"</h2>
-  <div class="col-lg-6 mx-auto">
-    <p class="lead mb-4">Carefully curated twitter feeds promoting successful trades but hiding all losses.  Do your own due diligence and create audited trade records for accounts you follow before you invest your money.</p>
-      
-</div>
+  
+  <h3 class=" py-5 my-5">Social media is full of "financial professionals" and "macro analysts"</h3>
+  
+  <p class="lead mb-4">Carefully curated twitter feeds promoting successful trades but hiding all losses.  Do your own due diligence and create audited trade records for accounts you follow before you invest your money.</p>    
 
-
-<h2 class="display-10 fw-bold">Top User Ratings</h2>
+  <h2 class="display-10 fw-bold">Top User Ratings</h2>
 
     <script type="module">
         import {LitElement, html} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
@@ -46,7 +44,7 @@ author_profile: false
                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-                <div class="input-group mb-3">
+                <div class="input-group mb-3" style="margin:auto;width:700px;">
                     ${this.stocks.map(
                       (item) => html`
                         <button
