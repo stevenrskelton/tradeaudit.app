@@ -13,60 +13,157 @@ author_profile: false
 
   <h2 class="display-10 fw-bold">Top User Ratings</h2>
 
-    <script type="module">
-        import {LitElement, html} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
-        export class StockToolbar extends LitElement {
-            static properties = {
-                stocks: {state: true},
-                selectedStockId: {state: true},
-            };
+  <script type="module">
+import {LitElement, html, svg} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
-            constructor() {
-                super();
-                this.stocks = [];
+export class PieChart extends LitElement {
+  static properties = {
+      positive: { type: Number },
+      negative: { type: Number },
+  };
 
-                var url = 'https://tradeaudit.app/assets/stocks.json';
+  render() {
 
-                // Making our request
-                fetch(url, { method: 'GET' })
-                    .then(Result => Result.json())
-                    .then(string => {
-                        console.log(string);
-                        this.stocks = string.stocks;
-                    })
-                .catch(errorMsg => { console.log(errorMsg); });
-            }
+    let arr = [
+      { percent: this.positive ?? 0, color: 'Coral' },
+      { percent: this.negative ?? 0, color: 'CornflowerBlue' },
+    ];
 
-          render() {
-            return html`
-               <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    function getCoordinatesForPercent(percent) {
+      const x = Math.cos(2 * Math.PI * percent);
+      const y = Math.sin(2 * Math.PI * percent);
+      return [x, y];
+    }
 
-                <div class="input-group mb-3" style="margin:auto;width:700px;">
-                    ${this.stocks.map(
-                      (item) => html`
-                        <button
-                            @click=${() => this.toggleSelected(item.stockId)}
-                            class="btn btn-outline-secondary ${item.stockId == this.selectedStockId ? 'active' : ''}" type="button"
-                        >
-                            ${item.symbol}
-                        </button>`
-                    )}
-                </div>
-            `;
-          }
+    let cumulativePercent = 0;
 
-          toggleSelected(stockId) {
-            if(this.selectedStockId == stockId){
-              this.selectedStockId = null;
-            }else{
-              this.selectedStockId = stockId;
-            }
-          }
-        }
-        customElements.define('stock-toolbar', StockToolbar);
-    </script>
+    const slices = arr.map(slice => {
+      // destructuring assignment sets the two variables at once
+      const [startX, startY] = getCoordinatesForPercent(cumulativePercent);
+
+      // each slice starts where the last slice ended, so keep a cumulative percent
+      cumulativePercent += slice.percent;
+
+      const [endX, endY] = getCoordinatesForPercent(cumulativePercent);
+
+      // if the slice is more than 50%, take the large arc (the long way around)
+      const largeArcFlag = slice.percent > .5 ? 1 : 0;
+
+        // create an array and join it just for code readability
+      const pathData = [
+        `M ${startX} ${startY}`, // Move
+        `A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY}`, // Arc
+        `L 0 0`, // Line
+      ].join(' ');
+
+      return svg`<path d="${pathData}" fill="${slice.color}"></path>`;
+    })
+
+    return svg`
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 2 2" style="transform: rotate(-90deg);height:200px;">
+       ${slices}
+       </svg>
+    `;
+  }
+}
+customElements.define('pie-chart', PieChart);
+
+export class StockToolbar extends LitElement {
+  static properties = {
+      stocks: {state: true},
+      selectedStockId: {state: true},
+  };
+
+  constructor() {
+    super();
+    this.stocks = [];
+
+    var url = 'https://tradeaudit.app/assets/stocks.json';
+
+    // Making our request
+    fetch(url, { method: 'GET' })
+        .then(Result => Result.json())
+        .then(string => {
+            console.log(string);
+            this.stocks = string.stocks;
+        })
+    .catch(errorMsg => { console.log(errorMsg); });
+
+    this.toggleSelected(null);
+  }
+
+  render() {
+    return html`
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <div class="input-group mb-3" style="margin:auto;width:700px;">
+            ${this.stocks.map(
+              (item) => html`
+                <button
+                    @click=${() => this.toggleSelected(item.stockId)}
+                    class="btn btn-outline-secondary ${item.stockId == this.selectedStockId ? 'active' : ''}" type="button"
+                >
+                    ${item.symbol}
+                </button>`
+            )}
+        </div>
+    `;
+  }
+
+  toggleSelected(stockId) {
+    if(this.selectedStockId == stockId){
+      this.selectedStockId = null;
+    }else{
+      this.selectedStockId = stockId;
+    }
+    var url = 'https://tradeaudit.app/assets/users.json';
+
+    // Making our request
+    fetch(url, { method: 'GET' })
+        .then(Result => Result.json())
+        .then(string => {
+            console.log(string);
+            document.getElementsByTagName('user-summary')[0].usersummaries = string.users;
+        })
+    .catch(errorMsg => { console.log(errorMsg); });
+  }
+}
+customElements.define('stock-toolbar', StockToolbar);
+
+export class UserSummary extends LitElement {
+  static properties = {
+      usersummaries: {state: true},
+  };
+
+  render() {
+    return html`
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <ul class="list-group" id="stock-ul">
+            ${(this.usersummaries ?? []).map(
+              (item) => html`
+                <li class="list-group-item">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">${item.twitterUserName}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">${item.twitterDisplayName}</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        ${item.stocks.map(
+                            (stock) => html`<a href="#" class="card-link" fw-bold">${stock.symbol}</a>`
+                        )}
+                        <pie-chart positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
+                      </div>
+                    </div>
+                </li>`
+            )}
+        </ul>
+    `;
+  }
+}
+customElements.define('user-summary', UserSummary);
+  </script>
   
-    <stock-toolbar></stock-toolbar>
+  <stock-toolbar></stock-toolbar>
   
+  <user-summary></user-summary>
 </div>
