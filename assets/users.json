@@ -7,9 +7,8 @@
       "twitterProfileUrl": "https://pbs.twimg.com/profile_images/1378031762396307459/8ND7ILjK_400x400.jpg",
       "followerCount": 123,
       "conversationCount": 23,
-      "neutralRatingCount": 9,
-      "positiveRatingCount": 10001,
-      "negativeRatingCount": 34,
+      "positiveRatingPercent": 0.45,
+      "negativeRatingPercent": 0.38,
       "stocks": [
         {
           "stockId": 8,
