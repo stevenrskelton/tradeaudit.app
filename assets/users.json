@@ -11,7 +11,7 @@
       "negativeRatingPercent": 0.78,
       "stocks": [
         {
-          "stockId": 1,
+          "stockId": 99,
           "symbol": "NFLX"
         },
         {
@@ -19,11 +19,11 @@
           "symbol": "TLT"
         },
         {
-          "stockId": 30,
+          "stockId": 99,
           "symbol": "IBM"
         },
         {
-          "stockId": 31,
+          "stockId": 99,
           "symbol": "FXE"
         },        
         {
@@ -31,7 +31,7 @@
           "symbol": "SPY"
         },
         {
-          "stockId": 33,
+          "stockId": 99,
           "symbol": "GDX"
         }
       ]
