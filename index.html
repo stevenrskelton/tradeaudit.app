@@ -150,21 +150,27 @@ export class UserSummary extends LitElement {
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <ul class="list-group" id="stock-ul">
+        <ul class="list-group" id="stock-ul" style="max-width:800px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => html`
-                <li class="list-group-item">
-                    <div class="card" style="width: 18rem;">
-                      <div class="card-body">
-                        <pie-chart style="float:right" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
-                        <h5 class="card-title">${item.twitterUserName}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">${item.twitterDisplayName}</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        ${item.stocks.map(
-                            (stock) => html`<span class="card-link text-muted" fw-bold">${stock.symbol}</span>`
-                        )}
-                      </div>
+                <li class="list-group-item container" style="display:flex;align-items:center;">
+                    <div style="display:flex">
+                        <img src="${item.twitterProfileUrl}" style="width:64px;height:64px;border-radius: 50%;"/>
+                        <div style="text-align:left;padding-left:12px;">
+                            <h5 class="card-title">${item.twitterUserName}</h5>
+                            <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
+                            <span>${item.followerCount} Followers</span>
+                        </div>
                     </div>
+                    <div style="flex-grow:1" class="card-text">
+                        <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
+                        <div style="flex-wrap:wrap;width:100%">
+                        ${item.stocks.map(
+                            (stock) => html`<span class="card-link text-muted" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
+                        )}
+                        </div>
+                    </div>
+                    <pie-chart positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
                 </li>`
             )}
         </ul>
