@@ -164,11 +164,9 @@ export class UserSummary extends LitElement {
                     </div>
                     <div style="flex-grow:1" class="card-text">
                         <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
-                        <div style="flex-wrap:wrap;width:100%">
                         ${item.stocks.map(
                             (stock) => html`<span class="card-link text-muted" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
                         )}
-                        </div>
                     </div>
                     <pie-chart positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
                 </li>`
