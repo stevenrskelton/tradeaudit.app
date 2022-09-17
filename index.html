@@ -133,9 +133,12 @@ export class StockToolbar extends LitElement {
     fetch(url, { method: 'GET' })
         .then(Result => Result.json())
         .then(string => {
-            console.log(string);
             const usersummaries = document.getElementsByTagName('user-summary')[0];
-            usersummaries.usersummaries = string.users;
+            if(this.selectedStockId != null){
+                usersummaries.usersummaries = string.users.filter(user => user.stocks.find(stock => stock.stockId === this.selectedStockId) != null);
+            }else{
+                usersummaries.usersummaries = string.users;
+            }
             usersummaries.selectedStockId = this.selectedStockId;
         })
     .catch(errorMsg => { console.log(errorMsg); });
