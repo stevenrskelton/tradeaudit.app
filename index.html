@@ -156,13 +156,13 @@ export class UserSummary extends LitElement {
                 <li class="list-group-item">
                     <div class="card" style="width: 18rem;">
                       <div class="card-body">
+                        <pie-chart style="float:right" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
                         <h5 class="card-title">${item.twitterUserName}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">${item.twitterDisplayName}</h6>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         ${item.stocks.map(
-                            (stock) => html`<a href="#" class="card-link" fw-bold">${stock.symbol}</a>`
+                            (stock) => html`<span class="card-link text-muted" fw-bold">${stock.symbol}</span>`
                         )}
-                        <pie-chart positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"/>
                       </div>
                     </div>
                 </li>`
@@ -174,7 +174,7 @@ export class UserSummary extends LitElement {
 customElements.define('user-summary', UserSummary);
   </script>
   
-  <stock-toolbar/>
+  <stock-toolbar></stock-toolbar>
   
-  <user-summary/>
+  <user-summary></user-summary>
 </div>
