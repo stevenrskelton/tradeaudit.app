@@ -15,23 +15,23 @@
           "symbol": "NFLX"
         },
         {
-          "stockId": 2,
+          "stockId": 9,
           "symbol": "TLT"
         },
         {
-          "stockId": 3,
+          "stockId": 30,
           "symbol": "IBM"
         },
         {
-          "stockId": 4,
+          "stockId": 31,
           "symbol": "FXE"
         },        
         {
-          "stockId": 5,
+          "stockId": 1,
           "symbol": "SPY"
         },
         {
-          "stockId": 5,
+          "stockId": 33,
           "symbol": "GDX"
         }
       ]
@@ -46,11 +46,11 @@
       "negativeRatingPercent": 0.11,
       "stocks": [
         {
-          "stockId": 8,
+          "stockId": 1,
           "symbol": "SPY"
         },
         {
-          "stockId": 9,
+          "stockId": 2,
           "symbol": "QQQ"
         }
       ]
@@ -65,11 +65,11 @@
       "negativeRatingPercent": 0.09,
       "stocks": [
         {
-          "stockId": 8,
+          "stockId": 1,
           "symbol": "SPY"
         },
         {
-          "stockId": 9,
+          "stockId": 3,
           "symbol": "TSLA"
         }
       ]
