@@ -24,17 +24,17 @@ export class PieChart extends LitElement {
 
   render() {
 
-    let arr = [
-      { percent: this.positive ?? 0, color: '#538600' },
-      { percent: this.negative ?? 0, color: '#9f003e' },
-    ];
-
     function getCoordinatesForPercent(percent) {
       const x = Math.cos(2 * Math.PI * percent);
       const y = Math.sin(2 * Math.PI * percent);
       return [x, y];
     }
 
+    const arr = [
+      { percent: this.positive ?? 0, color: '#538600' },
+      { percent: this.negative ?? 0, color: '#9f003e' },
+    ];
+    
     let cumulativePercent = 0;
 
     const slices = arr.map(slice => {
@@ -162,7 +162,7 @@ export class UserSummary extends LitElement {
                         ${item.stocks.map(
                             (stock) => html`<a href="#" class="card-link" fw-bold">${stock.symbol}</a>`
                         )}
-                        <pie-chart positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
+                        <pie-chart positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"/>
                       </div>
                     </div>
                 </li>`
@@ -174,7 +174,7 @@ export class UserSummary extends LitElement {
 customElements.define('user-summary', UserSummary);
   </script>
   
-  <stock-toolbar></stock-toolbar>
+  <stock-toolbar/>
   
-  <user-summary></user-summary>
+  <user-summary/>
 </div>
