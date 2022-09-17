@@ -7,8 +7,8 @@
       "twitterProfileUrl": "https://pbs.twimg.com/profile_images/1378031762396307459/8ND7ILjK_400x400.jpg",
       "followerCount": 123,
       "conversationCount": 23,
-      "positiveRatingPercent": 0.45,
-      "negativeRatingPercent": 0.38,
+      "positiveRatingPercent": 0.15,
+      "negativeRatingPercent": 0.78,
       "stocks": [
         {
           "stockId": 8,
@@ -17,6 +17,44 @@
         {
           "stockId": 9,
           "symbol": "TLT"
+        }
+      ]
+    },{
+      "twitterStatusId": 1234523890,
+      "twitterUserName": "TwitterUserName2",
+      "twitterDisplayName": "TwitterDisplayName2",
+      "twitterProfileUrl": "https://pbs.twimg.com/profile_images/378800000264951777/fdcb2fffc58110f966d01c65c5daf7df_400x400.png",
+      "followerCount": 28343,
+      "conversationCount": 1923,
+      "positiveRatingPercent": 0.78,
+      "negativeRatingPercent": 0.11,
+      "stocks": [
+        {
+          "stockId": 8,
+          "symbol": "SPY"
+        },
+        {
+          "stockId": 9,
+          "symbol": "QQQ"
+        }
+      ]
+    },{
+      "twitterStatusId": 1234523890,
+      "twitterUserName": "TwitterUserName3",
+      "twitterDisplayName": "TwitterDisplayName3",
+      "twitterProfileUrl": "https://pbs.twimg.com/profile_images/1570766042674221058/B0P8ieTZ_400x400.jpg",
+      "followerCount": 135923,
+      "conversationCount": 823,
+      "positiveRatingPercent": 0.58,
+      "negativeRatingPercent": 0.09,
+      "stocks": [
+        {
+          "stockId": 8,
+          "symbol": "SPY"
+        },
+        {
+          "stockId": 9,
+          "symbol": "TSLA"
         }
       ]
     }
