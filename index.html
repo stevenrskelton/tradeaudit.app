@@ -34,7 +34,7 @@ export class PieChart extends LitElement {
       { percent: this.positive ?? 0, color: '#538600' },
       { percent: this.negative ?? 0, color: '#9f003e' },
     ];
-    
+
     let cumulativePercent = 0;
 
     const slices = arr.map(slice => {
@@ -134,7 +134,9 @@ export class StockToolbar extends LitElement {
         .then(Result => Result.json())
         .then(string => {
             console.log(string);
-            document.getElementsByTagName('user-summary')[0].usersummaries = string.users;
+            const usersummaries = document.getElementsByTagName('user-summary')[0];
+            usersummaries.usersummaries = string.users;
+            usersummaries.selectedStockId = this.selectedStockId;
         })
     .catch(errorMsg => { console.log(errorMsg); });
   }
@@ -144,6 +146,7 @@ customElements.define('stock-toolbar', StockToolbar);
 export class UserSummary extends LitElement {
   static properties = {
       usersummaries: {state: true},
+      selectedStockId: {state: true},
   };
 
   render() {
@@ -165,7 +168,10 @@ export class UserSummary extends LitElement {
                     <div style="flex-grow:1" class="card-text">
                         <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
                         ${item.stocks.map(
-                            (stock) => html`<span class="card-link text-muted" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
+                            (stock) => {
+                                const selected = this.selectedStockId == stock.stockId ? "fw-bold" : "";
+                                return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
+                            }
                         )}
                     </div>
                     <pie-chart positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
