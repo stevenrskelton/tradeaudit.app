@@ -20,6 +20,7 @@ export class PieChart extends LitElement {
   static properties = {
       positive: { type: Number },
       negative: { type: Number },
+      size: { type: Number },
   };
 
   render() {
@@ -62,9 +63,10 @@ export class PieChart extends LitElement {
     const percent = total == 0 ? 0 : (this.positive / total * 100);
     const text = Math.round(percent) + '%';
     const textX = text.length == 4 ? -16.5 : (text.length == 3 ? -12 : -7);
+    const size = this.size ?? 64;
 
     return svg`
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.3 -1.3 2.6 2.6" height="64" width="64">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.3 -1.3 2.6 2.6" height="${size}" width="${size}">
          <style>
             .small {
               font: bold 13px sans-serif;
@@ -148,11 +150,13 @@ customElements.define('stock-toolbar', StockToolbar);
 
 export class UserSummary extends LitElement {
   static properties = {
-      usersummaries: {state: true},
-      selectedStockId: {state: true},
+      usersummaries: { type: Array, state: true },
+      selectedStockId: { type: Number, state: true },
+      height: { type: Number },
   };
 
   render() {
+    const height = this.height ?? 64;
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -161,7 +165,7 @@ export class UserSummary extends LitElement {
               (item) => html`
                 <li class="list-group-item container" style="display:flex;align-items:center;">
                     <div style="display:flex">
-                        <img src="${item.twitterProfileUrl}" style="width:64px;height:64px;border-radius: 50%;"/>
+                        <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius: 50%;"/>
                         <div style="text-align:left;padding-left:12px;">
                             <h5 class="card-title">${item.twitterUserName}</h5>
                             <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
@@ -177,7 +181,7 @@ export class UserSummary extends LitElement {
                             }
                         )}
                     </div>
-                    <pie-chart positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
+                    <pie-chart size="${height}" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
                 </li>`
             )}
         </ul>
@@ -189,5 +193,5 @@ customElements.define('user-summary', UserSummary);
   
   <stock-toolbar></stock-toolbar>
   
-  <user-summary></user-summary>
+  <user-summary height="72"></user-summary>
 </div>
