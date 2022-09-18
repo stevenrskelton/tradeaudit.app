@@ -165,8 +165,8 @@ export class UserSummary extends LitElement {
               (item) => html`
                 <li class="list-group-item container" style="display:flex;align-items:center;">
                     <div style="display:flex">
-                        <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius: 50%;"/>
-                        <div style="text-align:left;padding-left:12px;">
+                        <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
+                        <div style="text-align:left;padding-left:12px;margin-top:auto;margin-bottom:auto;">
                             <h5 class="card-title">${item.twitterUserName}</h5>
                             <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
                             <span>${item.followerCount} Followers</span>
@@ -193,5 +193,5 @@ customElements.define('user-summary', UserSummary);
   
   <stock-toolbar></stock-toolbar>
   
-  <user-summary height="72"></user-summary>
+  <user-summary height="80"></user-summary>
 </div>
