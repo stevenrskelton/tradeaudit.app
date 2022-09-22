@@ -183,7 +183,7 @@ export class UserSummary extends LitElement {
                         <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
                         ${item.stocks.map(
                             (stock) => {
-                                const selected = this.selectedStockSymbol == stock.stockSymbol ? "fw-bold" : "";
+                                const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
                                 return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
                             }
                         )}
