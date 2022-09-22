@@ -14,7 +14,7 @@ author_profile: false
   <h2 class="display-10 fw-bold">Top User Ratings</h2>
 
   <script type="module">
-import {LitElement, html, svg} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
 export class PieChart extends LitElement {
   static properties = {
@@ -154,6 +154,12 @@ export class UserSummary extends LitElement {
       selectedStockId: { type: Number, state: true },
       height: { type: Number },
   };
+  
+  static styles = css`
+    .showchart:hover, .showchart:focus {
+        filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(246deg) brightness(104%) contrast(97%);
+    }
+  `;
 
   render() {
     const height = this.height ?? 64;
@@ -181,6 +187,9 @@ export class UserSummary extends LitElement {
                             }
                         )}
                     </div>
+                    <a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}">
+                        <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
+                    </a>
                     <pie-chart size="${height}" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
                 </li>`
             )}
