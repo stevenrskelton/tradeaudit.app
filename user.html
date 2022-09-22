@@ -10,61 +10,90 @@ author_profile: false
 <div class="px-4 py-5 my-5 text-center">
   <h1 class="display-5 fw-bold">Stock Tracking for Twitter</h1>
 
-  <div id="my_dataviz"></div>
+<script src="https://d3js.org/d3.v7.js"></script>
+<script type="module">
+import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
-  <script>
+export class D3UserChart extends LitElement {
+  static properties = {
+      usersummaries: { type: Array, state: true },
+      selectedStockId: { type: Number, state: true },
+      width: { type: Number },
+      height: { type: Number },
+      svg: { type: Object },
+  };
 
-// set the dimensions and margins of the graph
-var margin = {top: 20, right: 20, bottom: 50, left: 70},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+  static styles = css`
+    .line {
+        fill: "none";
+        stroke: "steelblue";
+        stroke-width: 1.5;
+    }
+  `;
 
-// set the ranges
-var x = d3.scaleTime().range([0, width]);
-var y = d3.scaleLinear().range([height, 0]);
+ firstUpdated() {
+    super.firstUpdated();
+    const self = this;
+    d3.csv("https://tradeaudit.app/assets/userdata.csv").then(function(data) {
 
-// define the line
-var valueline = d3.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.close); });
+      const marginLeft = 70;
+      const marginTop = 20;
+      const marginRight = 20;
+      const marginBottom = 50;
 
-// append the svg obgect to the body of the page
-// appends a 'group' element to 'svg'
-// moves the 'group' element to the top left margin
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // set the ranges
+    var x = d3.scaleTime().range([0, self.width]);
+    var y = d3.scaleLinear().range([self.height, 0]);
 
-// Get the data
-d3.csv("https://tradeaudit.app/assets/userdata.csv").then(function(data) {
+    // define the line
+    var valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.close); });
 
-  // format the data
-  data.forEach(function(d) {
-      d.date = d3.timeParse("%Y-%m-%d")(d.date);
-      d.close = +d.close;
-  });
+    // append the svg object to the body of the page
+    // appends a 'group' element to 'svg'
+    // moves the 'group' element to the top left margin
+    const root = self.renderRoot?.querySelector('#my_dataviz');
+    var svg = d3.select(root).append("svg")
+        .attr("width", self.width + marginLeft + marginRight)
+        .attr("height", self.height + marginTop + marginBottom)
+      .append("g")
+        .attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
-  // Scale the range of the data
-  x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) { return d.close; })]);
+     // format the data
+      data.forEach(function(d) {
+          d.date = d3.timeParse("%Y-%m-%d")(d.date);
+          d.close = +d.close;
+      });
 
-  // Add the valueline path.
-  svg.append("path")
-      .data([data])
-      .attr("class", "line")
-      .attr("d", valueline);
+      // Scale the range of the data
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+      y.domain([0, d3.max(data, function(d) { return d.close; })]);
 
-  // Add the x Axis
-  svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+      // Add the valueline path.
+      svg.append("path")
+          .data([data])
+          .attr("class", "line")
+          .attr("d", valueline)
+          .style("fill", "none")
+          .style("stroke", "steelblue")
+          .style("stroke-width", 1.5);
 
-  // Add the y Axis
-  svg.append("g").call(d3.axisLeft(y));
+      // Add the x Axis
+      svg.append("g")
+          .attr("transform", "translate(0," + self.height + ")")
+          .call(d3.axisBottom(x));
 
-});
-  </script>
+      // Add the y Axis
+      svg.append("g").call(d3.axisLeft(y));
+    });
+  }
 
-</div>
+  render() {
+    return html`<div id="my_dataviz"></div>`;
+  }
+}
+customElements.define('d3-userchart', D3UserChart);
+</script>
+
+<d3-userchart width="960" height="500"></d3-userchart>
