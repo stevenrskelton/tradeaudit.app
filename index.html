@@ -83,8 +83,8 @@ customElements.define('pie-chart', PieChart);
 
 export class StockToolbar extends LitElement {
   static properties = {
-      stocks: {state: true},
-      selectedStockId: {state: true},
+      stocks: { type: Array, state: true },
+      selectedStockSymbol: { type: String, state: true },
   };
 
   constructor() {
@@ -114,7 +114,7 @@ export class StockToolbar extends LitElement {
               (item) => html`
                 <button
                     @click=${() => this.toggleSelected(item.stockId)}
-                    class="btn btn-outline-secondary ${item.stockId == this.selectedStockId ? 'active' : ''}" type="button"
+                    class="btn btn-outline-secondary ${item.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
                 >
                     ${item.symbol}
                 </button>`
@@ -123,11 +123,11 @@ export class StockToolbar extends LitElement {
     `;
   }
 
-  toggleSelected(stockId) {
-    if(this.selectedStockId == stockId){
-      this.selectedStockId = null;
+  toggleSelected(stockSymbol) {
+    if(this.selectedStockSymbol == stockSymbol){
+      this.selectedStockSymbol = null;
     }else{
-      this.selectedStockId = stockId;
+      this.selectedStockSymbol = stockSymbol;
     }
     var url = 'https://tradeaudit.app/assets/users.json';
 
@@ -136,12 +136,12 @@ export class StockToolbar extends LitElement {
         .then(Result => Result.json())
         .then(string => {
             const usersummaries = document.getElementsByTagName('user-summary')[0];
-            if(this.selectedStockId != null){
-                usersummaries.usersummaries = string.users.filter(user => user.stocks.find(stock => stock.stockId === this.selectedStockId) != null);
+            if(this.selectedStockSymbol != null){
+                usersummaries.usersummaries = string.users.filter(user => user.stocks.find(stock => stock.symbol === this.selectedStockSymbol) != null);
             }else{
                 usersummaries.usersummaries = string.users;
             }
-            usersummaries.selectedStockId = this.selectedStockId;
+            usersummaries.selectedStockSymbol = this.selectedStockSymbol;
         })
     .catch(errorMsg => { console.log(errorMsg); });
   }
@@ -151,7 +151,7 @@ customElements.define('stock-toolbar', StockToolbar);
 export class UserSummary extends LitElement {
   static properties = {
       usersummaries: { type: Array, state: true },
-      selectedStockId: { type: Number, state: true },
+      selectedStockSymbol: { type: String, state: true },
       height: { type: Number },
   };
   
@@ -168,7 +168,8 @@ export class UserSummary extends LitElement {
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
         <ul class="list-group" id="stock-ul" style="max-width:800px;margin:auto;">
             ${(this.usersummaries ?? []).map(
-              (item) => html`
+              (item) => 
+                html`
                 <li class="list-group-item container" style="display:flex;align-items:center;">
                     <div style="display:flex">
                         <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
@@ -182,13 +183,13 @@ export class UserSummary extends LitElement {
                         <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
                         ${item.stocks.map(
                             (stock) => {
-                                const selected = this.selectedStockId == stock.stockId ? "fw-bold" : "";
+                                const selected = this.selectedStockSymbol == stock.stockSymbol ? "fw-bold" : "";
                                 return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
                             }
                         )}
                     </div>
                     ${
-                      (this.selectedStockId != null) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}">
+                      (this.selectedStockSymbol != null) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockSymbol}">
                           <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
                       </a>` : html`<div style="width:60px"></div>`
                     }
