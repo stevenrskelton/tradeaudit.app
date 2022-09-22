@@ -113,7 +113,7 @@ export class StockToolbar extends LitElement {
             ${this.stocks.map(
               (item) => html`
                 <button
-                    @click=${() => this.toggleSelected(item.stockId)}
+                    @click=${() => this.toggleSelected(item.symbol)}
                     class="btn btn-outline-secondary ${item.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
                 >
                     ${item.symbol}
