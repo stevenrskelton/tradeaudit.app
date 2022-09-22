@@ -1,0 +1,197 @@
+---
+layout: empty
+permalink: /user
+title: "Trade Audit"
+sitemap: false
+author_profile: false
+---
+
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold">Stock Tracking for Twitter</h1>
+  
+  <p class="lead mb-4 container">Social media is full of <span class="fw-bold">"financial professionals"</span> and <span class="fw-bold">"macro analysts"</span> with carefully curated twitter feeds promoting successful trades but hiding all losses.  Do your own due diligence and create audited trade records for accounts you follow before you invest your money.</p>
+
+  <h2 class="display-10 fw-bold">Top User Ratings</h2>
+
+  <script type="module">
+import {LitElement, html, svg} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+
+export class PieChart extends LitElement {
+  static properties = {
+      positive: { type: Number },
+      negative: { type: Number },
+      size: { type: Number },
+  };
+
+  render() {
+
+    function getCoordinatesForPercent(percent) {
+      const x = Math.cos(2 * Math.PI * percent);
+      const y = Math.sin(2 * Math.PI * percent);
+      return [x, y];
+    }
+
+    const arr = [
+      { percent: this.positive ?? 0, color: '#538600' },
+      { percent: this.negative ?? 0, color: '#9f003e' },
+    ];
+
+    let cumulativePercent = 0;
+
+    const slices = arr.map(slice => {
+      // destructuring assignment sets the two variables at once
+      const [startX, startY] = getCoordinatesForPercent(cumulativePercent);
+
+      // each slice starts where the last slice ended, so keep a cumulative percent
+      cumulativePercent += slice.percent;
+
+      const [endX, endY] = getCoordinatesForPercent(cumulativePercent);
+
+      // if the slice is more than 50%, take the large arc (the long way around)
+      const largeArcFlag = slice.percent > .5 ? 1 : 0;
+
+        // create an array and join it just for code readability
+      const pathData = [
+        `M ${startX} ${startY}`, // Move
+        `A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY}`, // Arc
+      ].join(' ');
+
+      return svg`<path d="${pathData}" stroke="${slice.color}" stroke-width="0.45" fill="transparent"/>`;
+    })
+
+    const total = this.positive + this.negative;
+    const percent = total == 0 ? 0 : (this.positive / total * 100);
+    const text = Math.round(percent) + '%';
+    const textX = text.length == 4 ? -16.5 : (text.length == 3 ? -12 : -7);
+    const size = this.size ?? 64;
+
+    return svg`
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.3 -1.3 2.6 2.6" height="${size}" width="${size}">
+         <style>
+            .small {
+              font: bold 13px sans-serif;
+              color: black;
+            }
+         </style>
+         ${slices}
+         <text class="small" transform="scale(0.043, 0.043)" x="${textX}" y="4">${text}</text>
+       </svg>
+    `;
+  }
+}
+customElements.define('pie-chart', PieChart);
+
+export class StockToolbar extends LitElement {
+  static properties = {
+      stocks: {state: true},
+      selectedStockId: {state: true},
+  };
+
+  constructor() {
+    super();
+    this.stocks = [];
+
+    var url = 'https://tradeaudit.app/assets/stocks.json';
+
+    // Making our request
+    fetch(url, { method: 'GET' })
+        .then(Result => Result.json())
+        .then(string => {
+            console.log(string);
+            this.stocks = string.stocks;
+        })
+    .catch(errorMsg => { console.log(errorMsg); });
+
+    this.toggleSelected(null);
+  }
+
+  render() {
+    return html`
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <div class="input-group mb-3" style="margin:auto;justify-content:center;">
+            ${this.stocks.map(
+              (item) => html`
+                <button
+                    @click=${() => this.toggleSelected(item.stockId)}
+                    class="btn btn-outline-secondary ${item.stockId == this.selectedStockId ? 'active' : ''}" type="button"
+                >
+                    ${item.symbol}
+                </button>`
+            )}
+        </div>
+    `;
+  }
+
+  toggleSelected(stockId) {
+    if(this.selectedStockId == stockId){
+      this.selectedStockId = null;
+    }else{
+      this.selectedStockId = stockId;
+    }
+    var url = 'https://tradeaudit.app/assets/users.json';
+
+    // Making our request
+    fetch(url, { method: 'GET' })
+        .then(Result => Result.json())
+        .then(string => {
+            const usersummaries = document.getElementsByTagName('user-summary')[0];
+            if(this.selectedStockId != null){
+                usersummaries.usersummaries = string.users.filter(user => user.stocks.find(stock => stock.stockId === this.selectedStockId) != null);
+            }else{
+                usersummaries.usersummaries = string.users;
+            }
+            usersummaries.selectedStockId = this.selectedStockId;
+        })
+    .catch(errorMsg => { console.log(errorMsg); });
+  }
+}
+customElements.define('stock-toolbar', StockToolbar);
+
+export class UserSummary extends LitElement {
+  static properties = {
+      usersummaries: { type: Array, state: true },
+      selectedStockId: { type: Number, state: true },
+      height: { type: Number },
+  };
+
+  render() {
+    const height = this.height ?? 64;
+    return html`
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <ul class="list-group" id="stock-ul" style="max-width:800px;margin:auto;">
+            ${(this.usersummaries ?? []).map(
+              (item) => html`
+                <li class="list-group-item container" style="display:flex;align-items:center;">
+                    <div style="display:flex">
+                        <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
+                        <div style="text-align:left;padding-left:12px;margin-top:auto;margin-bottom:auto;">
+                            <h5 class="card-title">${item.twitterUserName}</h5>
+                            <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
+                            <span>${item.followerCount} Followers</span>
+                        </div>
+                    </div>
+                    <div style="flex-grow:1" class="card-text">
+                        <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
+                        ${item.stocks.map(
+                            (stock) => {
+                                const selected = this.selectedStockId == stock.stockId ? "fw-bold" : "";
+                                return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
+                            }
+                        )}
+                    </div>
+                    <pie-chart size="${height}" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
+                </li>`
+            )}
+        </ul>
+    `;
+  }
+}
+customElements.define('user-summary', UserSummary);
+  </script>
+  
+  <stock-toolbar></stock-toolbar>
+  
+  <user-summary height="80"></user-summary>
+</div>
