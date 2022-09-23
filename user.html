@@ -7,10 +7,6 @@ author_profile: false
 ---
 
 <script src="https://d3js.org/d3.v7.js"></script>
-<div class="px-4 py-5 my-5 text-center">
-  <h1 class="display-5 fw-bold">Stock Tracking for Twitter</h1>
-
-<script src="https://d3js.org/d3.v7.js"></script>
 <script type="module">
 import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
@@ -23,23 +19,26 @@ export class D3UserChart extends LitElement {
       svg: { type: Object },
   };
 
-  static styles = css`
-    .line {
-        fill: "none";
-        stroke: "steelblue";
-        stroke-width: 1.5;
-    }
-  `;
-
  firstUpdated() {
     super.firstUpdated();
     const self = this;
-    d3.csv("https://tradeaudit.app/assets/userdata.csv").then(function(data) {
+    const div = self.renderRoot.querySelector('#my_dataviz');
 
-      const marginLeft = 70;
-      const marginTop = 20;
-      const marginRight = 20;
-      const marginBottom = 50;
+    if(this.width == null || this.width == 0) this.width = div.clientWidth ?? 960;
+    if(this.height == null || this.height == 0) {
+        this.height = div.clientHeight;
+        if(this.height == 0) this.height = this.width * 0.4;
+    }
+
+    const marginLeft = 70;
+    const marginTop = 20;
+    const marginRight = 20;
+    const marginBottom = 50;
+
+    this.width = this.width - marginLeft - marginRight;
+    this.height = this.height - marginTop - marginBottom;
+
+    d3.csv("https://tradeaudit.app/assets/userdata.csv").then(function(data) {
 
     // set the ranges
     var x = d3.scaleTime().range([0, self.width]);
@@ -53,8 +52,7 @@ export class D3UserChart extends LitElement {
     // append the svg object to the body of the page
     // appends a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    const root = self.renderRoot?.querySelector('#my_dataviz');
-    var svg = d3.select(root).append("svg")
+    var svg = d3.select(div).append("svg")
         .attr("width", self.width + marginLeft + marginRight)
         .attr("height", self.height + marginTop + marginBottom)
       .append("g")
@@ -94,6 +92,108 @@ export class D3UserChart extends LitElement {
   }
 }
 customElements.define('d3-userchart', D3UserChart);
+
+export class UserStockToolbar extends LitElement {
+  static properties = {
+      stocks: { type: Array, state: true, attribute: false },
+      selectedStockSymbol: { type: String, state: true, attribute: false },
+  };
+
+  toggleSelected(stock) {
+    if(stock != null){
+        if(this.selectedStockSymbol == stock.symbol){
+          this.selectedStockSymbol = null;
+        }else{
+          this.selectedStockSymbol = stock.symbol;
+        }
+    }
+  }
+
+  render() {
+    if(this.stocks == null){
+      return html``;
+    } else {
+        return html`
+           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+            <div class="input-group mb-3" style="margin:auto;justify-content:center;padding-top:10px;">
+                ${this.stocks.map(
+                  (item) => html`
+                    <button
+                        @click=${() => this.toggleSelected(item)}
+                        class="btn btn-outline-secondary ${item.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
+                    >
+                        ${item.symbol}
+                    </button>`
+                )}
+            </div>
+        `;
+    }
+  }
+
+}
+customElements.define('user-stocktoolbar', UserStockToolbar);
+
+export class UserTitle extends LitElement {
+
+  static properties = {
+      userSummary: { type: Object, state: true },
+  };
+
+  constructor() {
+    super();
+
+    var url = 'https://tradeaudit.app/assets/users.json';
+
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    var twitterUserName = params.twitter ?? "TwitterUserName1";
+
+    const self = this;
+
+    if(twitterUserName == null){
+
+    } else {
+        fetch(url, { method: 'GET' })
+            .then(Result => Result.json())
+            .then(string => {
+                self.userSummary = string.users.find(user => user.twitterUserName == twitterUserName);
+                console.log(self.userSummary);
+                console.log("requestUpdate");
+                self.requestUpdate();
+            })
+        .catch(errorMsg => { console.log(errorMsg); });
+    }
+  }
+
+  render() {
+    console.log("render");
+    if(this.userSummary == null){
+        return html`<h1>Loading</h1>`;
+    } else {
+        const selectedStock = this.userSummary.stocks[0];
+        return html`
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+            <h1 class="display-5 fw-bold">Stock Tracking for</h1>
+            <div style="display:flex;margin-left:auto;margin-right:auto;width:250px;">
+                <img src="${this.userSummary.twitterProfileUrl}" style="width:64px;height:64px;border-radius:50%;"/>
+                <div style="text-align:left;padding-left:12px;">
+                    <h5 class="card-title">${this.userSummary.twitterUserName}</h5>
+                    <h6 class="card-subtitle text-muted">@${this.userSummary.twitterDisplayName}</h6>
+                    <span>${this.userSummary.followerCount} Followers</span>
+                </div>
+            </div>
+            <user-stocktoolbar .stocks=${this.userSummary.stocks} .selectedStockSymbol=${selectedStock}></user-stocktoolbar>
+        `;
+    }
+  }
+}
+customElements.define('user-title', UserTitle);
+
 </script>
 
-<d3-userchart width="960" height="500"></d3-userchart>
+<user-title></user-title>
+
+<d3-userchart class="container"></d3-userchart>
