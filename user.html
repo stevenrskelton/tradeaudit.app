@@ -12,82 +12,83 @@ import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2
 
 export class D3UserChart extends LitElement {
   static properties = {
-      usersummaries: { type: Array, state: true },
-      selectedStockId: { type: Number, state: true },
       width: { type: Number },
       height: { type: Number },
       svg: { type: Object },
+      stockdata: { type: Array, state: true, attribute: false },
   };
+
+  constructor() {
+    super();
+    this.updateComplete.then(() => { console.log("updateComplete"); });
+  }
 
  firstUpdated() {
     super.firstUpdated();
-    const self = this;
-    const div = self.renderRoot.querySelector('#my_dataviz');
+    this.drawD3();
+  }
 
-    if(this.width == null || this.width == 0) this.width = div.clientWidth ?? 960;
-    if(this.height == null || this.height == 0) {
-        this.height = div.clientHeight;
-        if(this.height == 0) this.height = this.width * 0.4;
-    }
+  drawD3(){
+    const div = this.renderRoot.querySelector('#my_dataviz');
+    if(div != null){
+        console.log("drawD3");
+        div.innerHTML = '';
+        if(this.width == null || this.width == 0) this.width = div.clientWidth ?? 960;
+        if(this.height == null || this.height == 0) {
+            this.height = div.clientHeight;
+            if(this.height == 0) this.height = this.width * 0.4;
+        }
 
-    const marginLeft = 70;
-    const marginTop = 20;
-    const marginRight = 20;
-    const marginBottom = 50;
+        const marginLeft = 70;
+        const marginTop = 20;
+        const marginRight = 20;
+        const marginBottom = 50;
 
-    this.width = this.width - marginLeft - marginRight;
-    this.height = this.height - marginTop - marginBottom;
+        const height = this.height - marginTop - marginBottom;
 
-    d3.csv("https://tradeaudit.app/assets/userdata.csv").then(function(data) {
+        // set the ranges
+        var x = d3.scaleTime().range([0, this.width - marginLeft - marginRight ]);
+        var y = d3.scaleLinear().range([ height, 0]);
 
-    // set the ranges
-    var x = d3.scaleTime().range([0, self.width]);
-    var y = d3.scaleLinear().range([self.height, 0]);
+        // append the svg object to the body of the page
+        // appends a 'group' element to 'svg'
+        // moves the 'group' element to the top left margin
+        var svg = d3.select(div).append("svg")
+            .attr("width", this.width)
+            .attr("height", this.height)
+          .append("g")
+            .attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
 
-    // define the line
-    var valueline = d3.line()
-        .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.close); });
+          // Scale the range of the data
+          x.domain(d3.extent(this.stockdata, function(d) { return d.date; }));
+          y.domain([0, d3.max(this.stockdata, function(d) { return d.close; })]);
 
-    // append the svg object to the body of the page
-    // appends a 'group' element to 'svg'
-    // moves the 'group' element to the top left margin
-    var svg = d3.select(div).append("svg")
-        .attr("width", self.width + marginLeft + marginRight)
-        .attr("height", self.height + marginTop + marginBottom)
-      .append("g")
-        .attr("transform", "translate(" + marginLeft + "," + marginTop + ")");
+          // define the line
+          var valueline = d3.line()
+              .x(function(d) { return x(d.date); })
+              .y(function(d) { return y(d.close); });
 
-     // format the data
-      data.forEach(function(d) {
-          d.date = d3.timeParse("%Y-%m-%d")(d.date);
-          d.close = +d.close;
-      });
+          // Add the valueline path.
+          svg.append("path")
+              .data([this.stockdata])
+              .attr("class", "line")
+              .attr("d", valueline)
+              .style("fill", "none")
+              .style("stroke", "steelblue")
+              .style("stroke-width", 1.5);
 
-      // Scale the range of the data
-      x.domain(d3.extent(data, function(d) { return d.date; }));
-      y.domain([0, d3.max(data, function(d) { return d.close; })]);
+          // Add the x Axis
+          svg.append("g")
+              .attr("transform", "translate(0," + height + ")")
+              .call(d3.axisBottom(x));
 
-      // Add the valueline path.
-      svg.append("path")
-          .data([data])
-          .attr("class", "line")
-          .attr("d", valueline)
-          .style("fill", "none")
-          .style("stroke", "steelblue")
-          .style("stroke-width", 1.5);
-
-      // Add the x Axis
-      svg.append("g")
-          .attr("transform", "translate(0," + self.height + ")")
-          .call(d3.axisBottom(x));
-
-      // Add the y Axis
-      svg.append("g").call(d3.axisLeft(y));
-    });
+          // Add the y Axis
+          svg.append("g").call(d3.axisLeft(y));
+      }
   }
 
   render() {
+    this.drawD3();
     return html`<div id="my_dataviz"></div>`;
   }
 }
@@ -96,23 +97,37 @@ customElements.define('d3-userchart', D3UserChart);
 export class UserStockToolbar extends LitElement {
   static properties = {
       stocks: { type: Array, state: true, attribute: false },
-      selectedStockSymbol: { type: String, state: true, attribute: false },
+      selectedStock: { type: Object, state: true, attribute: false },
+      stockdata: { type: Array, state: true },
   };
 
+  firstUpdated() {
+    super.firstUpdated();
+    this.toggleSelected(this.selectedStock);
+  }
+
   toggleSelected(stock) {
-    if(stock != null){
-        if(this.selectedStockSymbol == stock.symbol){
-          this.selectedStockSymbol = null;
-        }else{
-          this.selectedStockSymbol = stock.symbol;
-        }
-    }
+        console.log("toggleSelected" + stock.symbol);
+        this.selectedStock = stock;
+        const self = this;
+        const url = this.selectedStock.symbol == "SPY" ? "https://tradeaudit.app/assets/userdata-spy.csv" : "https://tradeaudit.app/assets/userdata.csv";
+        d3.csv(url).then(function(data) {
+            // format the data
+            data.forEach(function(d) {
+                d.date = d3.timeParse("%Y-%m-%d")(d.date);
+                d.close = +d.close;
+            });
+            self.stockdata = data;
+            console.log("toggleSelected");
+            self.requestUpdate();
+        });
   }
 
   render() {
     if(this.stocks == null){
       return html``;
     } else {
+        console.log("render");
         return html`
            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -121,12 +136,13 @@ export class UserStockToolbar extends LitElement {
                   (item) => html`
                     <button
                         @click=${() => this.toggleSelected(item)}
-                        class="btn btn-outline-secondary ${item.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
+                        class="btn btn-outline-secondary ${item.symbol == this.selectedStock.symbol ? 'active' : ''}" type="button"
                     >
                         ${item.symbol}
                     </button>`
                 )}
             </div>
+            ${this.stockdata != null ? html`<d3-userchart class="container" .stockdata=${this.stockdata}></d3-userchart>` : html``}
         `;
     }
   }
@@ -138,6 +154,7 @@ export class UserTitle extends LitElement {
 
   static properties = {
       userSummary: { type: Object, state: true },
+      selectedStock: { type: Object, state: true },
   };
 
   constructor() {
@@ -149,10 +166,11 @@ export class UserTitle extends LitElement {
       get: (searchParams, prop) => searchParams.get(prop),
     });
     var twitterUserName = params.twitter ?? "TwitterUserName1";
+    this.selectedStockSymbol = params.symbol ?? "SPY";
 
     const self = this;
 
-    if(twitterUserName == null){
+    if(twitterUserName == null || this.selectedStockSymbol == null){
 
     } else {
         fetch(url, { method: 'GET' })
@@ -172,21 +190,25 @@ export class UserTitle extends LitElement {
     if(this.userSummary == null){
         return html`<h1>Loading</h1>`;
     } else {
-        const selectedStock = this.userSummary.stocks[0];
-        return html`
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-                integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-            <h1 class="display-5 fw-bold">Stock Tracking for</h1>
-            <div style="display:flex;margin-left:auto;margin-right:auto;width:250px;">
-                <img src="${this.userSummary.twitterProfileUrl}" style="width:64px;height:64px;border-radius:50%;"/>
-                <div style="text-align:left;padding-left:12px;">
-                    <h5 class="card-title">${this.userSummary.twitterUserName}</h5>
-                    <h6 class="card-subtitle text-muted">@${this.userSummary.twitterDisplayName}</h6>
-                    <span>${this.userSummary.followerCount} Followers</span>
+        const selectedStock = this.userSummary.stocks.find(stock => stock.symbol == this.selectedStockSymbol);
+        if(selectedStock == null){
+            return html`<h1>Not Found</h1>`;
+        } else {
+            return html`
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+                    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+                <h1 class="display-5 fw-bold">Stock Tracking for</h1>
+                <div style="display:flex;margin-left:auto;margin-right:auto;width:250px;">
+                    <img src="${this.userSummary.twitterProfileUrl}" style="width:64px;height:64px;border-radius:50%;"/>
+                    <div style="text-align:left;padding-left:12px;">
+                        <h5 class="card-title">${this.userSummary.twitterUserName}</h5>
+                        <h6 class="card-subtitle text-muted">@${this.userSummary.twitterDisplayName}</h6>
+                        <span>${this.userSummary.followerCount} Followers</span>
+                    </div>
                 </div>
-            </div>
-            <user-stocktoolbar .stocks=${this.userSummary.stocks} .selectedStockSymbol=${selectedStock}></user-stocktoolbar>
-        `;
+                <user-stocktoolbar .stocks=${this.userSummary.stocks} .selectedStock=${selectedStock}></user-stocktoolbar>
+            `;
+        }
     }
   }
 }
@@ -196,4 +218,3 @@ customElements.define('user-title', UserTitle);
 
 <user-title></user-title>
 
-<d3-userchart class="container"></d3-userchart>
