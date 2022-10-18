@@ -1,7 +1,7 @@
 ---
 layout: empty
 permalink: /cookie-policy
-title: "Cookie Policy - TradeAudit Mobile App"
+title: "Cookie Policy - TradeAudit App"
 sitemap: false
 author_profile: false
 ---
