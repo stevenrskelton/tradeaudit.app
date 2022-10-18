@@ -107,6 +107,7 @@ export class UserSummary extends LitElement {
               (item) => 
                 html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
+                  <a style="all:unset;cursor: pointer;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open on Twitter">
                     <div style="display:flex">
                         <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
                         <div style="text-align:left;padding-left:12px;margin-top:auto;margin-bottom:auto;">
@@ -115,21 +116,22 @@ export class UserSummary extends LitElement {
                             <span>${item.followerCount} Followers</span>
                         </div>
                     </div>
-                    <div style="flex-grow:1" class="card-text text-center">
-                        <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
-                        ${item.stocks.map(
-                            (stock) => {
-                                const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
-                                return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
-                            }
-                        )}
-                    </div>
-                    ${
-                      (this.selectedStockSymbol != null) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockSymbol}">
-                          <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
-                      </a>` : html`<div style="width:60px"></div>`
-                    }
-                    <pie-chart size="${height}" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
+                  </a>
+                  <div style="flex-grow:1" class="card-text text-center">
+                      <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
+                      ${item.stocks.map(
+                          (stock) => {
+                              const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
+                              return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
+                          }
+                      )}
+                  </div>
+                  ${
+                    (this.selectedStockSymbol != null) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockSymbol}">
+                        <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
+                    </a>` : html`<div style="width:60px"></div>`
+                  }
+                  <pie-chart size="${height}" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
                 </li>`
             )}
         </ul>
