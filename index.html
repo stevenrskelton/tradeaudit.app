@@ -1,7 +1,7 @@
 ---
 layout: empty
 permalink: /
-title: "Trade Audit Mobile App for Fintwit"
+title: "TradeAudit App for Fintwit"
 sitemap: true
 author_profile: false
 ---
@@ -93,8 +93,8 @@ export class UserSummary extends LitElement {
     }
   `;
   
-  static isProtected = html`<img src="https://tradeaudit.app/assets/OOjs_UI_icon_lock.svg" width="12" height="12" alt="Protected">`;
-  static isVerified = html`<img src="https://tradeaudit.app/assets/Twitter_Verified_Badge.svg" width="12" height="12" alt="Verified">`;
+  static isProtected = html`<img src="https://tradeaudit.app/assets/OOjs_UI_icon_lock.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Protected">`;
+  static isVerified = html`<img src="https://tradeaudit.app/assets/Twitter_Verified_Badge.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Verified">`;
 
   render() {
     const height = this.height ?? 64;
@@ -110,7 +110,7 @@ export class UserSummary extends LitElement {
                     <div style="display:flex">
                         <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
                         <div style="text-align:left;padding-left:12px;margin-top:auto;margin-bottom:auto;">
-                            <h5 class="card-title">${item.twitterUserName} ${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
+                            <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
                             <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
                             <span>${item.followerCount} Followers</span>
                         </div>
