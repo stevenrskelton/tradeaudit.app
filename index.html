@@ -99,7 +99,7 @@ export class UserSummary extends LitElement {
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
        <link rel="preload" href="https://tradeaudit.app/assets/finance.svg" as="image" />
-       <ul class="list-group" id="stock-ul" style="max-width:800px;margin:auto;">
+       <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => 
                 html`
@@ -112,7 +112,7 @@ export class UserSummary extends LitElement {
                             <span>${item.followerCount} Followers</span>
                         </div>
                     </div>
-                    <div style="flex-grow:1" class="card-text">
+                    <div style="flex-grow:1" class="card-text text-center">
                         <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
                         ${item.stocks.map(
                             (stock) => {
