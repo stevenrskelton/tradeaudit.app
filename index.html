@@ -110,7 +110,7 @@ export class UserSummary extends LitElement {
                     <div style="display:flex">
                         <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
                         <div style="text-align:left;padding-left:12px;margin-top:auto;margin-bottom:auto;">
-                            <h5 class="card-title">${item.twitterUserName} ${item.isProtected ? this.isProtected : null}${item.isVerified ? this.isVerified : null}</h5>
+                            <h5 class="card-title">${item.twitterUserName} ${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
                             <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
                             <span>${item.followerCount} Followers</span>
                         </div>
