@@ -168,7 +168,7 @@ export class StockToolbar extends LitElement {
     super();
     this.stocks = [];
 
-    var url = 'https://tradeaudit.app/assets/stocks.json';
+    var url = 'https://api.tradeaudit.app/web/stocks/top';
 
     // Making our request
     fetch(url, { method: 'GET' })
@@ -208,7 +208,7 @@ export class StockToolbar extends LitElement {
     }else{
       this.selectedStockSymbol = stockSymbol;
     }
-    var url = 'https://tradeaudit.app/assets/users.json';
+    var url = 'https://api.tradeaudit.app/web/users/top';
     const self = this;
 
     // Making our request
