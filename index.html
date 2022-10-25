@@ -22,9 +22,10 @@ import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2
 
 export class PieChart extends LitElement {
   static properties = {
-      positive: { type: Number },
-      negative: { type: Number },
-      size: { type: Number },
+    positive: { type: Number },
+    negative: { type: Number },
+    size: { type: Number },
+    title: { type: String, attribute: true, reflect: true }
   };
 
   render() {
@@ -66,6 +67,7 @@ export class PieChart extends LitElement {
     const total = this.positive + this.negative;
     const percent = total == 0 ? 0 : (this.positive / total * 100);
     const text = Math.round(percent) + '%';
+    this.title = text + ' Positive Trades';
     const textX = text.length == 4 ? -16.5 : (text.length == 3 ? -12 : -7);
     const size = this.size ?? 64;
 
@@ -78,7 +80,7 @@ export class PieChart extends LitElement {
             }
          </style>
          ${slices}
-         <text class="small" transform="scale(0.043, 0.043)" x="${textX}" y="4">${text}</text>
+         <text class="small" transform="scale(0.043, 0.043)" x="${textX}" y="4" style="cursor:default;">${text}</text>
        </svg>
     `;
   }
