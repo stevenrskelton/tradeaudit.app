@@ -121,7 +121,7 @@ export class UserSummary extends LitElement {
        <link rel="preload" href="https://tradeaudit.app/assets/finance.svg" as="image" />
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
-              (item) => 
+              (item) => {
                 const profileUrl = "https://cf.tradeaudit.app/" + item.twitterProfileUrl.substring(22);
                 html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
@@ -151,6 +151,7 @@ export class UserSummary extends LitElement {
                   }
                   <pie-chart size="${height}" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
                 </li>`
+              }
             )}
         </ul>
     `;
