@@ -121,6 +121,9 @@ export class UserSummary extends LitElement {
             ${(this.usersummaries ?? []).map(
               (item) => {
                 const profileUrl = "https://cf.tradeaudit.app/" + item.twitterProfileUrl.substring(22);
+                const total = item.positiveRatingPercent + item.negativeRatingPercent;
+                const ratingPercent = total == 0 ? 0 : Math.round(total / item.conversationCount * 100);
+                
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
                   <a style="all:unset;cursor: pointer;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open on Twitter">
@@ -134,7 +137,10 @@ export class UserSummary extends LitElement {
                     </div>
                   </a>
                   <div style="flex-grow:1" class="card-text text-end">
-                      <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
+                      <div style="font-weight:bold">
+                        ${item.conversationCount} Trade Conversations<br/>
+                        ${ratingPercent == 0 ? 'Zero Rated' : (100 - ratingPercent) + '% Unrated'}
+                      </div>
                       ${item.stocks.map(
                           (stock) => {
                               const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
