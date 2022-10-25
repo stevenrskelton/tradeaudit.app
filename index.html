@@ -135,7 +135,7 @@ export class UserSummary extends LitElement {
                         </div>
                     </div>
                   </a>
-                  <div style="flex-grow:1" class="card-text text-center">
+                  <div style="flex-grow:1" class="card-text text-end">
                       <div style="font-weight:bold">${item.conversationCount} Trade Conversations</div>
                       ${item.stocks.map(
                           (stock) => {
@@ -195,6 +195,7 @@ export class StockToolbar extends LitElement {
                 <button
                     @click=${() => this.toggleSelected(item.symbol)}
                     class="btn btn-outline-secondary ${item.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
+                    title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top"
                 >
                     ${item.symbol}
                 </button>`
@@ -224,7 +225,10 @@ export class StockToolbar extends LitElement {
             }
             self.requestUpdate();
         })
-    .catch(errorMsg => { console.log(errorMsg); });
+    .catch(errorMsg => { 
+      console.log(errorMsg);
+      self.requestUpdate();
+    });
   }
 }
 customElements.define('stock-toolbar', StockToolbar);
