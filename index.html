@@ -122,11 +122,12 @@ export class UserSummary extends LitElement {
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => 
+                const profileUrl = "https://cf.tradeaudit.app/" + item.twitterProfileUrl.substring(22);
                 html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
                   <a style="all:unset;cursor: pointer;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open on Twitter">
                     <div style="display:flex">
-                        <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
+                        <img src="${profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
                         <div style="text-align:left;padding-left:12px;margin-top:auto;margin-bottom:auto;">
                             <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
                             <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
