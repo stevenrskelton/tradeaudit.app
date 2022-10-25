@@ -234,8 +234,7 @@ export class StockToolbar extends LitElement {
   }
   
   fetchUserSummaries(){
-    const self = this;
-
+    
     var url = 'https://api.tradeaudit.app/web/users/' + (this.isTop ? 'top' : 'bottom');
     
     // Making our request
@@ -243,15 +242,16 @@ export class StockToolbar extends LitElement {
         .then(Result => Result.json())
         .then(string => {
             if(this.selectedStockSymbol != null){
-                self.usersummaries = string.users.filter(user => user.stocks.find(stock => stock.symbol === this.selectedStockSymbol) != null);
+                this.usersummaries = string.users.filter(user => user.stocks.find(stock => stock.symbol === this.selectedStockSymbol) != null);
             }else{
-                self.usersummaries = string.users;
+                this.usersummaries = string.users;
             }
-            self.requestUpdate();
+            this.requestUpdate();
         })
     .catch(errorMsg => { 
       console.log(errorMsg);
-      self.requestUpdate();
+      this.usersummaries = [];
+      this.requestUpdate();
     });
   }
 }
