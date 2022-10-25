@@ -137,9 +137,9 @@ export class UserSummary extends LitElement {
                     </div>
                   </a>
                   <div style="flex-grow:1" class="card-text text-end">
-                      <div style="font-weight:bold">
-                        ${item.conversationCount} Trade Conversations<br/>
-                        ${ratingPercent == 0 ? 'Zero Rated' : (100 - ratingPercent) + '% Unrated'}
+                      <div>
+                        <span style="font-weight:bold">${item.conversationCount} Trade Conversations</span><br/>
+                        ${ratingPercent == 0 ? 'Zero Rated' : (ratingPercent == 100 ? 'All Rated' : (100 - ratingPercent) + '% Unrated')}
                       </div>
                       ${item.stocks.map(
                           (stock) => {
