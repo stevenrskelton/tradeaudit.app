@@ -123,7 +123,7 @@ export class UserSummary extends LitElement {
             ${(this.usersummaries ?? []).map(
               (item) => {
                 const profileUrl = "https://cf.tradeaudit.app/" + item.twitterProfileUrl.substring(22);
-                html`
+                return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
                   <a style="all:unset;cursor: pointer;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open on Twitter">
                     <div style="display:flex">
