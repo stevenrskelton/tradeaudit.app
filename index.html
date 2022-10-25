@@ -220,7 +220,7 @@ export class StockToolbar extends LitElement {
   toggleSort(isTop) {
     if(this.isTop != isTop){
       this.isTop = isTop;
-      fetchUserSummaries();
+      this.fetchUserSummaries();
     }
   }
   
@@ -230,7 +230,7 @@ export class StockToolbar extends LitElement {
     }else{
       this.selectedStockSymbol = stockSymbol;
     }
-    fetchUserSummaries();
+    this.fetchUserSummaries();
   }
   
   fetchUserSummaries(){
