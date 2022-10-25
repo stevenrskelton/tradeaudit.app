@@ -17,8 +17,6 @@ author_profile: false
   Do your due diligence and audit trading records before you invest your time and money.
 </span>
 
-<h2 class="display-12 mt-5 mb-3 fw-bold text-center">Who are the 🤡 and who makes 💰?</h2>
-
 <script type="module">
 import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
@@ -163,12 +161,14 @@ export class StockToolbar extends LitElement {
   static properties = {
       stocks: { type: Array, state: true },
       selectedStockSymbol: { type: String, state: true },
+      isTop: { type: Boolean, state: true },
       usersummaries: { type: Array, state: true, attribute: false },    
   };
 
   constructor() {
     super();
     this.stocks = [];
+    this.isTop = true;
 
     var url = 'https://api.tradeaudit.app/web/stocks/top';
 
@@ -189,6 +189,18 @@ export class StockToolbar extends LitElement {
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <div class="input-group mb-3" role="group" aria-label="User Sort" style="margin:auto;justify-content:center;">
+            <button
+                @click=${() => this.toggleSort(true)}
+                class="btn btn-outline-secondary ${this.isTop ? 'active' : ''}" type="button"
+                title="Top Users" data-bs-toggle="tooltip" data-bs-placement="top"
+            >💰 Top Users</button>
+            <button
+                @click=${() => this.toggleSort(false)}
+                class="btn btn-outline-secondary ${this.isTop ? '' : 'active'}" type="button"
+                title="Bottom Users" data-bs-toggle="tooltip" data-bs-placement="top"
+            >🤡 Bottom Users</button>
+        </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
             ${this.stocks.map(
               (item) => html`
@@ -205,15 +217,27 @@ export class StockToolbar extends LitElement {
     `;
   }
 
+  toggleSort(isTop) {
+    if(this.isTop != isTop){
+      this.isTop = isTop;
+      fetchUserSummaries();
+    }
+  }
+  
   toggleSelected(stockSymbol) {
     if(this.selectedStockSymbol == stockSymbol){
       this.selectedStockSymbol = null;
     }else{
       this.selectedStockSymbol = stockSymbol;
     }
-    var url = 'https://api.tradeaudit.app/web/users/top';
+    fetchUserSummaries();
+  }
+  
+  fetchUserSummaries(){
     const self = this;
 
+    var url = 'https://api.tradeaudit.app/web/users/' + (this.isTop ? 'top' : 'bottom');
+    
     // Making our request
     fetch(url, { method: 'GET' })
         .then(Result => Result.json())
