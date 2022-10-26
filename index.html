@@ -178,7 +178,7 @@ export class StockToolbar extends LitElement {
     this.stocks = [];
     this.isTop = true;
 
-    var url = 'https://api.tradeaudit.app/web/stocks/top';
+    var url = 'https://cf.tradeaudit.app/stocks/top';
 
     // Making our request
     fetch(url, { method: 'GET' })
@@ -243,7 +243,7 @@ export class StockToolbar extends LitElement {
   
   fetchUserSummaries(){
     
-    var url = 'https://api.tradeaudit.app/web/users/' + (this.isTop ? 'top' : 'bottom');
+    var url = 'https://cf.tradeaudit.app/users/' + (this.isTop ? 'top' : 'bottom');
     
     // Making our request
     fetch(url, { method: 'GET' })
