@@ -133,29 +133,31 @@ export class UserSummary extends LitElement {
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
                   ${a}<img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/></a>
-                  <div style="display:flex;">
-                    <div style="text-align:left;padding-left:12px;">
-                      <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
-                    </div>
-                    <div style="flex-grow:1" class="card-text text-end" style="font-weight:bold">
-                      ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}
-                    </div>
-                  </div>
-                  <div style="display:flex">
-                    <div style="text-align:left;padding-left:12px;">
-                      <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
-                      <span>${humanNumber(item.followerCount)} Followers</span>
-                    </div>
-                    <div style="flex-grow:1" class="card-text text-end">
-                      <div>
-                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
+                  <div style="flex-grow:1;padding-left:12px;">
+                    <div style="display:flex;">
+                      <div style="text-align:left">
+                        <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
                       </div>
-                      ${item.stocks.map(
-                          (stock) => {
-                              const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
-                              return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
-                          }
-                      )}
+                      <div style="flex-grow:1" class="card-text text-end" style="font-weight:bold">
+                        ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}
+                      </div>
+                    </div>
+                    <div style="display:flex">
+                      <div style="text-align:left">
+                        <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
+                        <span>${humanNumber(item.followerCount)} Followers</span>
+                      </div>
+                      <div style="flex-grow:1" class="card-text text-end">
+                        <div>
+                          ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
+                        </div>
+                        ${item.stocks.map(
+                            (stock) => {
+                                const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
+                                return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
+                            }
+                        )}
+                      </div>
                     </div>
                   </div>
                   ${
