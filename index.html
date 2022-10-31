@@ -20,7 +20,7 @@ author_profile: false
 <script type="module">
 import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
-function humanNumber(num){
+export function humanNumber(num){
   function intlFormat(num){
     return new Intl.NumberFormat().format(Math.floor(num*10)/10);
   }
