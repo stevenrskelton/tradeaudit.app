@@ -122,9 +122,10 @@ export class UserSummary extends LitElement {
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => {
-                const ratedPercent = Math.round(item.positiveRatingPercent + item.negativeRatingPercent);
-                const positivePercent = item.positiveRatingPercent / ratedPercent;
-                const negativePercent = item.negativeRatingPercent / ratedPercent;
+                const subItem = this.selectedStockSymbol != null ? item.stocks.find(o => o.symbol == this.selectedStockSymbol) : item;
+                const ratedPercent = subItem == null ? 0 : Math.round(subItem.positiveRatingPercent + subItem.negativeRatingPercent);
+                const positivePercent = ratedPercent == 0 ? 0 : subItem.positiveRatingPercent / ratedPercent;
+                const negativePercent = ratedPercent == 0 ? 0 : subItem.negativeRatingPercent / ratedPercent;
                 
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
@@ -140,7 +141,7 @@ export class UserSummary extends LitElement {
                   </a>
                   <div style="flex-grow:1" class="card-text text-end">
                       <div>
-                        <span style="font-weight:bold">${item.conversationCount} Trades</span><br/>
+                        <span style="font-weight:bold">${subItem.tradeCount} Trades</span><br/>
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
                       ${item.stocks.map(
