@@ -20,6 +20,17 @@ author_profile: false
 <script type="module">
 import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
+humanNumber(num){
+  function intlFormat(num){
+    return new Intl.NumberFormat().format(Math.floor(num*10)/10);
+  }
+  if(num >= 1000000)
+    return intlFormat(num/1000000)+'M';
+  if(num >= 1000)
+    return intlFormat(num/1000)+'k';
+  return intlFormat(num);
+}
+  
 export class PieChart extends LitElement {
   static properties = {
     positive: { type: Number },
@@ -102,16 +113,6 @@ export class UserSummary extends LitElement {
   
   static isProtected = html`<img src="https://tradeaudit.app/assets/OOjs_UI_icon_lock.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Protected">`;
   static isVerified = html`<img src="https://tradeaudit.app/assets/Twitter_Verified_Badge.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Verified">`;
-  static humanNumber(num){
-    function intlFormat(num){
-      return new Intl.NumberFormat().format(Math.floor(num*10)/10);
-    }
-    if(num >= 1000000)
-      return intlFormat(num/1000000)+'M';
-    if(num >= 1000)
-      return intlFormat(num/1000)+'k';
-    return intlFormat(num);
-  }
   
   render() {
     const height = this.height ?? 64;
@@ -122,7 +123,7 @@ export class UserSummary extends LitElement {
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => {
-                const subItem = this.selectedStockSymbol != null ? item.stocks.find(o => o.symbol == this.selectedStockSymbol) : item;
+                const subItem = this.selectedStockSymbol != null ? item.stocks.find(o => o.symbol == this.selectedStockSymbol) ?? item : item;
                 const ratedPercent = subItem === undefined ? 0 : Math.round(subItem.positiveRatingPercent + subItem.negativeRatingPercent);
                 const positivePercent = ratedPercent == 0 ? 0 : subItem.positiveRatingPercent / ratedPercent;
                 const negativePercent = ratedPercent == 0 ? 0 : subItem.negativeRatingPercent / ratedPercent;
