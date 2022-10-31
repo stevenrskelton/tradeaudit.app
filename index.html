@@ -123,7 +123,7 @@ export class UserSummary extends LitElement {
             ${(this.usersummaries ?? []).map(
               (item) => {
                 const subItem = this.selectedStockSymbol != null ? item.stocks.find(o => o.symbol == this.selectedStockSymbol) : item;
-                const ratedPercent = subItem == null ? 0 : Math.round(subItem.positiveRatingPercent + subItem.negativeRatingPercent);
+                const ratedPercent = subItem === undefined ? 0 : Math.round(subItem.positiveRatingPercent + subItem.negativeRatingPercent);
                 const positivePercent = ratedPercent == 0 ? 0 : subItem.positiveRatingPercent / ratedPercent;
                 const negativePercent = ratedPercent == 0 ? 0 : subItem.negativeRatingPercent / ratedPercent;
                 
