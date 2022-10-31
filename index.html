@@ -65,7 +65,7 @@ export class PieChart extends LitElement {
     })
 
     const total = this.positive + this.negative;
-    const percent = total == 0 ? 0 : (this.positive / total * 100);
+    const percent = total == 0 ? 0 : (this.positive / total);
     const text = Math.round(percent) + '%';
     this.title = text + ' Positive Trades';
     const textX = text.length == 4 ? -16.5 : (text.length == 3 ? -12 : -7);
@@ -122,15 +122,14 @@ export class UserSummary extends LitElement {
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => {
-                const profileUrl = "https://cf.tradeaudit.app/" + item.twitterProfileUrl.substring(22);
                 const total = item.positiveRatingPercent + item.negativeRatingPercent;
-                const ratingPercent = total == 0 ? 0 : Math.round(total / item.conversationCount * 100);
+                const ratingPercent = total == 0 ? 0 : Math.round(100 - total);
                 
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
                   <a style="all:unset;cursor: pointer;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open @${item.twitterDisplayName} on Twitter">
                     <div style="display:flex">
-                        <img src="${profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
+                        <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
                         <div style="text-align:left;padding-left:12px;margin-top:auto;margin-bottom:auto;">
                             <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
                             <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
