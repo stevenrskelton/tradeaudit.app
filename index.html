@@ -147,10 +147,8 @@ export class UserSummary extends LitElement {
                         <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
                         <span>${humanNumber(item.followerCount)} Followers</span>
                       </div>
-                      <div style="flex-grow:1" class="card-text text-end">
-                        <div>
-                          ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
-                        </div>
+                      <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
+                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
                         ${item.stocks.map(
                             (stock) => {
                                 const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
