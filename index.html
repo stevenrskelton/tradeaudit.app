@@ -248,17 +248,14 @@ export class StockToolbar extends LitElement {
   
   fetchUserSummaries(){
     
-    var url = 'https://cf.tradeaudit.app/users/' + (this.isTop ? 'top' : 'bottom');
+    const symbol = this.selectedStockSymbol == null ? '' : '/' + this.selectedStockSymbol;
+    const url = 'https://cf.tradeaudit.app/users/' + (this.isTop ? 'top' : 'bottom') + symbol;
     
     // Making our request
     fetch(url, { method: 'GET' })
         .then(Result => Result.json())
-        .then(string => {
-            if(this.selectedStockSymbol != null){
-                this.usersummaries = string.users.filter(user => user.stocks.find(stock => stock.symbol === this.selectedStockSymbol) != null);
-            }else{
-                this.usersummaries = string.users;
-            }
+        .then(body => {
+            this.usersummaries = body.users;
             this.requestUpdate();
         })
     .catch(errorMsg => { 
