@@ -129,21 +129,25 @@ export class UserSummary extends LitElement {
                 const negativePercent = ratedPercent == 0 ? 0 : subItem.negativeRatingPercent / ratedPercent;
                 const tradeCount = subItem === undefined ? 0 : subItem.tradeCount;
                 
+                const a = html`<a style="all:unset;cursor: pointer;display:flex;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open @${item.twitterDisplayName} on Twitter">`;
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
-                  <a style="all:unset;cursor: pointer;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open @${item.twitterDisplayName} on Twitter">
-                    <div style="display:flex">
-                        <img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
-                        <div style="text-align:left;padding-left:12px;margin-top:auto;margin-bottom:auto;">
-                            <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
-                            <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
-                            <span>${humanNumber(item.followerCount)} Followers</span>
-                        </div>
+                  ${a}<img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/></a>
+                  <div style="display:flex;">
+                    <div style="text-align:left;padding-left:12px;">
+                      <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
                     </div>
-                  </a>
-                  <div style="flex-grow:1" class="card-text text-end">
+                    <div style="flex-grow:1" class="card-text text-end" style="font-weight:bold">
+                      ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}
+                    </div>
+                  </div>
+                  <div style="display:flex">
+                    <div style="text-align:left;padding-left:12px;">
+                      <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
+                      <span>${humanNumber(item.followerCount)} Followers</span>
+                    </div>
+                    <div style="flex-grow:1" class="card-text text-end">
                       <div>
-                        <span style="font-weight:bold">${tradeCount} Trade${tradeCount == 1 ? '' : 's'}</span><br/>
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
                       ${item.stocks.map(
@@ -152,6 +156,7 @@ export class UserSummary extends LitElement {
                               return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
                           }
                       )}
+                    </div>
                   </div>
                   ${
                     (this.selectedStockSymbol != null && false) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockSymbol}">
