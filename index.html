@@ -116,10 +116,10 @@ export class UserSummary extends LitElement {
   
   render() {
     const height = this.height ?? 64;
+    //<link rel="preload" href="https://tradeaudit.app/assets/finance.svg" as="image" />
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-       <link rel="preload" href="https://tradeaudit.app/assets/finance.svg" as="image" />
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => {
@@ -154,7 +154,7 @@ export class UserSummary extends LitElement {
                       )}
                   </div>
                   ${
-                    (this.selectedStockSymbol != null) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockSymbol}">
+                    (this.selectedStockSymbol != null && false) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockSymbol}">
                         <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
                     </a>` : html`<div style="width:60px"></div>`
                   }
