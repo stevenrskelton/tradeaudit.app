@@ -122,8 +122,9 @@ export class UserSummary extends LitElement {
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => {
-                const total = item.positiveRatingPercent + item.negativeRatingPercent;
-                const ratingPercent = total == 0 ? 0 : Math.round(100 - total);
+                const ratedPercent = Math.round(item.positiveRatingPercent + item.negativeRatingPercent);
+                const positivePercent = item.positiveRatingPercent / ratedPercent;
+                const negativePercent = item.negativeRatingPercent / ratedPercent;
                 
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
@@ -140,7 +141,7 @@ export class UserSummary extends LitElement {
                   <div style="flex-grow:1" class="card-text text-end">
                       <div>
                         <span style="font-weight:bold">${item.conversationCount} Trade Conversations</span><br/>
-                        ${ratingPercent == 0 ? 'Zero Rated' : (ratingPercent == 100 ? 'All Rated' : (100 - ratingPercent) + '% Unrated')}
+                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
                       ${item.stocks.map(
                           (stock) => {
@@ -154,7 +155,7 @@ export class UserSummary extends LitElement {
                         <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
                     </a>` : html`<div style="width:60px"></div>`
                   }
-                  <pie-chart size="${height}" positive="${item.positiveRatingPercent}" negative="${item.negativeRatingPercent}"></pie-chart>
+                  <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
                 </li>`
               }
             )}
