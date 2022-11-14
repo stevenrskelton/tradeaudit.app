@@ -1,0 +1,281 @@
+---
+layout: empty
+permalink: /rankings
+title: "TradeAudit App for Fintwit"
+sitemap: true
+author_profile: false
+---
+
+<h1 class="display-6 fw-bold text-center">Fintwit User Rankings</h1>
+
+<script type="module">
+import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+
+export function humanNumber(num){
+  function intlFormat(num){
+    return new Intl.NumberFormat().format(Math.floor(num*10)/10);
+  }
+  if(num >= 1000000)
+    return intlFormat(num/1000000)+'M';
+  if(num >= 1000)
+    return intlFormat(num/1000)+'k';
+  return intlFormat(num);
+}
+  
+export class PieChart extends LitElement {
+  static properties = {
+    positive: { type: Number },
+    negative: { type: Number },
+    size: { type: Number },
+    title: { type: String, attribute: true, reflect: true }
+  };
+
+  render() {
+
+    function getCoordinatesForPercent(percent) {
+      const x = Math.cos(2 * Math.PI * percent);
+      const y = Math.sin(2 * Math.PI * percent);
+      return [x, y];
+    }
+
+    const arr = [
+      { percent: this.positive ?? 0, color: '#538600' },
+      { percent: this.negative ?? 0, color: '#9f003e' },
+    ];
+
+    let cumulativePercent = 0;
+
+    const slices = arr.map(slice => {
+      // destructuring assignment sets the two variables at once
+      const [startX, startY] = getCoordinatesForPercent(cumulativePercent);
+
+      // each slice starts where the last slice ended, so keep a cumulative percent
+      cumulativePercent += slice.percent;
+
+      const [endX, endY] = getCoordinatesForPercent(cumulativePercent);
+
+      // if the slice is more than 50%, take the large arc (the long way around)
+      const largeArcFlag = slice.percent > .5 ? 1 : 0;
+
+        // create an array and join it just for code readability
+      const pathData = [
+        `M ${startX} ${startY}`, // Move
+        `A 1 1 0 ${largeArcFlag} 1 ${endX} ${endY}`, // Arc
+      ].join(' ');
+
+      return svg`<path d="${pathData}" stroke="${slice.color}" stroke-width="0.45" fill="transparent"/>`;
+    })
+
+    const total = this.positive + this.negative;
+    const percent = total == 0 ? 0 : (this.positive / total);
+    const text = Math.round(percent * 100) + '%';
+    this.title = text + ' Positive Trades';
+    const textX = text.length == 4 ? -16.5 : (text.length == 3 ? -12 : -7);
+    const size = this.size ?? 64;
+
+    return svg`
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.3 -1.3 2.6 2.6" height="${size}" width="${size}">
+         <style>
+            .small {
+              font: bold 13px sans-serif;
+              color: black;
+            }
+         </style>
+         ${slices}
+         <text class="small" transform="scale(0.043, 0.043)" x="${textX}" y="4" style="cursor:default;">${text}</text>
+       </svg>
+    `;
+  }
+}
+customElements.define('pie-chart', PieChart);
+
+export class UserSummary extends LitElement {
+  static properties = {
+      usersummaries: { type: Array, state: true, attribute: false },
+      selectedStockSymbol: { type: String, state: true },
+      height: { type: Number },
+  };
+  
+  static styles = css`
+    .showchart:hover, .showchart:focus {
+        filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(246deg) brightness(104%) contrast(97%);
+    }
+  `;
+  
+  static isProtected = html`<img src="https://tradeaudit.app/assets/OOjs_UI_icon_lock.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Protected">`;
+  static isVerified = html`<img src="https://tradeaudit.app/assets/Twitter_Verified_Badge.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Verified">`;
+  
+  render() {
+    const height = this.height ?? 64;
+    //<link rel="preload" href="https://tradeaudit.app/assets/finance.svg" as="image" />
+    return html`
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+       <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
+            ${(this.usersummaries ?? []).map(
+              (item) => {
+                const subItem = this.selectedStockSymbol != null ? item.stocks.find(o => o.symbol == this.selectedStockSymbol) : item;
+                const ratedPercent = subItem === undefined ? 0 : Math.round(subItem.positiveRatingPercent + subItem.negativeRatingPercent);
+                const positivePercent = ratedPercent == 0 ? 0 : subItem.positiveRatingPercent / ratedPercent;
+                const negativePercent = ratedPercent == 0 ? 0 : subItem.negativeRatingPercent / ratedPercent;
+                const tradeCount = subItem === undefined ? 0 : subItem.tradeCount;
+                
+                const a = html`<a style="all:unset;cursor: pointer;display:flex;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open @${item.twitterDisplayName} on Twitter">`;
+                return html`
+                <li class="list-group-item" style="display:flex;align-items:center;">
+                  ${a}<img src="${item.twitterProfileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/></a>
+                  <div style="flex-grow:1;padding-left:12px;">
+                    <div style="display:flex;">
+                      <div style="text-align:left">
+                        <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
+                      </div>
+                      <div style="flex-grow:1" class="card-text text-end" style="font-weight:bold">
+                        ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}
+                      </div>
+                    </div>
+                    <div style="display:flex">
+                      <div style="text-align:left">
+                        <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
+                        <span>${humanNumber(item.followerCount)} Followers</span>
+                      </div>
+                      <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
+                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
+                        ${item.stocks.map(
+                            (stock) => {
+                                const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
+                                return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
+                            }
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  ${
+                    (this.selectedStockSymbol != null && false) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockSymbol}">
+                        <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
+                    </a>` : html`<div style="width:60px"></div>`
+                  }
+                  <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
+                </li>`
+              }
+            )}
+        </ul>
+    `;
+  }
+}
+customElements.define('user-summary', UserSummary);
+    
+export class StockToolbar extends LitElement {
+  static properties = {
+      stocks: { type: Array, state: true },
+      selectedStockSymbol: { type: String, state: true },
+      isTop: { type: Boolean, state: true },
+      usersummaries: { type: Array, state: true, attribute: false },    
+  };
+
+  constructor() {
+    super();
+    this.stocks = [];
+    this.isTop = true;
+
+    var url = 'https://cf.tradeaudit.app/stocks/top';
+
+    // Making our request
+    fetch(url, { method: 'GET' })
+        .then(Result => Result.json())
+        .then(string => {
+            console.log(string);
+            this.stocks = string.stocks;
+            this.requestUpdate();
+        })
+    .catch(errorMsg => { console.log(errorMsg); });
+
+    this.toggleSelected(null);
+  }
+
+  render() {
+    return html`
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <div class="input-group mt-5 mb-2" role="group" aria-label="User Sorting" style="margin:auto;justify-content:center;">
+            <button
+                @click=${() => this.toggleSort(true)}
+                class="btn btn-outline-secondary ${this.isTop ? 'active' : ''}" type="button"
+                title="Top Users" data-bs-toggle="tooltip" data-bs-placement="top"
+                style="width:200pt"
+            >💰 Top Users</button>
+            <button
+                @click=${() => this.toggleSort(false)}
+                class="btn btn-outline-secondary ${this.isTop ? '' : 'active'}" type="button"
+                title="Bottom Users" data-bs-toggle="tooltip" data-bs-placement="top"
+                style="width:200pt"
+            >🤡 Bottom Users</button>
+        </div>
+        <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
+            ${this.stocks.map(
+              (item) => html`
+                <button
+                    @click=${() => this.toggleSelected(item.symbol)}
+                    class="btn btn-outline-secondary ${item.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
+                    title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
+                >
+                    ${item.symbol}
+                </button>`
+            )}
+        </div>
+        <user-summary height="80" .selectedStockSymbol=${this.selectedStockSymbol} .usersummaries=${this.usersummaries}></user-summary>
+    `;
+  }
+
+  toggleSort(isTop) {
+    if(this.isTop != isTop){
+      this.isTop = isTop;
+      this.fetchUserSummaries();
+    }
+  }
+  
+  toggleSelected(stockSymbol) {
+    if(this.selectedStockSymbol == stockSymbol){
+      this.selectedStockSymbol = null;
+    }else{
+      this.selectedStockSymbol = stockSymbol;
+    }
+    this.fetchUserSummaries();
+  }
+  
+  fetchUserSummaries(){
+    
+    const symbol = this.selectedStockSymbol == null ? '' : '/' + this.selectedStockSymbol;
+    const url = 'https://cf.tradeaudit.app/users/' + (this.isTop ? 'top' : 'bottom') + symbol;
+    
+    // Making our request
+    fetch(url, { method: 'GET' })
+        .then(Result => Result.json())
+        .then(body => {
+            this.usersummaries = body.users;
+            this.requestUpdate();
+        })
+    .catch(errorMsg => { 
+      console.log(errorMsg);
+      this.usersummaries = [];
+      this.requestUpdate();
+    });
+  }
+}
+customElements.define('stock-toolbar', StockToolbar);
+</script>
+
+<stock-toolbar></stock-toolbar>
+
+<div style="flex-grow:1;display:inline-flex;align-self:stretch;">
+  <span class="lead" style="text-align:center;text-justify:inter-word;margin:auto">
+      <p class="mt-5 fw-bold">
+        Browse all of your Twitter follows in the TradeAudit mobile app
+      </p>
+      <p>
+        See how your favourites stack up on real world performance.
+      </p>
+      <div class="text-center">
+        <img alt="Get it on Google Play" id="logo-img" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="60px">
+      </div>
+  </span>
+</div>
