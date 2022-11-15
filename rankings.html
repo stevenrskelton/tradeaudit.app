@@ -167,7 +167,119 @@ export class UserSummary extends LitElement {
   }
 }
 customElements.define('user-summary', UserSummary);
-    
+
+export class StockDropdown extends LitElement {
+  static properties = {
+    show: { type: Boolean, default: false, attribute: true, reflect: true },
+    stocks: { type: Array, state: true },
+    items: { type: Array, state: true },
+    selected: { type: Object, state: true },
+    max: { type: Number },
+  };
+
+  static styles = css`
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #3e8e41;
+    }
+    #myInput {
+        box-sizing: border-box;
+        background-image: url('searchicon.png');
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #myInput:focus {outline: 3px solid #ddd;}
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f6f6f6;
+        min-width: 230px;
+        overflow: auto;border: 1px solid #ddd;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown a:hover {background-color: #ddd}
+
+    .show {display:block;}
+  `;
+
+  constructor() {
+    super();
+    this.max = 8;
+    this.stocks = [];
+    this.items = []; //this.stocks.slice(0, this.max);
+  }
+
+  filterFunction(e) {
+    console.log(e.target.value);
+    const filter = e.target.value.toUpperCase();
+    this.items = [];
+    this.stocks.every(item => {
+      if (item.symbol.toUpperCase().indexOf(filter) > -1 || item.name.toUpperCase().indexOf(filter) > -1) {
+        this.items.push(item);
+      }
+      return this.items.length < this.max;
+    });
+    this.requestUpdate();
+  }
+
+  selectFunction(item){
+    console.log('select');
+    this.show = !this.show;
+    this.selected = item;
+    this.requestUpdate();
+  }
+
+  render() {
+
+    return html`
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+      <div class="dropdown">
+      <button
+        @click=${() => this.show = !this.show} class="dropbtn" id="testbtn" style="width:50pt;"
+      >
+        ${this.selected == null ? "?" : this.selected.symbol}
+      </button>
+        <div id="myDropdown" class="dropdown-content ${this.show ? "show" : ""}">
+          <input type="text" placeholder="Search.." @input="${this.filterFunction}">
+          <ul style="padding-left:0">
+            ${this.items.map(
+              (item) => html`<li class="dropdown-item" style="cursor:pointer;"><a @click=${() => this.selectFunction(item)}>
+                <div style="width:50pt;font-weight:bold;display:inline-block;">${item.symbol}</div> ${item.name}</a></li>`
+            )}
+          </ul>
+        </div>
+      </div>
+    `;
+  }
+}
+customElements.define('stock-dropdown', StockDropdown);
+
 export class StockToolbar extends LitElement {
   static properties = {
       stocks: { type: Array, state: true },
@@ -197,6 +309,7 @@ export class StockToolbar extends LitElement {
   }
 
   render() {
+    const items = this.stocks.slice(0, 10);
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -215,7 +328,7 @@ export class StockToolbar extends LitElement {
             >🤡 Bottom Users</button>
         </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
-            ${this.stocks.map(
+            ${this.items.map(
               (item) => html`
                 <button
                     @click=${() => this.toggleSelected(item.symbol)}
@@ -225,7 +338,7 @@ export class StockToolbar extends LitElement {
                     ${item.symbol}
                 </button>`
             )}
-        </div>
+        </div><stock-dropdown .stocks=${this.stocks}></stock-dropdown>
         <user-summary height="80" .selectedStockSymbol=${this.selectedStockSymbol} .usersummaries=${this.usersummaries}></user-summary>
     `;
   }
