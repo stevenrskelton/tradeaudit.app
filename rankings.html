@@ -189,6 +189,18 @@ export class StockToolbar extends LitElement {
 
     var url = 'https://cf.tradeaudit.app/stocks/top';
 
+    document.addEventListener("click", (e) => {
+      // Check if the filter list parent element exist
+      const isClosest = e.target.closest("#myDropdown");
+
+      // If `isClosest` equals falsy & popup has the class `show`
+      // then hide the popup
+      if (!isClosest && this.show) {
+        this.show = false;
+        this.requestUpdate();
+      }
+    });
+    
     // Making our request
     fetch(url, { method: 'GET' })
         .then(Result => Result.json())
