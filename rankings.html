@@ -196,7 +196,7 @@ export class StockToolbar extends LitElement {
 
       // If `isClosest` equals falsy & popup has the class `show`
       // then hide the popup
-      if (!isClosest && !isToolbarClosest && this.show) {
+      if (!isDropdownClosest && !isToolbarClosest && this.show) {
         this.show = false;
         this.requestUpdate();
       }
