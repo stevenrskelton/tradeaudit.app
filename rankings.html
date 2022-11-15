@@ -179,6 +179,7 @@ export class StockToolbar extends LitElement {
   };
 
   static maxDropDownItems = 8;
+  static staticToolbarItems = 9;
   
   constructor() {
     super();
@@ -266,7 +267,7 @@ export class StockToolbar extends LitElement {
   }
 
   render() {
-    const staticitems = this.stocks.slice(0, 10);
+    const staticitems = this.stocks.slice(0, StockToolbar.staticToolbarItems);
     const selectedDropDown = (this.dropdownitem == null || staticitems.findIndex(o => o.symbol == this.dropdownitem.symbol) > -1)? null : this.dropdownitem;
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
