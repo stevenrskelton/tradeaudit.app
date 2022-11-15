@@ -328,7 +328,7 @@ export class StockToolbar extends LitElement {
             >🤡 Bottom Users</button>
         </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
-            ${this.items.map(
+            ${items.map(
               (item) => html`
                 <button
                     @click=${() => this.toggleSelected(item.symbol)}
