@@ -231,19 +231,23 @@ export class StockDropdown extends LitElement {
     super();
     this.max = 8;
     this.stocks = [];
-    this.items = []; //this.stocks.slice(0, this.max);
+    this.items = [];
   }
 
   filterFunction(e) {
     console.log(e.target.value);
-    const filter = e.target.value.toUpperCase();
-    this.items = [];
-    this.stocks.every(item => {
-      if (item.symbol.toUpperCase().indexOf(filter) > -1 || item.name.toUpperCase().indexOf(filter) > -1) {
-        this.items.push(item);
-      }
-      return this.items.length < this.max;
-    });
+    const filter = e.target.value.toUpperCase().trim();
+    if(filter == ''){
+      this.items = this.stocks.slice(0, this.max);
+    } else {
+      this.items = [];
+      this.stocks.every(item => {
+        if (item.symbol.toUpperCase().indexOf(filter) > -1 || item.name.toUpperCase().indexOf(filter) > -1) {
+          this.items.push(item);
+        }
+        return this.items.length < this.max;
+      });
+    }
     this.requestUpdate();
   }
 
