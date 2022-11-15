@@ -247,7 +247,7 @@ export class StockToolbar extends LitElement {
         if (item.symbol.toUpperCase().indexOf(filter) > -1 || item.name.toUpperCase().indexOf(filter) > -1) {
           this.items.push(item);
         }
-        return this.items.length < this.max;
+        return this.items.length < StockToolbar.maxDropDownItems;
       });
     }
     this.requestUpdate();
