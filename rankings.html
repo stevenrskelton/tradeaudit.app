@@ -259,10 +259,18 @@ export class StockToolbar extends LitElement {
     this.selectedStockSymbol = item.symbol;
     this.requestUpdate();
   }
+  
+  toggleDropdown(){
+    this.show = !this.show;
+    if(this.show && this.dropdownitem == null){
+      this.items = this.stocks.slice(0, StockToolbar.maxDropDownItems);
+    }
+    this.requestUpdate();
+  }
 
   render() {
     const staticitems = this.stocks.slice(0, 10);
-    const selectedDropDown = (this.dropdownitem == null || this.staticitems.findIndex(o => o.symbol == this.dropdownitem.symbol) > -1)? null : this.dropdownitem;
+    const selectedDropDown = (this.dropdownitem == null || staticitems.findIndex(o => o.symbol == this.dropdownitem.symbol) > -1)? null : this.dropdownitem;
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -306,7 +314,7 @@ export class StockToolbar extends LitElement {
               </ul>
             </div>
             <button 
-              @click=${() => this.show = !this.show} id="testbtn"
+              @click=${this.toggleDropdown} id="testbtn"
               class="btn btn-outline-secondary ${this.dropdownitem != null && this.dropdownitem.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
               title="${selectedDropDown == null ? "Select Stock" : selectedDropDown.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
             >
