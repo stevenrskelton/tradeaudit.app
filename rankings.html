@@ -315,7 +315,7 @@ export class StockToolbar extends LitElement {
             </div>
             <button 
               @click=${this.toggleDropdown} id="testbtn"
-              class="btn btn-outline-secondary ${this.dropdownitem != null && this.dropdownitem.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
+              class="btn btn-outline-secondary ${selectedDropDown == null ? '' : 'active'}" type="button"
               title="${selectedDropDown == null ? "Select Stock" : selectedDropDown.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
             >
               ${selectedDropDown == null ? "?" : selectedDropDown.symbol}
