@@ -237,7 +237,6 @@ export class StockToolbar extends LitElement {
   `;
   
   filterFunction(e) {
-    console.log(e.target.value);
     const filter = e.target.value.toUpperCase().trim();
     if(filter == ''){
       this.items = this.stocks.slice(0, StockToolbar.maxDropDownItems);
@@ -254,7 +253,6 @@ export class StockToolbar extends LitElement {
   }
 
   selectFunction(item){
-    console.log('select');
     this.show = !this.show;
     this.dropdownitem = item;
     this.selectedStockSymbol = item.symbol;
@@ -262,7 +260,7 @@ export class StockToolbar extends LitElement {
   }
 
   render() {
-    const items = this.stocks.slice(0, 10);
+    const staticitems = this.stocks.slice(0, 10);
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -281,7 +279,7 @@ export class StockToolbar extends LitElement {
             >🤡 Bottom Users</button>
         </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
-            ${items.map(
+            ${staticitems.map(
               (item) => html`
                 <button
                     @click=${() => this.toggleSelected(item.symbol)}
@@ -294,7 +292,7 @@ export class StockToolbar extends LitElement {
             <div id="myDropdown" class="dropdown-content" style="margin-top:36pt;z-index:10;display:${this.show ? "block" : "none"};">
               <input type="text" placeholder="Search.." @input="${this.filterFunction}">
               <ul style="padding-left:0">
-                ${items.map(
+                ${this.items.map(
                   (item) => 
                     html`
                       <li class="dropdown-item" style="cursor:pointer;">
