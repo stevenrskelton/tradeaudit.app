@@ -172,6 +172,7 @@ export class StockToolbar extends LitElement {
   static properties = {
     stocks: { type: Array, state: true },
     selectedStockSymbol: { type: String, state: true },
+    dropdownitem: { type: Object },
     isTop: { type: Boolean, state: true },
     usersummaries: { type: Array, state: true, attribute: false },
     show: { type: Boolean, default: false, attribute: true, reflect: true },
@@ -255,6 +256,7 @@ export class StockToolbar extends LitElement {
   selectFunction(item){
     console.log('select');
     this.show = !this.show;
+    this.dropdownitem = item;
     this.selectedStockSymbol = item.symbol;
     this.requestUpdate();
   }
@@ -292,7 +294,7 @@ export class StockToolbar extends LitElement {
             )} 
             <button 
               @click=${() => this.show = !this.show} id="testbtn"
-              class="btn btn-outline-secondary ${item.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
+              class="btn btn-outline-secondary ${this.dropdownitem != null && this.dropdownitem.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
               title="${dropdowntext}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
             >
               ${dropdowntext}
