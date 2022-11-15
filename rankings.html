@@ -96,7 +96,7 @@ customElements.define('pie-chart', PieChart);
 export class UserSummary extends LitElement {
   static properties = {
       usersummaries: { type: Array, state: true, attribute: false },
-      selectedStockSymbol: { type: String, state: true },
+      selectedStockItem: { type: Object, state: true },
       height: { type: Number },
   };
   
@@ -118,7 +118,7 @@ export class UserSummary extends LitElement {
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.usersummaries ?? []).map(
               (item) => {
-                const subItem = this.selectedStockSymbol != null ? item.stocks.find(o => o.symbol == this.selectedStockSymbol) : item;
+                const subItem = this.selectedStockItem != null ? item.stocks.find(o => o.symbol == this.selectedStockItem.symbol) : item;
                 const ratedPercent = subItem === undefined ? 0 : Math.round(subItem.positiveRatingPercent + subItem.negativeRatingPercent);
                 const positivePercent = ratedPercent == 0 ? 0 : subItem.positiveRatingPercent / ratedPercent;
                 const negativePercent = ratedPercent == 0 ? 0 : subItem.negativeRatingPercent / ratedPercent;
@@ -146,7 +146,7 @@ export class UserSummary extends LitElement {
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
                         ${item.stocks.map(
                             (stock) => {
-                                const selected = this.selectedStockSymbol == stock.symbol ? "fw-bold" : "";
+                                const selected = this.selectedStockItem != null && this.selectedStockItem.symbol == stock.symbol ? "fw-bold" : "";
                                 return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
                             }
                         )}
@@ -154,7 +154,7 @@ export class UserSummary extends LitElement {
                     </div>
                   </div>
                   ${
-                    (this.selectedStockSymbol != null && false) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockSymbol}">
+                    (this.selectedStockItem != null && false) ? html`<a href="https://tradeaudit.app/user?twitter=${item.twitterUserName}&symbol=${this.selectedStockItem.symbol}">
                         <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
                     </a>` : html`<div style="width:60px"></div>`
                   }
@@ -171,8 +171,7 @@ customElements.define('user-summary', UserSummary);
 export class StockToolbar extends LitElement {
   static properties = {
     stocks: { type: Array, state: true },
-    selectedStockSymbol: { type: String, state: true },
-    dropdownitem: { type: Object },
+    selectedStockItem: { type: Object, state: true },
     isTop: { type: Boolean, state: true },
     usersummaries: { type: Array, state: true, attribute: false },
     show: { type: Boolean, default: false, attribute: true, reflect: true },
@@ -254,10 +253,8 @@ export class StockToolbar extends LitElement {
   }
 
   selectFunction(item){
-    this.show = !this.show;
-    this.dropdownitem = item;
-    this.selectedStockSymbol = item.symbol;
-    this.requestUpdate();
+    this.show = false;
+    this.toggleSelected(item);
   }
   
   toggleDropdown(){
@@ -292,8 +289,8 @@ export class StockToolbar extends LitElement {
             ${staticitems.map(
               (item) => html`
                 <button
-                    @click=${() => this.toggleSelected(item.symbol)}
-                    class="btn btn-outline-secondary ${item.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
+                    @click=${() => this.toggleSelected(item)}
+                    class="btn btn-outline-secondary ${this.selectedStockItem != null && item.symbol == this.selectedStockItem.symbol ? 'active' : ''}" type="button"
                     title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
                 >
                     ${item.symbol}
@@ -321,7 +318,7 @@ export class StockToolbar extends LitElement {
               ${selectedDropDown == null ? "?" : selectedDropDown.symbol}
             </button>            
         </div>
-        <user-summary height="80" .selectedStockSymbol=${this.selectedStockSymbol} .usersummaries=${this.usersummaries}></user-summary>
+        <user-summary height="80" .selectedStockItem=${this.selectedStockItem} .usersummaries=${this.usersummaries}></user-summary>
     `;
   }
 
@@ -332,18 +329,18 @@ export class StockToolbar extends LitElement {
     }
   }
   
-  toggleSelected(stockSymbol) {
-    if(this.selectedStockSymbol == stockSymbol){
-      this.selectedStockSymbol = null;
+  toggleSelected(stockItem) {
+    if(this.selectedStockItem == stockItem){
+      this.selectedStockItem = null;
     }else{
-      this.selectedStockSymbol = stockSymbol;
+      this.selectedStockItem = stockItem;
     }
     this.fetchUserSummaries();
   }
   
   fetchUserSummaries(){
     
-    const symbol = this.selectedStockSymbol == null ? '' : '/' + this.selectedStockSymbol;
+    const symbol = this.selectedStockItem == null ? '' : '/' + this.selectedStockItem.symbol;
     const url = 'https://cf.tradeaudit.app/users/' + (this.isTop ? 'top' : 'bottom') + symbol;
     
     // Making our request
