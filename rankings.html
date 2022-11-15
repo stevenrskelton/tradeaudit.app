@@ -263,7 +263,6 @@ export class StockToolbar extends LitElement {
 
   render() {
     const items = this.stocks.slice(0, 10);
-    const dropdowntext = this.selectedStockSymbol ?? "?";
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -295,9 +294,9 @@ export class StockToolbar extends LitElement {
             <button 
               @click=${() => this.show = !this.show} id="testbtn"
               class="btn btn-outline-secondary ${this.dropdownitem != null && this.dropdownitem.symbol == this.selectedStockSymbol ? 'active' : ''}" type="button"
-              title="${dropdowntext}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
+              title="${this.dropdownitem == null ? '' : this.dropdownitem.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
             >
-              ${dropdowntext}
+              ${this.selectedStockSymbol ?? "?"}
             </button>
             <div id="myDropdown" class="dropdown-content" style="margin-top:36pt;z-index:10;display:${this.show ? "block" : "none"};">
               <input type="text" placeholder="Search.." @input="${this.filterFunction}">
