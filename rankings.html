@@ -178,18 +178,6 @@ export class StockDropdown extends LitElement {
   };
 
   static styles = css`
-    .dropbtn {
-        background-color: #04AA6D;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-    }
-
-    .dropbtn:hover, .dropbtn:focus {
-        background-color: #3e8e41;
-    }
     #myInput {
         box-sizing: border-box;
         background-image: url('searchicon.png');
@@ -208,7 +196,6 @@ export class StockDropdown extends LitElement {
     }
 
     .dropdown-content {
-        display: none;
         position: absolute;
         background-color: #f6f6f6;
         min-width: 230px;
@@ -223,8 +210,6 @@ export class StockDropdown extends LitElement {
     }
 
     .dropdown a:hover {background-color: #ddd}
-
-    .show {display:block;}
   `;
 
   constructor() {
@@ -265,11 +250,11 @@ export class StockDropdown extends LitElement {
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
       <div class="dropdown">
       <button
-        @click=${() => this.show = !this.show} class="dropbtn" id="testbtn" style="width:50pt;"
+        @click=${() => this.show = !this.show} class="btn btn-outline-secondary" id="testbtn" style="width:50pt;"
       >
         ${this.selected == null ? "?" : this.selected.symbol}
       </button>
-        <div id="myDropdown" class="dropdown-content ${this.show ? "show" : ""}">
+        <div id="myDropdown" class="dropdown-content" style="z-index:1;display:${this.show ? "block" : "none"};">
           <input type="text" placeholder="Search.." @input="${this.filterFunction}">
           <ul style="padding-left:0">
             ${this.items.map(
