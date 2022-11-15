@@ -268,7 +268,7 @@ export class StockToolbar extends LitElement {
 
   render() {
     const staticitems = this.stocks.slice(0, StockToolbar.staticToolbarItems);
-    const selectedDropDown = (this.dropdownitem == null || staticitems.findIndex(o => o.symbol == this.dropdownitem.symbol) > -1)? null : this.dropdownitem;
+    const selectedDropDown = (this.selectedStockItem == null || staticitems.findIndex(o => o.symbol == this.selectedStockItem.symbol) > -1)? null : this.selectedStockItem;
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
