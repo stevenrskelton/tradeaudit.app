@@ -191,11 +191,12 @@ export class StockToolbar extends LitElement {
 
     document.addEventListener("click", (e) => {
       // Check if the filter list parent element exist
-      const isClosest = e.target.closest("#myDropdown");
+      const isDropdownClosest = e.target.closest("#myDropdown");
+      const isBtnClosest = e.target.closest("#testbtn");
 
       // If `isClosest` equals falsy & popup has the class `show`
       // then hide the popup
-      if (!isClosest && this.show) {
+      if (!(isClosest || isBtnClosest) && this.show) {
         this.show = false;
         this.requestUpdate();
       }
