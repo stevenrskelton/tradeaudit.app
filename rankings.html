@@ -119,10 +119,10 @@ export class UserSummary extends LitElement {
             ${(this.usersummaries ?? []).map(
               (item) => {
                 const subItem = this.selectedStockItem != null ? item.stocks.find(o => o.symbol == this.selectedStockItem.symbol) : item;
-                const ratedPercent = subItem === undefined ? 0 : Math.round(subItem.positiveRatingPercent + subItem.negativeRatingPercent);
-                const positivePercent = ratedPercent == 0 ? 0 : subItem.positiveRatingPercent / ratedPercent;
-                const negativePercent = ratedPercent == 0 ? 0 : subItem.negativeRatingPercent / ratedPercent;
-                const tradeCount = subItem === undefined ? 0 : subItem.tradeCount;
+                const ratedPercent = subItem === undefined ? 0 : Math.round(subItem.pp + subItem.np);
+                const positivePercent = ratedPercent == 0 ? 0 : subItem.pp / ratedPercent;
+                const negativePercent = ratedPercent == 0 ? 0 : subItem.np / ratedPercent;
+                const tradeCount = subItem === undefined ? 0 : subItem.count;
                 
                 const a = html`<a style="all:unset;cursor: pointer;display:flex;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open @${item.twitterDisplayName} on Twitter">`;
                 return html`
