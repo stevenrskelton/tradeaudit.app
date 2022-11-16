@@ -310,15 +310,15 @@ export class StockToolbar extends LitElement {
                     ${item.symbol}
                 </button>`
             )}
-            <div id="myDropdown" class="dropdown-content" style="margin-top:36pt;z-index:10;display:${this.show ? "block" : "none"};">
-              <input type="text" placeholder="Search.." @input="${this.filterFunction}">
+            <div id="myDropdown" class="dropdown-content display-6" style="max-width:1024px;margin-top:36pt;z-index:10;display:${this.show ? "block" : "none"};">
+              <input type="text" class="mb-2" placeholder="Search..." @input="${this.filterFunction}">
               <ul style="padding-left:0">
                 ${this.items.map(
                   (item) => 
                     html`
-                      <li class="dropdown-item btn btn-outline-secondary" style="cursor:pointer;">
+                      <li class="dropdown-item btn btn-outline-secondary">
                         <a @click=${() => this.selectFunction(item)}>
-                          <div style="width:50pt;font-weight:bold;display:inline-block;">${item.symbol}</div> ${item.name}
+                          <div style="width:60pt;font-weight:bold;display:inline-block;">${item.symbol}</div> ${item.name}
                         </a>
                       </li>`
                 )}
