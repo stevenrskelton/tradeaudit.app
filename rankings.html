@@ -316,7 +316,7 @@ export class StockToolbar extends LitElement {
                 ${this.items.map(
                   (item) => 
                     html`
-                      <li class="dropdown-item" style="cursor:pointer;">
+                      <li class="dropdown-item btn btn-outline-secondary" style="cursor:pointer;">
                         <a @click=${() => this.selectFunction(item)}>
                           <div style="width:50pt;font-weight:bold;display:inline-block;">${item.symbol}</div> ${item.name}
                         </a>
