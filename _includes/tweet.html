@@ -4,9 +4,9 @@
   include.twitterProfileUrl
   include.twitterScreenName
   include.tweetBody
-  include.tweetDate 8:06 AM · Jun 28, 2022
-  include.tweetDatetime 2022-06-28T12:06:28.000Z
+  include.tweetTimestamp int64
 -->
+{% assign tweetDateHuman = include.tweetTimestamp | date: "%l:%M %p · %b %e, %Y"  %}
 <div id="app">
     <div class="css-1dbjc4n r-13awgt0 r-12vffkv">
         <div class="css-1dbjc4n r-13awgt0 r-12vffkv">
@@ -143,11 +143,11 @@
                                 class="css-901oao css-16my406 r-14j79pv r-poiln3 r-bcqeeo r-qvutc0" style=""><div
                                 class="css-1dbjc4n r-1d09ksm r-1471scf r-18u37iz r-1wbh5a2"><a
                                 href="https://twitter.com/{{ include.twitterName }}/status/{{ include.twitterStatusId }}?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E{{ include.twitterStatudId }}%7Ctwgr%5E%7Ctwcon%5Es1_&amp;ref_url="
-                                rel="noopener noreferrer nofollow" target="_blank" aria-label="{{ include.tweetDate }}"
+                                rel="noopener noreferrer nofollow" target="_blank" aria-label="{{ include.tweetDateHuman }}"
                                 role="link"
                                 class="css-4rbku5 css-18t94o4 css-901oao css-16my406 r-14j79pv r-1loqt21 r-xoduu5 r-1q142lx r-1w6e6rj r-poiln3 r-9aw3ui r-bcqeeo r-3s2u2q r-qvutc0"
                                 style=""><time
-                                datetime="{{ include.tweetDatetime }}">{{ include.tweetDate }}</time></a></div></span></div>
+                                datetime="{{ include.tweetTimestamp | date "%Y-%m-%dT%k:%M:%S.000Z%z" }}">{{ include.tweetDateHuman }}</time></a></div></span></div>
                         <a href="https://help.twitter.com/en/twitter-for-websites-ads-info-and-privacy"
                            rel="noopener noreferrer nofollow" target="_blank" aria-label="Twitter Ads info and privacy"
                            role="link"
