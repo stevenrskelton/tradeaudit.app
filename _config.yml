@@ -2,9 +2,8 @@
 title: Trade Audit
 author: Steven Skelton
 email: tradeauditapp@gmail.com
-description: >
-  Social media fintwit is full of financial professionals and macro analysts. Do your due diligence and audit
-  trading records before you invest your time and money.
+#limit 150 chars for Google
+description: Social media is full of financial professionals and macro analysts, do your due diligence before investing your time and money.
 twitter_username: tradeaudit
 github_username:  stevenrskelton # DO NOT include the @ character, or else the build will fail!
 
