@@ -290,14 +290,14 @@ export class StockToolbar extends LitElement {
                 @click=${() => this.toggleSort(true)}
                 class="btn btn-outline-secondary btn-lg ${this.isTop ? 'active' : ''}" type="button"
                 title="Top Users" data-bs-toggle="tooltip" data-bs-placement="top"
-                style="width:200pt"
-            >💰 Top Users</button>
+                style="width:230pt"
+            >💰 Top Users 💰</button>
             <button
                 @click=${() => this.toggleSort(false)}
                 class="btn btn-outline-secondary btn-lg ${this.isTop ? '' : 'active'}" type="button"
                 title="Bottom Users" data-bs-toggle="tooltip" data-bs-placement="top"
-                style="width:200pt"
-            >🤡 Bottom Users</button>
+                style="width:230pt"
+            >🤡 Bottom Users 🤡</button>
         </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
             ${staticitems.map(
