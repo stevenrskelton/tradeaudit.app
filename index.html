@@ -172,7 +172,7 @@ export class TwitterTweet extends LitElement {
     
     function parseNewlines(body){
       const index = body.indexOf("\n");
-      if( == -1) return body;
+      if(index == -1) return body;
       else return html`${body.substring(index)}<br>${parseNewlines(body.substring(index + 1))}`;
     }
     
