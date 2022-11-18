@@ -288,13 +288,13 @@ export class StockToolbar extends LitElement {
         <div class="input-group mb-2" role="group" aria-label="User Sorting" style="margin:auto;justify-content:center;">
             <button
                 @click=${() => this.toggleSort(true)}
-                class="btn btn-outline-secondary ${this.isTop ? 'active' : ''}" type="button"
+                class="btn btn-outline-secondary btn-lg ${this.isTop ? 'active' : ''}" type="button"
                 title="Top Users" data-bs-toggle="tooltip" data-bs-placement="top"
                 style="width:200pt"
             >💰 Top Users</button>
             <button
                 @click=${() => this.toggleSort(false)}
-                class="btn btn-outline-secondary ${this.isTop ? '' : 'active'}" type="button"
+                class="btn btn-outline-secondary btn-lg ${this.isTop ? '' : 'active'}" type="button"
                 title="Bottom Users" data-bs-toggle="tooltip" data-bs-placement="top"
                 style="width:200pt"
             >🤡 Bottom Users</button>
