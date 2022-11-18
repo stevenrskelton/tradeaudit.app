@@ -215,7 +215,7 @@ export class TwitterTweet extends LitElement {
             </div>
             <div id="link">
               <a target="_blank" rel="noopener" href="https://twitter.com/${ this.user_screen_name }/status/${ this.id_str }">
-                ${ date.toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric' }) } · ${ date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) }
+                ${ date.toLocaleTimeString(undefined, { timeStyle: 'short' }) } · ${ date.toLocaleDateString(undefined, { dateStyle: 'medium' }) }
               </a>
             </div>
           </div>
