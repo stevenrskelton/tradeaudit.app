@@ -233,8 +233,16 @@ export class TwitterTweet extends LitElement {
 customElements.define('twitter-tweet', TwitterTweet);
 </script>
 
+<style>
+  @media only screen and (min-width: 1200px) {
+    #masonry {
+      columns: 600px;
+      column-gap: 1rem;
+    }
+  }
+</style>
 
-<div style="display:flex;flex-wrap:wrap; justify-content: space-evenly;">
+<div id="masonry">
   <twitter-tweet 
     user_screen_name="RudyHavenstein"
     user_name="Rudy Havenstein"
@@ -245,12 +253,12 @@ customElements.define('twitter-tweet', TwitterTweet);
   ></twitter-tweet>
   
   <twitter-tweet 
-    user_screen_name="alexkagin"
-    user_name="Alex Kagin"
-    id_str="1466026950791766020"
-    profile_image_url_https="https://tradeaudit.app/assets/profile_images/oUiwc1Uc_normal.jpg"
-    text="Do you think most fintwit newsletter writers hold stocks they publish? I’m thinking maybe 20%"
-    created_at="2021-12-01T12:50:37.000Z"
+    user_screen_name="SoccerMomTrades"
+    user_name="Canadian Soccer Mom"
+    id_str="1504853649746538504"
+    profile_image_url_https="https://tradeaudit.app/assets/profile_images/GHDrzL6G_normal.jpg"
+    text="I can just picture it, couple of months from now when market is fine the mega macro newsletters coming out with some piece like “So what happened?” being really retrospective and maybe quote a bunch of lines from drunkmiller and soros and boom they move on\n\nMeanwhile subs rekt"
+    created_at="2022-03-18T16:14:03.000Z"
   ></twitter-tweet>
   
   <twitter-tweet 
@@ -281,12 +289,12 @@ customElements.define('twitter-tweet', TwitterTweet);
   ></twitter-tweet>
   
   <twitter-tweet 
-    user_screen_name="SoccerMomTrades"
-    user_name="Canadian Soccer Mom"
-    id_str="1504853649746538504"
-    profile_image_url_https="https://tradeaudit.app/assets/profile_images/GHDrzL6G_normal.jpg"
-    text="I can just picture it, couple of months from now when market is fine the mega macro newsletters coming out with some piece like “So what happened?” being really retrospective and maybe quote a bunch of lines from drunkmiller and soros and boom they move on\n\nMeanwhile subs rekt"
-    created_at="2022-03-18T16:14:03.000Z"
+    user_screen_name="alexkagin"
+    user_name="Alex Kagin"
+    id_str="1466026950791766020"
+    profile_image_url_https="https://tradeaudit.app/assets/profile_images/oUiwc1Uc_normal.jpg"
+    text="Do you think most fintwit newsletter writers hold stocks they publish? I’m thinking maybe 20%"
+    created_at="2021-12-01T12:50:37.000Z"
   ></twitter-tweet>
   
 </div>
