@@ -167,7 +167,15 @@ export class TwitterTweet extends LitElement {
     }
   `;
   
+  
   render() {
+    
+    function parseNewlines(body){
+      const index = body.indexOf("\n");
+      if( == -1) return body;
+      else return html`${body.substring(index)}<br>${parseNewlines(body.substring(index + 1))}`;
+    }
+    
     const date = new Date(this.created_at);
     return html`
       <div id="container">
@@ -191,7 +199,7 @@ export class TwitterTweet extends LitElement {
             </div>
           </div>
           <div id="text">
-            ${ this.text.replaceAll('\\n', '<br>') }
+            ${ parseNewlines(this.text) }
           </div>
           <div id="footer">
             <div id="actions">
