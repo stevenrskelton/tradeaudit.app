@@ -9,3 +9,6 @@ github_username:  stevenrskelton # DO NOT include the @ character, or else the b
 
 show_excerpts: true # set to false to remove excerpts on the homepage
 permalink: pretty
+url: "https://tradeaudit.app"
+plugins:
+  - jekyll-sitemap
