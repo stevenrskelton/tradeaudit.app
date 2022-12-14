@@ -27,7 +27,8 @@ export class TwitterTweet extends LitElement {
     verified: { type: Boolean },
     id_str: { type: String },
     text: { type: String },
-    link: { type: String },
+    display_url: { type: String },
+    url: { type: String },
     created_at: { type: String },
   };
   
@@ -182,6 +183,14 @@ export class TwitterTweet extends LitElement {
       else return html`${body.substring(0,index)}<br>${parseNewlines(body.substring(index + 2))}`;
     }
     
+    function minUrl(url){
+      var ret = url;
+      if(ret.startsWith("https://")) ret = ret.substring(8);
+      if(ret.startsWith("www.")) ret = ret.substring(4);
+      if(ret.length > 22) ret = ret.substring(0,22) + "…";
+      return ret;
+    }
+    
     const date = new Date(this.created_at);
     return html`
       <div id="container">
@@ -206,7 +215,7 @@ export class TwitterTweet extends LitElement {
           </div>
           <div id="text">
             ${ parseNewlines(this.text) }
-            ${ this.link ? html`<br><br><a href="${this.link}" target="_blank">${this.link}</a>` : null }
+            ${ this.display_url ? html`<br><br><a href="${this.url}" title="${this.display_url}" target="_blank">${ minUrl(this.display_url) }</a>` : null }
           </div>
           <div id="footer">
             <div id="actions">
@@ -314,7 +323,8 @@ customElements.define('twitter-tweet', TwitterTweet);
     id_str="1603036089899327488"
     profile_image_url_https="https://tradeaudit.app/assets/profile_images/9nXj4OYd_normal.jpg"
     text="Today we announced charges against eight social media influencers in a $100 million securities scheme in which they used Twitter and Discord to manipulate exchange-traded stocks."
-    link="https://www.sec.gov/news/press-release/2022-221"
+    display_url="https://www.sec.gov/news/press-release/2022-221"
+    url="https://t.co/zzrchqFlqg"
     created_at="2022-12-14T14:36:01.000Z"
   ></twitter-tweet>
   
