@@ -242,6 +242,7 @@ customElements.define('twitter-tweet', TwitterTweet);
 </style>
 
 <div id="masonry">
+  <!-- https://cdn.syndication.twimg.com/tweet-result?id=463440424141459456 -->
   <twitter-tweet 
     user_screen_name="RudyHavenstein"
     user_name="Rudy Havenstein"
@@ -302,6 +303,27 @@ customElements.define('twitter-tweet', TwitterTweet);
 
 <div class="d-grid gap-2 col-10 mx-auto mb-4 mt-4">
   <a href="/rankings" class="btn btn-primary btn-lg" role="button" style="--bs-btn-font-size:2rem">See Fintwit User Rankings</a>
+</div>
+
+<div id="masonry">
+  <twitter-tweet 
+    user_screen_name="SECGov"
+    user_name="U.S. Securities and Exchange Commission"
+    id_str="1603036089899327488"
+    profile_image_url_https="https://tradeaudit.app/assets/profile_images/9nXj4OYd_400x400.jpg"
+    text="Today we announced charges against eight social media influencers in a $100 million securities scheme in which they used Twitter and Discord to manipulate exchange-traded stocks.\n\nhttps://t.co/zzrchqFlqg"
+    created_at="2022-12-14T14:36:01.000Z"
+  ></twitter-tweet>
+  
+  <twitter-tweet 
+    user_screen_name="MrZackMorris"
+    user_name="Zack Morris"
+    id_str="1602915568612478977"
+    profile_image_url_https="https://tradeaudit.app/assets/profile_images/L-peQt77_normal.jpg"
+    text="I love my homies on here. The rest of you can keep swinging on my nuts."
+    created_at="2022-12-14T06:37:06.000Z"
+  ></twitter-tweet>
+  
 </div>
 
 {% include appstorelink.html %}
