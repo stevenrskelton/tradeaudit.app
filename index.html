@@ -146,13 +146,13 @@ export class TwitterTweet extends LitElement {
     }
 
     a {
-      color: #1DA1F2;
+      color: var(--twitter-status-link-color);
       text-decoration: none;
       outline: 0;
     }
 
     a:visited {
-      color: #1DA1F2;
+      color: var(--twitter-status-link-color);
       text-decoration: none;
       outline: 0;
     }
@@ -214,7 +214,7 @@ export class TwitterTweet extends LitElement {
           </div>
           <div id="text">
             ${ parseNewlines(this.text) }
-            ${ this.display_url ? html`<a href="${this.url}" title="${this.display_url}" target="_blank">${ minUrl(this.display_url) }</a><br>` : null }
+            ${ this.display_url ? html`<a style="color:#1DA1F2;" href="${this.url}" title="${this.display_url}" target="_blank">${ minUrl(this.display_url) }</a><br>` : null }
           </div>
           <div id="footer">
             <div id="actions">
