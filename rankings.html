@@ -235,9 +235,11 @@ export class StockToolbar extends LitElement {
 
     .dropdown-content {
         position: absolute;
-        background-color: #f6f6f6;
+        background-color: #282739;
         min-width: 230px;
         overflow: auto;border: 1px solid #ddd;
+        color: #fff;
+        padding: 4px;
     }
 
     .dropdown-content a {
@@ -312,7 +314,7 @@ export class StockToolbar extends LitElement {
                     ${item.symbol}
                 </button>`
             )}
-            <div id="myDropdown" class="dropdown-content display-6" style="max-width:1024px;margin-top:36pt;z-index:10;display:${this.show ? "block" : "none"};">
+            <div id="myDropdown" class="dropdown-content display-6" style="max-width:1024px;margin-top:35pt;border-radius:1%;z-index:10;display:${this.show ? "block" : "none"};">
               <input type="text" class="mb-2" placeholder="Search..." @input="${this.filterFunction}">
               <ul style="padding-left:0">
                 ${this.items.map(
