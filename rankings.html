@@ -305,7 +305,7 @@ export class StockToolbar extends LitElement {
                 <button
                     @click=${() => this.toggleSelected(item)}
                     class="btn btn-outline-secondary ${this.selectedStockItem != null && item.symbol == this.selectedStockItem.symbol ? 'active' : ''}" type="button"
-                    title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
+                    title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt;padding-left:0;padding-right:0;"
                 >
                     ${item.symbol}
                 </button>`
