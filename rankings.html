@@ -281,15 +281,14 @@ export class StockToolbar extends LitElement {
       this.items = this.stocks.slice(0, StockToolbar.maxDropDownItems);
     }
     this.requestUpdate();
-    if(this.show) {
-      
-    }
   }
   
   updated(changedProperties) {
     changedProperties.forEach((oldValue, propName) => {
       if(propName == 'show') {
-        this.shadowRoot.getElementById('dropdownsearch').focus();
+        let dropdownsearch = this.shadowRoot.getElementById('dropdownsearch');
+        dropdownsearch.focus();
+        dropdownsearch.select();
       }
     });
   }
