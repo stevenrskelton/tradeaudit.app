@@ -284,6 +284,9 @@ export class StockToolbar extends LitElement {
       }
     }
     this.requestUpdate();
+    if(this.show) {
+      this.shadowRoot.getElementById('dropdownsearch').focus();
+    }
   }
 
   render() {
