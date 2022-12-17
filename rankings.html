@@ -277,9 +277,11 @@ export class StockToolbar extends LitElement {
   
   toggleDropdown(){
     this.show = !this.show;
-    if(this.show) document.getElementById('dropdownsearch').focus();
-    if(this.show && this.dropdownitem == null){
-      this.items = this.stocks.slice(0, StockToolbar.maxDropDownItems);
+    if(this.show) {
+      this.shadowRoot.getElementById('dropdownsearch').focus();
+      if(this.dropdownitem == null){
+        this.items = this.stocks.slice(0, StockToolbar.maxDropDownItems);
+      }
     }
     this.requestUpdate();
   }
