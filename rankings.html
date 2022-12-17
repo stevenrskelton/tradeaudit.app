@@ -277,16 +277,21 @@ export class StockToolbar extends LitElement {
   
   toggleDropdown(){
     this.show = !this.show;
-    if(this.show) {
-      this.shadowRoot.getElementById('dropdownsearch').focus();
-      if(this.dropdownitem == null){
-        this.items = this.stocks.slice(0, StockToolbar.maxDropDownItems);
-      }
+    if(this.show && this.dropdownitem == null) {
+      this.items = this.stocks.slice(0, StockToolbar.maxDropDownItems);
     }
     this.requestUpdate();
     if(this.show) {
-      this.shadowRoot.getElementById('dropdownsearch').focus();
+      
     }
+  }
+  
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      if(propName == 'show') {
+        this.shadowRoot.getElementById('dropdownsearch').focus();
+      }
+    });
   }
 
   render() {
@@ -320,8 +325,8 @@ export class StockToolbar extends LitElement {
                     ${item.symbol}
                 </button>`
             )}
-            <div id="myDropdown" class="dropdown-content display-6" style="max-width:1024px;margin-top:35pt;border-radius:1%;z-index:10;display:${this.show ? "block" : "none"};">
-              <input type="text" id="dropdownsearch" class="mb-2" placeholder="Search..." @input="${this.filterFunction}" ${this.show ? "autofocus" : ""}>
+            <div id="myDropdown" class="dropdown-content display-6 ${this.show ? "focus" : ""}" style="max-width:1024px;margin-top:35pt;border-radius:1%;z-index:10;display:${this.show ? "block" : "none"};">
+              <input type="text" id="dropdownsearch" class="mb-2" placeholder="Search..." @input="${this.filterFunction}">
               <ul style="padding-left:0">
                 ${this.items.map(
                   (item) => 
