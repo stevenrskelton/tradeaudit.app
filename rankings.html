@@ -277,6 +277,7 @@ export class StockToolbar extends LitElement {
   
   toggleDropdown(){
     this.show = !this.show;
+    if(this.show) document.getElementById('dropdownsearch').focus();
     if(this.show && this.dropdownitem == null){
       this.items = this.stocks.slice(0, StockToolbar.maxDropDownItems);
     }
@@ -315,7 +316,7 @@ export class StockToolbar extends LitElement {
                 </button>`
             )}
             <div id="myDropdown" class="dropdown-content display-6" style="max-width:1024px;margin-top:35pt;border-radius:1%;z-index:10;display:${this.show ? "block" : "none"};">
-              <input type="text" class="mb-2" placeholder="Search..." @input="${this.filterFunction}">
+              <input type="text" id="dropdownsearch" class="mb-2" placeholder="Search..." @input="${this.filterFunction}">
               <ul style="padding-left:0">
                 ${this.items.map(
                   (item) => 
