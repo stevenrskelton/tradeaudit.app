@@ -109,6 +109,11 @@ export class UserSummary extends LitElement {
   static isProtected = html`<img src="https://tradeaudit.app/assets/OOjs_UI_icon_lock.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Protected">`;
   static isVerified = html`<img src="https://tradeaudit.app/assets/Twitter_Verified_Badge.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Verified">`;
   
+  selectStockEvent(stock) {
+    let event = new CustomEvent('select-stock-event', stock);
+    this.dispatchEvent(event);
+  }
+  
   render() {
     const height = this.height ?? 64;
     //<link rel="preload" href="https://tradeaudit.app/assets/finance.svg" as="image" />
@@ -147,7 +152,11 @@ export class UserSummary extends LitElement {
                         ${item.stocks.map(
                             (stock) => {
                                 const selected = this.selectedStockItem != null && this.selectedStockItem.symbol == stock.symbol ? "btn-secondary" : "btn-outline-secondary";
-                                return html`<button type="button" style="padding:0 10px 0 10px;margin-left:4px;" class="btn ${selected} btn-sm">${stock.symbol}</button>`
+                                return html`<button 
+                                  type="button" style="padding:0 10px 0 10px;margin-left:4px;" 
+                                  @click=${() => this.selectStockEvent(stock) }
+                                  class="btn ${selected} btn-sm"
+                                >${stock.symbol}</button>`
                             }
                         )}
                       </div>
@@ -347,7 +356,10 @@ export class StockToolbar extends LitElement {
               ${selectedDropDown == null ? "🔍" : selectedDropDown.symbol}
             </button>            
         </div>
-        <user-summary height="80" .selectedStockItem=${this.selectedStockItem} .usersummaries=${this.usersummaries}></user-summary>
+        <user-summary 
+          height="80" .selectedStockItem=${this.selectedStockItem} .usersummaries=${this.usersummaries}
+          @select-stock-event="${(e) => { console.log('selected-stock-event'); console.log(e) }}"
+        ></user-summary>
     `;
   }
 
