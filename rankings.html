@@ -110,7 +110,7 @@ export class UserSummary extends LitElement {
   static isVerified = html`<img src="https://tradeaudit.app/assets/Twitter_Verified_Badge.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Verified">`;
   
   selectStockEvent(stock) {
-    let event = new CustomEvent('select-stock-event', stock);
+    let event = new CustomEvent('select-stock-event', { detail: stock });
     this.dispatchEvent(event);
   }
   
@@ -358,7 +358,7 @@ export class StockToolbar extends LitElement {
         </div>
         <user-summary 
           height="80" .selectedStockItem=${this.selectedStockItem} .usersummaries=${this.usersummaries}
-          @select-stock-event="${(e) => { console.log('selected-stock-event'); console.log(e) }}"
+          @select-stock-event="${(e) => { console.log(e) }}"
         ></user-summary>
     `;
   }
