@@ -105,13 +105,15 @@ export class UserSummary extends LitElement {
         filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(246deg) brightness(104%) contrast(97%);
     }
     .btn { 
-       --bs-btn-color: #fff; 
-       /* --bs-btn-bg: #282739; */
-       --bs-btn-border-color: #6c757d; 
-       --bs-btn-hover-bg: #ed2c8a; 
-       --bs-btn-hover-border-color: #6c757d; 
+      --bs-btn-border-color: #6c757d; 
+      --bs-btn-hover-bg: #ed2c8a; 
+      --bs-btn-hover-border-color: #6c757d; 
     } 
-    .btn.active { background-color: #6842cf; border-color: #6c757d; --bs-btn-color: #fff; }
+    .btn.active { 
+      background-color: #6842cf;
+      border-color: #6c757d;
+      --bs-btn-color: #fff;
+    }
   `;
   
   static isProtected = html`<img src="https://tradeaudit.app/assets/OOjs_UI_icon_lock.svg" width="18" height="18" style="margin-bottom: 4pt" alt="Protected">`;
