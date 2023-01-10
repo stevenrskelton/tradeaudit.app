@@ -371,9 +371,9 @@ export class StockToolbar extends LitElement {
   }
   
   toggleSelected(stockItem) {
-    if(stockItem == null || this.selectedStockItem == null || this.selectedStockItem.symbol == stockItem.symbol){
+    if (stockItem == null || (this.selectedStockItem != null && this.selectedStockItem.symbol == stockItem.symbol)) {
       this.selectedStockItem = null;
-    }else{
+    } else {
       this.selectedStockItem = stockItem;
     }
     this.fetchUserSummaries();
