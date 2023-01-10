@@ -358,7 +358,7 @@ export class StockToolbar extends LitElement {
         </div>
         <user-summary 
           height="80" .selectedStockItem=${this.selectedStockItem} .usersummaries=${this.usersummaries}
-          @select-stock-event="${(e) => { console.log(e) }}"
+          @select-stock-event="${(e) => { this.selectFunction(e.detail) }}"
         ></user-summary>
     `;
   }
@@ -371,7 +371,7 @@ export class StockToolbar extends LitElement {
   }
   
   toggleSelected(stockItem) {
-    if(this.selectedStockItem == stockItem){
+    if(stockItem == null || this.selectedStockItem == null || this.selectedStockItem.symbol == stockItem.symbol){
       this.selectedStockItem = null;
     }else{
       this.selectedStockItem = stockItem;
