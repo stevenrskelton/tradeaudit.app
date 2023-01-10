@@ -146,8 +146,8 @@ export class UserSummary extends LitElement {
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
                         ${item.stocks.map(
                             (stock) => {
-                                const selected = this.selectedStockItem != null && this.selectedStockItem.symbol == stock.symbol ? "fw-bold" : "";
-                                return html`<span class="card-link text-muted ${selected}" style="padding-left:4px;padding-right:4px">${stock.symbol}</span>`
+                                const selected = this.selectedStockItem != null && this.selectedStockItem.symbol == stock.symbol ? "btn-secondary" : "btn-outline-secondary";
+                                return html`<button type="button" style="padding:0 10px 0 10px;margin-left:4px;" class="btn ${selected} btn-sm">${stock.symbol}</button>`
                             }
                         )}
                       </div>
