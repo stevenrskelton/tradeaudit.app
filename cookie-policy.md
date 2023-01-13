@@ -1,5 +1,5 @@
 ---
-layout: empty
+layout: default
 permalink: /cookie-policy
 title: "Cookie Policy - Trade Audit App"
 sitemap: false
