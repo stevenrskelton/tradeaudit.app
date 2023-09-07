@@ -9,8 +9,8 @@ author_profile: false
 <h1 class="display-6 fw-bold text-center">Influencer Rankings</h1>
 
 <span class="lead mb-4 text-center">
-  Track your favorite social media influencer's trades<br>
-  using the Trade Audit App for Android.
+  Add your own favorite social media influencers<br>
+  using the Trade Audit mobile app for Android.
 </span>
 
 <script type="module">
@@ -320,19 +320,19 @@ export class StockToolbar extends LitElement {
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <div class="input-group mb-2" role="group" aria-label="Profile Sorting" style="margin:auto;justify-content:center;">
+        <div class="input-group mb-2" role="group" aria-label="Influencer Sorting" style="margin:auto;justify-content:center;">
             <button
                 @click=${() => this.toggleSort(true)}
                 class="btn btn-outline-secondary btn-lg ${this.isTop ? 'active' : ''}" type="button"
-                title="Top Profiles" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Top Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
                 style="width:230pt"
-            >💰 Top Profiles 💰</button>
+            >💰 ▼</button>
             <button
                 @click=${() => this.toggleSort(false)}
                 class="btn btn-outline-secondary btn-lg ${this.isTop ? '' : 'active'}" type="button"
-                title="Bottom Profiles" data-bs-toggle="tooltip" data-bs-placement="top"
+                title="Bottom Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
                 style="width:230pt"
-            >🤡 Bottom Profiles 🤡</button>
+            >🤡 ▲</button>
         </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
             ${staticitems.map(
