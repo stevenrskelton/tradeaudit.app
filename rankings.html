@@ -94,9 +94,9 @@ export class PieChart extends LitElement {
 }
 customElements.define('pie-chart', PieChart);
 
-export class UserSummary extends LitElement {
+export class InfluencerSummary extends LitElement {
   static properties = {
-      usersummaries: { type: Array, state: true, attribute: false },
+      influencers: { type: Array, state: true, attribute: false },
       selectedStockItem: { type: Object, state: true },
       height: { type: Number },
   };
@@ -132,7 +132,7 @@ export class UserSummary extends LitElement {
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
-            ${(this.usersummaries ?? []).map(
+            ${(this.influencers ?? []).map(
               (item) => {
                 const subItem = this.selectedStockItem != null ? item.stocks.find(o => o.symbol == this.selectedStockItem.symbol) : item;
                 const ratedPercent = subItem === undefined ? 0 : Math.round(subItem.positivePercent + subItem.negativePercent);
@@ -147,7 +147,7 @@ export class UserSummary extends LitElement {
                   <div style="flex-grow:1;padding-left:12px;">
                     <div style="display:flex;">
                       <div style="text-align:left">
-                        <h5 class="card-title">${item.twitterUserName}${item.isProtected ? UserSummary.isProtected : null}${item.isVerified ? UserSummary.isVerified : null}</h5>
+                        <h5 class="card-title">${item.twitterUserName}${item.isProtected ? InfluencerSummary.isProtected : null}${item.isVerified ? InfluencerSummary.isVerified : null}</h5>
                       </div>
                       <div style="flex-grow:1" class="card-text text-end" style="font-weight:bold">
                         ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}
@@ -187,14 +187,14 @@ export class UserSummary extends LitElement {
     `;
   }
 }
-customElements.define('user-summary', UserSummary);
+customElements.define('influencer-summary', InfluencerSummary);
 
 export class StockToolbar extends LitElement {
   static properties = {
     stocks: { type: Array, state: true },
     selectedStockItem: { type: Object, state: true },
     isTop: { type: Boolean, state: true },
-    usersummaries: { type: Array, state: true, attribute: false },
+    influencers: { type: Array, state: true, attribute: false },
     show: { type: Boolean, default: false, attribute: true, reflect: true },
     items: { type: Array, state: true },
   };
@@ -368,17 +368,17 @@ export class StockToolbar extends LitElement {
               ${selectedDropDown == null ? "🔍" : selectedDropDown.symbol}
             </button>            
         </div>
-        <user-summary 
-          height="80" .selectedStockItem=${this.selectedStockItem} .usersummaries=${this.usersummaries}
+        <influencer-summary 
+          height="80" .selectedStockItem=${this.selectedStockItem} .influencers=${this.influencers}
           @select-stock-event="${(e) => { this.selectFunction(e.detail) }}"
-        ></user-summary>
+        ></influencer-summary>
     `;
   }
 
   toggleSort(isTop) {
     if(this.isTop != isTop){
       this.isTop = isTop;
-      this.fetchUserSummaries();
+      this.fetchInfluencers();
     }
   }
   
@@ -388,24 +388,24 @@ export class StockToolbar extends LitElement {
     } else {
       this.selectedStockItem = stockItem;
     }
-    this.fetchUserSummaries();
+    this.fetchInfluencers();
   }
   
-  fetchUserSummaries(){
+  fetchInfluencers(){
     
     const symbol = this.selectedStockItem == null ? '' : '/' + this.selectedStockItem.symbol;
-    const url = 'https://cf.tradeaudit.app/users/' + (this.isTop ? 'top' : 'bottom') + symbol;
+    const url = 'https://cf.tradeaudit.app/influencers/' + (this.isTop ? 'top' : 'bottom') + symbol;
     
     // Making our request
     fetch(url, { method: 'GET' })
         .then(Result => Result.json())
         .then(body => {
-            this.usersummaries = body.users;
+            this.influencers = body.influencers;
             this.requestUpdate();
         })
     .catch(errorMsg => { 
       console.log(errorMsg);
-      this.usersummaries = [];
+      this.influencers = [];
       this.requestUpdate();
     });
   }
