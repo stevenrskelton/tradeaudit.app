@@ -124,6 +124,40 @@ export class InfluencerSummary extends LitElement {
     let event = new CustomEvent('select-stock-event', { detail: stock });
     this.dispatchEvent(event);
   }
+
+  profileTypeImage(influencer){
+    if(influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/influencer-x.svg">`;
+    if(influencer.meta.type == "youtube") return html`<img src="/assets/influencer-youtube.svg">`;
+    if(influencer.meta.type == "web") return html`<img src="/assets/influencer-web.svg">`;
+    return html`<div style="width:60px"></div>`;
+  }
+
+  profileMeta(meta){
+    if(meta.type == "twitter" || meta.type == "x") {
+      return html`<h6 class="card-subtitle text-muted">@${meta.twitterName}</h6>
+                  <span>${humanNumber(meta.followerCount)} Followers</span>`;
+    }
+    if(meta.type == "youtube") {
+      return html`<span>${humanNumber(meta.subscriberCount)} Subscribers</span><br>
+                  <span>${humanNumber(meta.viewCount)} Total Views</span>`;
+    }
+    if(meta.type == "web") {
+      if(meta.author != null && meta.author != ""){
+        return html`<h6 class="card-subtitle text-muted">${meta.author}</h6>
+                    <span>${meta.domain}</span>`;
+      } else {
+        return html`<span>${meta.domain}</span>`;
+      }
+    }
+    return html``;
+  }
+
+  profileLink(influencer){
+    if(meta.type == "twitter" || meta.type == "x") {
+      return html`<a style="all:unset;cursor: pointer;display:flex;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open @${item.twitterDisplayName} on Twitter">`;
+    }
+    return null;
+  }
   
   render() {
     const height = this.height ?? 64;
@@ -139,11 +173,11 @@ export class InfluencerSummary extends LitElement {
                 const positivePercent = ratedPercent == 0 ? 0 : subItem.positivePercent / ratedPercent;
                 const negativePercent = ratedPercent == 0 ? 0 : subItem.negativePercent / ratedPercent;
                 const tradeCount = subItem === undefined ? 0 : subItem.count;
+                const a = profileTypeImage(item);
                 
-                const a = html`<a style="all:unset;cursor: pointer;display:flex;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open @${item.twitterDisplayName} on Twitter">`;
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
-                  ${a}<img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/></a>
+                  ${a}${profileLink(item)}<img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>${a != null ? html`</a>` : null}
                   <div style="flex-grow:1;padding-left:12px;">
                     <div style="display:flex;">
                       <div style="text-align:left">
@@ -155,8 +189,7 @@ export class InfluencerSummary extends LitElement {
                     </div>
                     <div style="display:flex">
                       <div style="text-align:left">
-                        <h6 class="card-subtitle text-muted">@${item.twitterDisplayName}</h6>
-                        <span>${humanNumber(item.followerCount)} Followers</span>
+                        ${profileBody(item.meta)}
                       </div>
                       <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
