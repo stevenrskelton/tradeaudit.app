@@ -126,23 +126,23 @@ export class InfluencerSummary extends LitElement {
   }
 
   profileTypeImage(influencer){
-    if(influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/influencer-x.svg">`;
-    if(influencer.meta.type == "youtube") return html`<img src="/assets/influencer-youtube.svg">`;
-    if(influencer.meta.type == "web") return html`<img src="/assets/influencer-web.svg">`;
+    if (influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/influencer-x.svg">`;
+    if (influencer.meta.type == "youtube") return html`<img src="/assets/influencer-youtube.svg">`;
+    if (influencer.meta.type == "web") return html`<img src="/assets/influencer-web.svg">`;
     return html`<div style="width:60px"></div>`;
   }
 
   profileMeta(meta){
-    if(meta.type == "twitter" || meta.type == "x") {
+    if (meta.type == "twitter" || meta.type == "x") {
       return html`<h6 class="card-subtitle text-muted">@${meta.twitterName}</h6>
                   <span>${humanNumber(meta.followerCount)} Followers</span>`;
     }
-    if(meta.type == "youtube") {
+    if (meta.type == "youtube") {
       return html`<span>${humanNumber(meta.subscriberCount)} Subscribers</span><br>
                   <span>${humanNumber(meta.viewCount)} Total Views</span>`;
     }
-    if(meta.type == "web") {
-      if(meta.author != null && meta.author != ""){
+    if (meta.type == "web") {
+      if (meta.author != null && meta.author != "") {
         return html`<h6 class="card-subtitle text-muted">${meta.author}</h6>
                     <span>${meta.domain}</span>`;
       } else {
@@ -152,9 +152,16 @@ export class InfluencerSummary extends LitElement {
     return html``;
   }
 
-  profileLink(influencer){
-    if(meta.type == "twitter" || meta.type == "x") {
-      return html`<a style="all:unset;cursor: pointer;display:flex;" href="https://twitter.com/${item.twitterDisplayName}" target="_blank" title="Open @${item.twitterDisplayName} on Twitter">`;
+  profileTitle(influencer) {
+    if (influencer.meta.type == "twitter" || influencer.meta.type == "x") {
+      return html`${influencer.name}${influencer.meta.isProtected ? InfluencerSummary.isProtected : null}${influencer.meta.isVerified ? InfluencerSummary.isVerified : null}`;
+    }
+    return influencer.name;
+  }
+  
+  profileLink(influencer) {
+    if (influencer.meta.type == "twitter" || influencer.meta.type == "x") {
+      return html`<a style="all:unset;cursor: pointer;display:flex;" href="https://twitter.com/${influencer.meta.twitterName}" target="_blank" title="Open @${influencer.meta.twitterName} on Twitter">`;
     }
     return null;
   }
@@ -173,15 +180,15 @@ export class InfluencerSummary extends LitElement {
                 const positivePercent = ratedPercent == 0 ? 0 : subItem.positivePercent / ratedPercent;
                 const negativePercent = ratedPercent == 0 ? 0 : subItem.negativePercent / ratedPercent;
                 const tradeCount = subItem === undefined ? 0 : subItem.count;
-                const a = profileTypeImage(item);
+                const a = this.profileLink(item);
                 
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
-                  ${a}${profileLink(item)}<img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>${a != null ? html`</a>` : null}
+                  ${a}${this.profileTypeImage(item)}<img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>${a != null ? html`</a>` : null}
                   <div style="flex-grow:1;padding-left:12px;">
                     <div style="display:flex;">
                       <div style="text-align:left">
-                        <h5 class="card-title">${item.twitterUserName}${item.isProtected ? InfluencerSummary.isProtected : null}${item.isVerified ? InfluencerSummary.isVerified : null}</h5>
+                        <h5 class="card-title">${this.profileTitle(item)}</h5>
                       </div>
                       <div style="flex-grow:1" class="card-text text-end" style="font-weight:bold">
                         ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}
@@ -189,7 +196,7 @@ export class InfluencerSummary extends LitElement {
                     </div>
                     <div style="display:flex">
                       <div style="text-align:left">
-                        ${profileBody(item.meta)}
+                        ${this.profileBody(item.meta)}
                       </div>
                       <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
