@@ -129,7 +129,7 @@ export class InfluencerSummary extends LitElement {
     if (influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/influencer-x.svg">`;
     if (influencer.meta.type == "youtube") return html`<img src="/assets/influencer-youtube.svg">`;
     if (influencer.meta.type == "web") return html`<img src="/assets/influencer-web.svg">`;
-    return html`<div style="width:60px"></div>`;
+    return html``;
   }
 
   profileMeta(meta){
@@ -184,7 +184,7 @@ export class InfluencerSummary extends LitElement {
                 
                 return html`
                 <li class="list-group-item" style="display:flex;align-items:center;">
-                  ${a}${this.profileTypeImage(item)}<img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>${a != null ? html`</a>` : null}
+                  ${a}<div style="width:60px">${this.profileTypeImage(item)}</div><img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>${a != null ? html`</a>` : null}
                   <div style="flex-grow:1;padding-left:12px;">
                     <div style="display:flex;">
                       <div style="text-align:left">
