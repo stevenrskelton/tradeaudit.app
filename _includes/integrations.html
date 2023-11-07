@@ -2,38 +2,38 @@
 {% capture active_x %}{% if include.selected == "x" %}active{% endif %}{% endcapture %}
 {% capture active_web %}{% if include.selected == "web" %}active{% endif %}{% endcapture %}
 
-<div class="mt-5 text-center">
-    <h2 class="display-5 fw-bold ">Social Media Integrations</h2>
+<div class="mt-5 mb-5 text-center">
+    <h2 class="display-5 fw-bold mb-4">Social Media Integrations</h2>
 
-    <table style="border-collapse: separate;">
+    <table style="border-collapse:separate;display:inline-block;">
         <tr>
             <td 
-                style="width:200px;border-radius:25px;border:2px solid #282739;vertical-align:top;"
+                style="width:240px;border-radius:25px;border:2px solid #282739;vertical-align:top;"
                 class="{{ active_youtube }}"
             >
+                <div style="height:60px;vertical-align:middle;display:inline-block;"><h3>YouTube</h3></div>
                 <div style="height:160px"><img src="/assets/influencer-youtube.svg" style="width:160px;" alt="YouTube"></div>
-                YouTube<br>
                 <ul>
                     <li>Search</li>
                     <li>Transcripts</li>
                 </ul>
             </td>
             <td
-                style="width:200px;border-radius:25px;border:2px solid #282739;vertical-align:top;"
+                style="width:240px;border-radius:25px;border:2px solid #282739;vertical-align:top;"
                 class="{{ active_x }}"
             >
+                <div style="height:60px;vertical-align:middle;display:inline-block;"><h3>X / Twitter</h3></div>
                 <div style="height:160px"><img src="/assets/influencer-x.svg" style="width:120px;margin-bottom:20px;margin-left:10px;margin-top:24px;" alt="X"></div>
-                X / Twitter
                 <ul>
                     <li>$cashtags</li>
                 </ul>
             </td>
             <td
-                style="width:200px;border-radius:25px;border:2px solid #282739;vertical-align:top;"
+                style="width:240px;border-radius:25px;border:2px solid #282739;vertical-align:top;"
                 class="{{ active_web }}"
             >
+                <div style="height:60px;vertical-align:middle;display:inline-block;"><h3>Import<br>any Webpage</h3></div>
                 <div style="height:160px"><img src="/assets/influencer-web.svg" style="width:180px;" alt="Webpages"></div>
-                Import from any Webpage
             </td>
         </tr>
     </table>
