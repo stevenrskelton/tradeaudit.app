@@ -1,6 +1,6 @@
-{% capture active_youtube %}{% if include.selected == "youtube" %}active{% endif %}{% endcapture %}
-{% capture active_x %}{% if include.selected == "x" %}active{% endif %}{% endcapture %}
-{% capture active_url %}{% if include.selected == "url" %}active{% endif %}{% endcapture %}
+{% capture active_youtube %}{% if include.selected == "youtube" %}active activeyoutube{% endif %}{% endcapture %}
+{% capture active_x %}{% if include.selected == "x" %}active activex{% endif %}{% endcapture %}
+{% capture active_url %}{% if include.selected == "url" %}active activeurls{% endif %}{% endcapture %}
 
 <div class="mt-5 mb-5 text-center">
     <h2 class="display-5 fw-bold mb-4">Social Media Integrations</h2>
@@ -18,9 +18,20 @@
             font-size: larger;
         }
         .integrationtable td.active {
-            background: #aaaaaa;
-            color: white;
             cursor: pointer;
+        }
+        .activeyoutube {
+            background: #282828;
+            color: #fafafa;
+        }
+        .activex {
+            background: #1da1f2;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .activeurls {
+            background: #fb8b1e;
+            color: #ffffff;
         }
         .integrationtable a {
             color: inherit;
