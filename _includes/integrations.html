@@ -1,6 +1,6 @@
-{% capture active_youtube %}{% if include.selected == "youtube"}active{% endif %}{% endcapture %}
-{% capture active_x %}{% if include.selected == "x"}active{% endif %}{% endcapture %}
-{% capture active_web %}{% if include.selected == "web"}active{% endif %}{% endcapture %}
+{% capture active_youtube %}{% if include.selected == "youtube" %}active{% endif %}{% endcapture %}
+{% capture active_x %}{% if include.selected == "x" %}active{% endif %}{% endcapture %}
+{% capture active_web %}{% if include.selected == "web" %}active{% endif %}{% endcapture %}
 
 <div class="mt-5 text-center">
     <h2 class="display-5 fw-bold ">Social Media Integrations</h2>
@@ -8,7 +8,7 @@
     <table>
         <tr>
             <td 
-                style="width: 200px;border-radius: 25px;border: 2px solid #73AD21;"
+                style="width: 200px;border-radius: 25px;border: 2px solid #282739;"
                 class="btn btn-lg {{ active_youtube }}"
             >
                 <img src="/assets/influencer-youtube.svg" style="width:160px" alt="YouTube"><br>
@@ -19,7 +19,7 @@
                 </ul>
             </td>
             <td
-                style="width: 200px;border-radius: 25px;border: 2px solid #73AD21;"
+                style="width: 200px;border-radius: 25px;border: 2px solid #282739;"
                 class="btn btn-lg {{ active_x }}"
             >
                 <img src="/assets/influencer-x.svg" style="width:120px;margin-bottom:20px;margin-left:10px" alt="X"><br>
@@ -29,7 +29,7 @@
                 </ul>
             </td>
             <td
-                style="width: 200px;border-radius: 25px;border: 2px solid #73AD21;"
+                style="width: 200px;border-radius: 25px;border: 2px solid #282739;"
                 class="btn btn-lg {{ active_web }}"
             >
                 <img src="/assets/influencer-web.svg" style="width:180px" alt="Webpages"><br>
