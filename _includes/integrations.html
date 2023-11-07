@@ -18,8 +18,9 @@
             font-size: larger;
         }
         .integrationtable td.active {
-            background: #282739;
+            background: #777777;
             color: white;
+            cursor: pointer;
         }
         .integrationtable ul {
             margin: 0px 10px 30px 10px;
@@ -33,12 +34,13 @@
         }
         .integrationtable td:not(.active):hover {
             background: #ed2c8a;
+            cursor: pointer;
         }
     </style>
     <table class="integrationtable">
         <tr>
             <td class="{{ active_youtube }}">
-                {% unless active_youtube %}<a href="/youtube-import">{% endunless %}
+                {% if active_youtube == "" %}<a href="/youtube-import">{% endif %}
                     <h3>YouTube</h3>
                     <div><img src="/assets/influencer-youtube.svg" style="width:160px;" alt="YouTube"></div>
                     <ul>
@@ -46,10 +48,10 @@
                         <li>Video Transcripts</li>
                         <li>Integrated Search</li>
                     </ul>
-                {% unless active_youtube %}</a>{% endunless %}
+                {% if active_youtube == "" %}</a>{% endif %}
             </td>
             <td class="{{ active_x }}">
-                {% unless active_x %}<a href="/x-import">{% endunless %}
+                {% if active_x == "" %}<a href="/x-import">{% endif %}
                     <h3>Twitter</h3>
                     <div><img src="/assets/influencer-x.svg" style="width:120px;margin-bottom:20px;margin-left:10px;margin-top:24px;" alt="X"></div>
                     <ul>
@@ -57,16 +59,16 @@
                         <li>$CashTag Import</li>
                         <li>Browse Timelines</li>
                     </ul>
-                {% unless active_x %}</a>{% endunless %}
+                {% if active_x == "" %}</a>{% endif %}
             </td>
             <td class="{{ active_url }}">
-                {% unless active_url %}<a href="/url-import">{% endunless %}
+                {% if active_url == "" %}<a href="/url-import">{% endif %}
                     <h3>Any Webpage</h3>
                     <div><img src="/assets/influencer-url.svg" style="width:180px;margin-top:-10px;" alt="URLs"></div>
                     <ul>
                         <li>Open Graph Import</li>
                     </ul>
-                {% unless active_url %}</a>{% endunless %}
+                {% if active_url == "" %}</a>{% endif %}
             </td>
         </tr>
     </table>
