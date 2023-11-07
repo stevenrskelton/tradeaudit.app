@@ -1,0 +1,28 @@
+{% assign selected = include.selected %}
+<div class="mt-5">
+    <h2 class="display-5 fw-bold text-center">Social Media Integrations</h2>
+
+    <button type="button" title="YouTube integration" data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-lg {% if selected = "youtube" %}active{% endif %}">
+        <img src="/assets/influencer-youtube.svg" style="width:120px"><br>
+        YouTube<br>
+        <ul>
+            <li>Search</li>
+            <li>Transcripts</li>
+        </ul>
+    </button>
+    <button type="button" title="X integration" data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-lg {% if selected = "x" %}active{% endif %}">
+        <img src="/assets/influencer-x.svg" style="margin-left:4px;width:120px"><br>
+        X / Twitter
+        <ul>
+            <li>$cashtags</li>
+        </ul>
+    </button>
+    <button type="button" title="Web integration" data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-lg {% if selected = "web" %}active{% endif %}">
+        <img src="/assets/influencer-web.svg" style="width:120px"><br>
+        Any Webpage
+        <ul>
+            <li>SEO & OpenGraph tags</li>
+            <li>Authors</li>
+        </ul>
+    </button>
+</div>
