@@ -6,8 +6,7 @@ sitemap: true
 author_profile: false
 ---
 
-<h1 class="display-5 fw-bold text-center">Stock Advice Tracking for Social Media</h1>
-<h2 class="text-center">Audit the trading records of influencers on social media</h2>
+{% include header.html %}
 
 {% include integrations.html selected="x" %}
 
@@ -243,14 +242,14 @@ customElements.define('twitter-tweet', TwitterTweet);
 
 <style>
   @media only screen and (min-width: 1400px) {
-    #masonry {
+    .masonry {
       columns: 600px;
       column-gap: 1rem;
     }
   }
 </style>
 
-<div id="masonry">
+<div class="masonry">
   <!-- https://cdn.syndication.twimg.com/tweet-result?id=463440424141459456 -->
   <twitter-tweet 
     user_screen_name="RudyHavenstein"
@@ -312,7 +311,7 @@ customElements.define('twitter-tweet', TwitterTweet);
 
 {% include influencerlink.html %}
 
-<div id="masonry">
+<div class="masonry">
   <twitter-tweet 
     user_screen_name="SECGov"
     user_name="U.S. Securities and Exchange Commission"
