@@ -1,28 +1,40 @@
-{% assign selected = include.selected %}
-<div class="mt-5">
-    <h2 class="display-5 fw-bold text-center">Social Media Integrations</h2>
+{% capture active_youtube %}{% if include.selected == "youtube"}active{% endif %}{% endcapture %}
+{% capture active_x %}{% if include.selected == "x"}active{% endif %}{% endcapture %}
+{% capture active_web %}{% if include.selected == "web"}active{% endif %}{% endcapture %}
 
-    <button type="button" title="YouTube integration" data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-lg {% if selected == "youtube" %}active{% endif %}">
-        <img src="/assets/influencer-youtube.svg" style="width:120px"><br>
-        YouTube<br>
-        <ul>
-            <li>Search</li>
-            <li>Transcripts</li>
-        </ul>
-    </button>
-    <button type="button" title="X integration" data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-lg {% if selected == "x" %}active{% endif %}">
-        <img src="/assets/influencer-x.svg" style="margin-left:4px;width:120px"><br>
-        X / Twitter
-        <ul>
-            <li>$cashtags</li>
-        </ul>
-    </button>
-    <button type="button" title="Web integration" data-bs-toggle="tooltip" data-bs-placement="top" class="btn btn-lg {% if selected == "web" %}active{% endif %}">
-        <img src="/assets/influencer-web.svg" style="width:120px"><br>
-        Any Webpage
-        <ul>
-            <li>SEO & OpenGraph tags</li>
-            <li>Authors</li>
-        </ul>
-    </button>
+<div class="mt-5 text-center">
+    <h2 class="display-5 fw-bold ">Social Media Integrations</h2>
+
+    <table>
+        <tr>
+            <td 
+                style="width: 200px;border-radius: 25px;border: 2px solid #73AD21;"
+                class="btn btn-lg {{ active_youtube }}"
+            >
+                <img src="/assets/influencer-youtube.svg" style="width:160px" alt="YouTube"><br>
+                YouTube<br>
+                <ul>
+                    <li>Search</li>
+                    <li>Transcripts</li>
+                </ul>
+            </td>
+            <td
+                style="width: 200px;border-radius: 25px;border: 2px solid #73AD21;"
+                class="btn btn-lg {{ active_x }}"
+            >
+                <img src="/assets/influencer-x.svg" style="width:120px;margin-bottom:20px;margin-left:10px" alt="X"><br>
+                X / Twitter
+                <ul>
+                    <li>$cashtags</li>
+                </ul>
+            </td>
+            <td
+                style="width: 200px;border-radius: 25px;border: 2px solid #73AD21;"
+                class="btn btn-lg {{ active_web }}"
+            >
+                <img src="/assets/influencer-web.svg" style="width:180px" alt="Webpages"><br>
+                Import from any Webpage
+            </td>
+        </tr>
+    </table>
 </div>
