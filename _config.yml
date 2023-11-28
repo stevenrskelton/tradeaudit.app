@@ -10,11 +10,19 @@ github_username:  stevenrskelton # DO NOT include the @ character, or else the b
 show_excerpts: true # set to false to remove excerpts on the homepage
 permalink: pretty
 url: "https://tradeaudit.app"
+#logo: /assets/images/favicon.ico
+#og_image: /assets/images/favicon.png
+#repository: tradeaudit.app/stevenrskelton.github.io
+#locale: en-US
+#breadcrumbs: true
+
+analytics:
+  provider: google-gtag
+  google:
+    tracking_id: "G-BENCY8HPLG"
+
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
   - jemoji
   - jekyll-include-cache
 
