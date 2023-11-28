@@ -15,3 +15,13 @@ plugins:
 
 include:
   - _pages
+
+footer:
+  links:
+    - label: "Terms of Use"
+#      icon: "fab fa-fw fa-github"
+      url: "/terms-of-use"
+    - label: "Privacy Policy"
+      url: "/privacy-policy"
+    - label: "Cookie Policy"
+      url: "/cookie-policy"
