@@ -11,7 +11,12 @@ show_excerpts: true # set to false to remove excerpts on the homepage
 permalink: pretty
 url: "https://tradeaudit.app"
 plugins:
+  - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
 
 include:
   - _pages
