@@ -66,8 +66,8 @@
         <a href="/" class="nav nav-item nav-link text-muted me-auto" style="padding-left:0;">
             <img src="https://tradeaudit.app/assets/images/favicon.ico" title="{{ site.title }}" alt="{{ site.title }}" width="48" height="48">
             <div style="display: inline-block;line-height: 10px;vertical-align: middle;">
-                <span style="line-height:20px">{{ site.author }}</span><br>
-                <span style="font-size: small;line-height: 10px;">&copy; 2022-{{ site.time | date: '%Y' }} {{ site.name | default: site.title }}.</span>
+                <span style="line-height:20px;font-weight:600;">{{ site.title }}</span><br>
+                <span style="font-size: small;line-height: 10px;">&copy; 2022-{{ site.time | date: '%Y' }} {{ site.author }}.</span>
             </div>
         </a>
 
@@ -75,7 +75,7 @@
             {% if site.footer.links %}
             {% for link in site.footer.links %}
             {% if link.label and link.url %}
-            <li class="nav-item"><a href="{{ link.url }}" rel="nofollow noopener noreferrer" class="nav-link px-2 text-muted"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a></li>
+            <li class="nav-item" style="line-height:48px;"><a href="{{ link.url }}" rel="nofollow noopener noreferrer" class="nav-link px-2 text-muted"><i class="{{ link.icon | default: 'fas fa-link' }}" aria-hidden="true"></i> {{ link.label }}</a></li>
             {% endif %}
             {% endfor %}
             {% endif %}
