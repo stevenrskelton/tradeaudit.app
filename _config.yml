@@ -38,3 +38,5 @@ footer:
       url: "/privacy-policy"
     - label: "Cookie Policy"
       url: "/cookie-policy"
+    - label: "Account Deletion"
+      url: "/account-deletion"
