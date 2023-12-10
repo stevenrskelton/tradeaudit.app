@@ -1,5 +1,5 @@
 
-title: Trade Audit
+title: Trade Audit App
 author: Steven Skelton
 email: tradeauditapp@gmail.com
 #limit 150 chars for Google
@@ -10,8 +10,31 @@ github_username:  stevenrskelton # DO NOT include the @ character, or else the b
 show_excerpts: true # set to false to remove excerpts on the homepage
 permalink: pretty
 url: "https://tradeaudit.app"
+#logo: /assets/images/favicon.ico
+#og_image: /assets/images/favicon.png
+#repository: tradeaudit.app/stevenrskelton.github.io
+#locale: en-US
+#breadcrumbs: true
+
+analytics:
+  provider: google-gtag
+  google:
+    tracking_id: "G-BENCY8HPLG"
+
 plugins:
   - jekyll-sitemap
+  - jemoji
+  - jekyll-include-cache
 
 include:
   - _pages
+
+footer:
+  links:
+    - label: "Terms of Use"
+#      icon: "fab fa-fw fa-github"
+      url: "/terms-of-use"
+    - label: "Privacy Policy"
+      url: "/privacy-policy"
+    - label: "Cookie Policy"
+      url: "/cookie-policy"
