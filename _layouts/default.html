@@ -83,6 +83,201 @@
     <a href="https://play.google.com/store/apps/details?id=app.tradeaudit" target="_blank"><img alt="Get it on Google Play" height="60" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"></a>
   </div>
 </nav>
+<nav class="navbar navbar-expand-md docs-navbar sticky-top" style="">
+  <div class="container-md px-3 px-sm-4 px-xl-5 py-1 justify-content-start">
+    <div class="btn-group me-3 d-lg-none">
+      <button type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" class="btn btn-secondary btn-square" aria-label="Toggle sidebar">
+        <i class="fa-light fa-sidebar" aria-hidden="true"></i>
+      </button>
+      <!--<button type="button" class="btn btn-secondary btn-square" aria-label="Toggle dark mode" onclick="toggleDarkMode()">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>-->
+    </div>
+    <a href="/" class="navbar-brand d-flex align-items-center d-lg-none ms-auto ms-md-0">
+      <img src="https://tradeaudit.app/assets/images/favicon.png"
+           style="border-radius:20%;"
+           width="32" height="32"
+           title="Trade Audit Mobile App"
+           alt="Trade Audit Mobile App"
+           class="d-block flex-shrink-0 me-1">
+      Trade Audit Mobile App
+    </a>
+    <!--
+    <div class="d-none d-lg-block text-truncate" style="color: hsla(var(--bs-emphasis-color-hsl), 0.7); letter-spacing: 1px;">
+      <a href="/docs/introduction/" class="simple-link fw-bold">Docs</a>
+      <span class="mx-1">/</span>
+      Components
+      <span class="mx-1">/</span>
+      Sidebar
+    </div>
+    <div class="btn-group ms-auto d-md-none">
+      <div class="btn-group">
+        <button class="btn btn-secondary btn-square position-relative" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Set core theme" data-bs-auto-close="outside">
+          <i class="fa-light fa-paintbrush" aria-hidden="true"></i>
+
+          <span class="core-theme-indicator d-block position-absolute top-0 start-0 translate-middle z-2" style="width: 12px; height: 12px;">
+						          	<span class="d-block w-100 h-100 bg-primary rounded-circle"></span>
+						        </span>
+          <span class="core-theme-indicator d-block position-absolute top-0 start-0 translate-middle z-1" style="width: 12px; height: 12px;">
+						          	<span class="animate-ping d-block w-100 h-100 bg-primary rounded-circle"></span>
+						        </span>
+
+        </button>
+        <div class="core-picker-dropdown-menu dropdown-menu dropdown-menu-end p-0 specific-w-sm-300" style="right: -30px; width: 18.0625rem;">
+          <div class="p-2">
+            <div class="container-fluid g-0">
+              <div class="row g-2">
+                <div class="core-theme-button col-12">
+                  <input type="radio" name="core-picker-1" value="default" class="btn-check" id="default-core-1" autocomplete="off" onchange="setCore(this);" checked="">
+                  <label class="btn text-start d-block w-100 py-2 px-3" for="default-core-1">
+				<span class="d-flex align-items-center ">
+					<i class="fa-light fa-table-layout specific-w-sm-25 flex-shrink-0" style="width: 20px;" aria-hidden="true"></i>
+					Default
+				</span>
+
+                    <span class="d-block mt-1" style="font-size: var(--bs-font-size-sm); opacity: 0.85;">
+						Classic, inspired by Apple HID.
+					</span>
+
+                  </label>
+                </div>
+                <div class="core-theme-button col-12">
+                  <input type="radio" name="core-picker-1" value="modern" class="btn-check" id="modern-core-1" autocomplete="off" onchange="setCore(this);">
+                  <label class="btn text-start d-block w-100 py-2 px-3" for="modern-core-1">
+				<span class="d-flex align-items-center ">
+					<i class="fa-light fa-browsers specific-w-sm-25 flex-shrink-0" style="width: 20px;" aria-hidden="true"></i>
+					Modern
+				</span>
+
+                    <span class="d-block mt-1" style="font-size: var(--bs-font-size-sm); opacity: 0.85;">
+						Like default, but with slightly more modern design sensibilities, particularly in dark mode.
+					</span>
+
+                  </label>
+                </div>
+                <div class="core-theme-button col-12">
+                  <input type="radio" name="core-picker-1" value="elegant" class="btn-check" id="elegant-core-1" autocomplete="off" onchange="setCore(this);">
+                  <label class="btn text-start d-block w-100 py-2 px-3" for="elegant-core-1">
+				<span class="d-flex align-items-center ">
+					<i class="fa-light fa-list-dropdown specific-w-sm-25 flex-shrink-0" style="width: 20px;" aria-hidden="true"></i>
+					Elegant
+				</span>
+
+                    <span class="d-block mt-1" style="font-size: var(--bs-font-size-sm); opacity: 0.85;">
+						Beautiful and classy, almost Tuftian.
+					</span>
+
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-secondary btn-square collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#docs-navbar-collapse" aria-controls="docs-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-regular fa-bars" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse" id="docs-navbar-collapse" style="">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="font-monospace">v2.0.x</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end mb-3 mb-md-0">
+            <li>
+              <a href="/docs/introduction/" class="dropdown-item d-flex align-items-center active" aria-current="true">
+                <i class="fa-light fa-check flex-shrink-0 specific-w-25" aria-hidden="true"></i>
+                <span class="font-monospace">v2.0.1</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://halfmoonui.pythonanywhere.com" class="dropdown-item d-flex align-items-center" target="_blank" rel="noreferrer">
+                <i class="fa-light fa-external-link flex-shrink-0 specific-w-25" aria-hidden="true"></i>
+                <span class="font-monospace">v1.x.x</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center justify-content-center">
+        <div class="dropdown me-2 d-none d-md-inline-block">
+          <button type="button" class="btn btn-secondary flex-grow-1 d-flex align-items-center flex-nowrap text-start position-relative" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            <i class="fa-light fa-paintbrush flex-shrink-0" style="width: 22px;" aria-hidden="true"></i>
+            Theme
+
+            <span class="core-theme-indicator d-block position-absolute top-0 start-0 translate-middle z-2" style="width: 12px; height: 12px;">
+							          	<span class="d-block w-100 h-100 bg-primary rounded-circle"></span>
+							        </span>
+            <span class="core-theme-indicator d-block position-absolute top-0 start-0 translate-middle z-1" style="width: 12px; height: 12px;">
+							          	<span class="animate-ping d-block w-100 h-100 bg-primary rounded-circle"></span>
+							        </span>
+
+          </button>
+          <div class="core-picker-dropdown-menu dropdown-menu dropdown-menu-end p-0" style="width: 20rem;">
+            <div class="p-2">
+              <div class="container-fluid g-0">
+                <div class="row g-2">
+                  <div class="core-theme-button col-12">
+                    <input type="radio" name="core-picker-2" value="default" class="btn-check" id="default-core-2" autocomplete="off" onchange="setCore(this);" checked="">
+                    <label class="btn text-start d-block w-100 py-2 px-3" for="default-core-2">
+				<span class="d-flex align-items-center ">
+					<i class="fa-light fa-table-layout specific-w-sm-25 flex-shrink-0" style="width: 20px;" aria-hidden="true"></i>
+					Default
+				</span>
+
+                      <span class="d-block mt-1" style="font-size: var(--bs-font-size-sm); opacity: 0.85;">
+						Classic, inspired by Apple HID.
+					</span>
+
+                    </label>
+                  </div>
+                  <div class="core-theme-button col-12">
+                    <input type="radio" name="core-picker-2" value="modern" class="btn-check" id="modern-core-2" autocomplete="off" onchange="setCore(this);">
+                    <label class="btn text-start d-block w-100 py-2 px-3" for="modern-core-2">
+				<span class="d-flex align-items-center ">
+					<i class="fa-light fa-browsers specific-w-sm-25 flex-shrink-0" style="width: 20px;" aria-hidden="true"></i>
+					Modern
+				</span>
+
+                      <span class="d-block mt-1" style="font-size: var(--bs-font-size-sm); opacity: 0.85;">
+						Like default, but with slightly more modern design sensibilities, particularly in dark mode.
+					</span>
+
+                    </label>
+                  </div>
+                  <div class="core-theme-button col-12">
+                    <input type="radio" name="core-picker-2" value="elegant" class="btn-check" id="elegant-core-2" autocomplete="off" onchange="setCore(this);">
+                    <label class="btn text-start d-block w-100 py-2 px-3" for="elegant-core-2">
+				<span class="d-flex align-items-center ">
+					<i class="fa-light fa-list-dropdown specific-w-sm-25 flex-shrink-0" style="width: 20px;" aria-hidden="true"></i>
+					Elegant
+				</span>
+
+                      <span class="d-block mt-1" style="font-size: var(--bs-font-size-sm); opacity: 0.85;">
+						Beautiful and classy, almost Tuftian.
+					</span>
+
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-group me-1">
+          <a href="https://github.com/halfmoonui/halfmoon" class="btn btn-secondary flex-grow-1 d-flex align-items-center flex-nowrap text-start" target="_blank" rel="noreferrer">
+            <i class="fa-brands fa-github flex-shrink-0" style="width: 20px;" aria-hidden="true"></i>
+            Star
+          </a>
+          <a href="https://github.com/halfmoonui/halfmoon/stargazers" class="btn btn-secondary flex-grow-1 text-nowrap" id="github-stars-count" target="_blank" rel="noreferrer">2,967</a>
+        </div>
+        <a href="/docs/download/" class="btn btn-primary text-nowrap ms-1">Download</a>
+      </div>
+    </div>
+    -->
+  </div>
+</nav>
 <!--
 <nav class="navbar navbar-expand-md docs-navbar sticky-top">
 </nav>
