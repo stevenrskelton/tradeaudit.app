@@ -268,6 +268,7 @@ export class StockToolbar extends LitElement {
         .then(Result => Result.json())
         .then(string => {
             console.log(string);
+            this.
             this.stocks = string.stocks;
             this.requestUpdate();
         })
@@ -313,6 +314,23 @@ export class StockToolbar extends LitElement {
     .dropdown a:hover { background-color: #ddd; }
     .btn { --bs-btn-color: #fff; --bs-btn-bg: #282739; --bs-btn-border-color: #6c757d; --bs-btn-hover-bg: #ed2c8a; --bs-btn-hover-border-color: #6c757d; } 
     .btn.active { background-color: #6842cf; border-color: #6c757d; }
+
+    .progressbar {
+        background:
+          linear-gradient(-45deg,
+            rgba(255, 255, 255, 0.15) 25%,transparent 25%,
+            transparent 50%, rgba(255, 255, 255, 0.15) 50%,
+            rgba(255, 255, 255, 0.15) 75%,transparent 75%)
+          left/30px 30px repeat-x,
+          linear-gradient(to right, red 0%, yellow 50%, green 100%) left/var(--p,100%) fixed,
+          lightgray;
+      box-shadow: inset 0px -2px 5px rgba(0, 0, 0, 0.5);
+      animation: progressbar-change 1s linear infinite;
+    }
+    @keyframes progressbar-change {
+      from {background-position:0 0,left}
+      to {background-position:30px 0,left}
+    }
   `;
   
   filterFunction(e) {
@@ -355,63 +373,75 @@ export class StockToolbar extends LitElement {
   }
 
   render() {
-    const staticitems = this.stocks.slice(0, StockToolbar.staticToolbarItems);
-    const selectedDropDown = (this.selectedStockItem == null || staticitems.findIndex(o => o.symbol == this.selectedStockItem.symbol) > -1)? null : this.selectedStockItem;
+    const isLoading = this.stocks.isEmpty;
+
     return html`
        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <div class="input-group mb-2" role="group" aria-label="Influencer Sorting" style="margin:auto;justify-content:center;">
+        <div class="input-group mb-2" role="group" aria-label="Influencer Sorting" style="margin:auto;justify-content:center;height:48px;">
             <button
                 @click=${() => this.toggleSort(true)}
                 class="btn btn-outline-secondary btn-lg ${this.isTop ? 'active' : ''}" type="button"
                 title="Top Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
-                style="width:230pt"
+                style="width:230pt;${ isLoading ? "display:none;" : "" }"
             >💰 ▼</button>
             <button
                 @click=${() => this.toggleSort(false)}
                 class="btn btn-outline-secondary btn-lg ${this.isTop ? '' : 'active'}" type="button"
                 title="Bottom Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
-                style="width:230pt"
+                style="width:230pt;${ isLoading ? "display:none;" : "" }"
             >🤡 ▲</button>
         </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
-            ${staticitems.map(
-              (item) => html`
-                <button
-                    @click=${() => this.toggleSelected(item)}
-                    class="btn btn-outline-secondary ${this.selectedStockItem != null && item.symbol == this.selectedStockItem.symbol ? 'active' : ''}" type="button"
-                    title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt;padding-left:0;padding-right:0;"
-                >
-                    ${item.symbol}
-                </button>`
-            )}
-            <div id="myDropdown" class="dropdown-content display-6" style="max-width:1024px;margin-top:35pt;border-radius:1%;z-index:10;display:${this.show ? "block" : "none"};">
-              <input type="text" id="dropdownsearch" class="mb-2" placeholder="Search..." @input="${this.filterFunction}">
-              <ul style="padding-left:0;margin-bottom:4px">
-                ${this.items.map(
-                  (item) => 
-                    html`
-                      <li class="dropdown-item btn btn-outline-secondary">
-                        <a @click=${() => this.selectFunction(item)}>
-                          <div style="width:60pt;font-weight:bold;display:inline-block;">${item.symbol}</div> ${item.name}
-                        </a>
-                      </li>`
-                )}
-                ${this.items.length == 0 ? html`<li class="dropdown-item" style="font-size:small;padding:10px;">No trades matching your query</li>` : null}
-              </ul>
-            </div>
-            <button 
-              @click=${this.toggleDropdown} id="testbtn"
-              class="btn btn-outline-secondary ${selectedDropDown == null ? '' : 'active'}" type="button"
-              title="${selectedDropDown == null ? "Select Stock" : selectedDropDown.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
-            >
-              ${selectedDropDown == null ? "🔍" : selectedDropDown.symbol}
-            </button>            
+          ${ isLoading ? renderLoadingBar() : renderStocks() }
         </div>
         <influencer-summary 
           height="80" .selectedStockItem=${this.selectedStockItem} .influencers=${this.influencers}
           @select-stock-event="${(e) => { this.selectFunction(e.detail) }}"
         ></influencer-summary>
+    `;
+  }
+
+  renderLoadingBar() {
+    return html`<div style="width:50%;padding-left:0;padding-right:0;height: 38px;" class="btn btn-outline-secondary progressbar"></div>`;
+  }
+
+  renderStocks() {
+    const staticitems = this.stocks.slice(0, StockToolbar.staticToolbarItems);
+    const selectedDropDown = (this.selectedStockItem == null || staticitems.findIndex(o => o.symbol == this.selectedStockItem.symbol) > -1)? null : this.selectedStockItem;
+    return html`
+      ${staticitems.map(
+        (item) => html`
+          <button
+              @click=${() => this.toggleSelected(item)}
+              class="btn btn-outline-secondary ${this.selectedStockItem != null && item.symbol == this.selectedStockItem.symbol ? 'active' : ''}" type="button"
+              title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt;padding-left:0;padding-right:0;"
+          >
+              ${item.symbol}
+          </button>`
+      )}
+      <div id="myDropdown" class="dropdown-content display-6" style="max-width:1024px;margin-top:35pt;border-radius:1%;z-index:10;display:${this.show ? "block" : "none"};">
+        <input type="text" id="dropdownsearch" class="mb-2" placeholder="Search..." @input="${this.filterFunction}">
+        <ul style="padding-left:0;margin-bottom:4px">
+          ${this.items.map(
+            (item) =>
+              html`
+                <li class="dropdown-item btn btn-outline-secondary">
+                  <a @click=${() => this.selectFunction(item)}>
+                    <div style="width:60pt;font-weight:bold;display:inline-block;">${item.symbol}</div> ${item.name}
+                  </a>
+                </li>`
+          )}
+          ${this.items.length == 0 ? html`<li class="dropdown-item" style="font-size:small;padding:10px;">No trades matching your query</li>` : null}
+        </ul>
+      </div>
+      <button
+        @click=${this.toggleDropdown} id="testbtn"
+        class="btn btn-outline-secondary ${selectedDropDown == null ? '' : 'active'}" type="button"
+        title="${selectedDropDown == null ? "Select Stock" : selectedDropDown.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
+      >
+        ${selectedDropDown == null ? "🔍" : selectedDropDown.symbol}
+      </button>
     `;
   }
 
