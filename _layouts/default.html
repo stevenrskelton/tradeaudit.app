@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html class="h-100" lang="en" prefix="og: https://ogp.me/ns#">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{{ page.title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="{{ site.author }}">
     <meta name="description" content="{{ site.description }}">
-    <link rel="shortcut icon" href="https://tradeaudit.app/assets/images/favicon.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <meta property="og:title" content="{{ page.title }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tradeaudit.app">
@@ -18,6 +15,9 @@
     <meta name="twitter:description" content="{{ site.description }}">
     <meta name="twitter:url" content="https://tradeaudit.app">
     <meta name="twitter:image" content="https://tradeaudit.app/assets/images/opengraph.png">
+    <title>{{ page.title }}</title>
+    <link rel="shortcut icon" href="https://tradeaudit.app/assets/images/favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.1/css/halfmoon.min.css" rel="stylesheet" integrity="sha256-SsJizWSIG9JT9Qxbiy8xnYJfjCAkhEQ0hihxRn7jt2M=" crossorigin="anonymous">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.tracking_id }}"></script>
     <script>
@@ -29,7 +29,7 @@
     <style>
         .bg-body { background-color: #f9f7ed !important; }
         a { color: #1d9bf0; }
-        a:hover { color: #ed2c8a; }   
+        a:hover { color: #ed2c8a; }
         .btn-primary { --bs-btn-bg: #282739; --bs-btn-border-color: #6c757d; --bs-btn-hover-bg: #ed2c8a; --bs-btn-hover-border-color: #6c757d; }
         .bg-light { background-color: #282739 !important; }
         .link-dark { color: #fff !important; }
