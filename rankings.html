@@ -268,7 +268,6 @@ export class StockToolbar extends LitElement {
         .then(Result => Result.json())
         .then(string => {
             console.log(string);
-            this.
             this.stocks = string.stocks;
             this.requestUpdate();
         })
@@ -403,7 +402,10 @@ export class StockToolbar extends LitElement {
   }
 
   renderLoadingBar() {
-    return html`<div style="width:50%;padding-left:0;padding-right:0;height: 38px;" class="btn btn-outline-secondary progressbar"></div>`;
+    return html`<div
+      style="width:50%;padding-left:0;padding-right:0;height: 38px;"
+      class="btn btn-outline-secondary progressbar"
+    ></div>`;
   }
 
   renderStocks() {
