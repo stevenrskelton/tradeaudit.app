@@ -393,7 +393,7 @@ export class StockToolbar extends LitElement {
             >🤡 ▲</button>
         </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
-          ${ isLoading ? renderLoadingBar() : renderStocks() }
+          ${ isLoading ? this.renderLoadingBar() : this.renderStocks() }
         </div>
         <influencer-summary 
           height="80" .selectedStockItem=${this.selectedStockItem} .influencers=${this.influencers}
