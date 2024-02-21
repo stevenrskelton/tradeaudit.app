@@ -5,12 +5,7 @@ title: "Trade Audit for Youtube"
 sitemap: true
 author_profile: false
 ---
-
-{% include header.html %}
-
-{% include integrations.html selected="youtube" %}
-
-<h2 class="display-5 fw-bold mb-4 mt-5 text-center">YouTube Integration</h2>
+<h1 class="display-5 fw-bold mb-4 mt-5 text-center">YouTube Integration</h1>
 
 <div class="mt-5 mb-5">
     <p>

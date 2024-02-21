@@ -5,14 +5,7 @@ title: "Trade Audit for X"
 sitemap: true
 author_profile: false
 ---
-
-{% include header.html %}
-
-{% include integrations.html selected="x" %}
-
-{% include influencerlink.html %}
-
-<h1 class="display-5 fw-bold mb-4 mt-5 text-center">X (formally Twitter)</h1>
+<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Twitter X Integration</h1>
 
 <div class="text-center">
   The <span style="text-decoration:italic">FinTwit</span> community on X is notorious for a lack of accountability.

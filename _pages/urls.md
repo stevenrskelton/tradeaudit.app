@@ -5,10 +5,7 @@ title: "Trade Audit for URLs"
 sitemap: true
 author_profile: false
 ---
-
-{% include header.html %}
-
-{% include integrations.html selected="url" %}
+<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Webpage URL Integration</h1>
 
 {% include influencerlink.html %}
 
