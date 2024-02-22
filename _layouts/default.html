@@ -101,12 +101,12 @@
           <hr class="sidebar-divider">
         </li>
         {% for navitem in nav.links %}
-        {% if navitem.url == page.permalink %}
-          {% assign active = "active" %}
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link {{ active }}" href="{% navitem.url %}">{{ navitem.label }}</a>
-        </li>
+          {% if navitem.url == page.permalink %}
+            {% assign active = "active" %}
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link {{ active }}" href="{{ navitem.url }}">{{ navitem.label }}</a>
+          </li>
         {% endfor %}
       </ul>
     </div>
