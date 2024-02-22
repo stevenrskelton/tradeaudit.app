@@ -52,3 +52,17 @@ navigation:
     links:
       - label: "<img src=\"/assets/influencer-youtube.svg\" style=\"width:20px;\" alt=\"YouTube\">YouTube"
         url: "/youtube"
+      - label: "<img src=\"/assets/influencer-x.svg\" style=\"width:20px;\" alt=\"X\">Twitter / X"
+        url: "/x"
+      - label: "<img src=\"/assets/influencer-url.svg\" style=\"width:20px;\" alt=\"URLs\">Web Pages"
+        url: "/urls"
+  - label: "Data Governance"
+    links:
+      - label: "Terms of Use"
+        url: "/terms-of-use"
+      - label: "Privacy Policy"
+        url: "/privacy-policy"
+      - label: "Cookie Policy"
+        url: "/cookie-policy"
+      - label: "Account Deletion"
+        url: "/account-deletion"

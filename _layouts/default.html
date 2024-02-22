@@ -75,22 +75,6 @@
             data-bs-target="#sidebar"></button>
   </div>
   <div class="offcanvas-body card" style="padding:0;border:none;">
-    <!--<div class="card-body">
-      <ul class="sidebar-nav nav-pills">
-        <li>
-          <h6 class="sidebar-header">Auditing Trades</h6>
-        </li>
-        <li>
-          <hr class="sidebar-divider">
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Adding Social Media</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link  page.permlink == "/rankings" ? "active" : "" " href="/rankings">Influencer Rankings</a>
-        </li>
-      </ul>
-    </div>-->
     {% for nav in site.navigation %}
     <div class="card-body">
       <ul class="sidebar-nav nav-pills">
@@ -103,6 +87,8 @@
         {% for navitem in nav.links %}
           {% if navitem.url == page.permalink %}
             {% assign active = "active" %}
+          {% else %}
+            {% assign active = "" %}
           {% endif %}
           <li class="nav-item">
             <a class="nav-link {{ active }}" href="{{ navitem.url }}">{{ navitem.label }}</a>
@@ -111,47 +97,6 @@
       </ul>
     </div>
     {% endfor %}
-        <!--
-      <ul class="sidebar-nav nav-pills">
-        <li class="mt-3">
-          <h6 class="sidebar-header">Social Media Integrations</h6>
-        </li>
-        <li>
-          <hr class="sidebar-divider">
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/youtube"><img src="/assets/influencer-youtube.svg" style="width:20px;" alt="YouTube">YouTube</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/x"><img src="/assets/influencer-x.svg" style="width:20px;" alt="X">Twitter / X</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/urls"><img src="/assets/influencer-url.svg" style="width:20px;" alt="URLs">Web Pages</a>
-        </li>
-      </ul>
-    </div>
-    <div class="card-body">
-      <ul class="sidebar-nav nav-pills">
-        <li class="mt-3">
-          <h6 class="sidebar-header">Data Governance</h6>
-        </li>
-        <li>
-          <hr class="sidebar-divider">
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/terms-of-use">Terms of Use</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/privacy-policy">Privacy Policy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/cookie-policy">Cookie Policy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/account-deletion">Account Deletion</a>
-        </li>
-      </ul>
-    </div>-->
     <a href="https://play.google.com/store/apps/details?id=app.tradeaudit"
        target="_blank"
        style="margin-left: auto;margin-right: auto;margin-top: auto;"
