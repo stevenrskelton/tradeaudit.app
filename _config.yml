@@ -40,3 +40,15 @@ footer:
       url: "/cookie-policy"
     - label: "Account Deletion"
       url: "/account-deletion"
+
+navigation:
+  - label: "Auditing Trades"
+    links:
+      - label: "Adding Social Media"
+        url: "/"
+      - label: "Influencer Rankings"
+        url: "/rankings"
+  - label: "Social Media Integrations"
+    links:
+      - label: "<img src=\"/assets/influencer-youtube.svg\" style=\"width:20px;\" alt=\"YouTube\">YouTube"
+        url: "/youtube"
