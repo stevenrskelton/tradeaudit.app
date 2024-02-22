@@ -52,8 +52,8 @@
   </style>
 </head>
 <body class2="d-flex flex-column h-100" class="ps-md-sbwidth bg-light">
-<nav id="sidebar" class="sidebar offcanvas-start offcanvas-md" tabindex="-1" style="cursor: context-menu;">
-  <div class="offcanvas-header border-bottom border-secondary border-opacity-25">
+<nav id="sidebar" class="sidebar offcanvas-start offcanvas-md" tabindex="-1">
+  <div class="offcanvas-header border-bottom border-secondary border-opacity-25" style="cursor: pointer;">
     <div class2="nav nav-item nav-link text-muted me-auto" class="sidebar-brand" style2="padding-left:0;">
       <img
           src="https://tradeaudit.app/assets/images/favicon.png"
@@ -129,7 +129,7 @@
           src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"></a>
   </div>
 </nav>
-<nav class="navbar navbar-expand-md docs-navbar sticky-top bg-light d-lg-none">
+<nav class="navbar navbar-expand-md docs-navbar sticky-top bg-light d-lg-none" style="cursor: context-menu;">
   <div class="container-md px-3 px-sm-4 px-xl-5 py-1 justify-content-start" data-bs-toggle="offcanvas"
        data-bs-target="#sidebar" aria-label="Toggle sidebar">
     <!--<div class="btn-group me-3">
@@ -141,7 +141,7 @@
         <i class="fa-solid fa-moon" aria-hidden="true"></i>
       </button>
     </div>-->
-    <a href="/" class="navbar-brand d-flex align-items-center ms-md-0">
+    <div class="navbar-brand d-flex align-items-center ms-md-0">
       <img src="https://tradeaudit.app/assets/images/favicon.png"
            style="border-radius:20%;"
            width="32" height="32"
@@ -149,7 +149,7 @@
            alt="Trade Audit App"
            class="d-block flex-shrink-0 me-1">
       Trade Audit App
-    </a>
+    </div>
     <!--
     <div class="d-none d-lg-block text-truncate" style="color: hsla(var(--bs-emphasis-color-hsl), 0.7); letter-spacing: 1px;">
       <a href="/docs/introduction/" class="simple-link fw-bold">Docs</a>
