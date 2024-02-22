@@ -100,7 +100,7 @@
         <li>
           <hr class="sidebar-divider">
         </li>
-        {% for navitem in nav %}
+        {% for navitem in nav.links %}
         {% if navitem.url == page.permalink %}
           {% assign active = "active" %}
         {% endif %}
