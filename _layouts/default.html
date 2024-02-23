@@ -36,11 +36,21 @@
   <style>
     :root {
       --bs-primary: rgb(104, 66, 207);
+      --bs-nav-link-padding-x: 10px;
+      --bs-sidebar-active-color: white;
     }
     .nav-link {
       margin-top: 2px;
       margin-bottom: 2px;
-      background-color: var(--bs-btn-bg);
+      border: 1px solid #6c757d;
+    }
+    .nav-link:hover {
+      background-color: #ed2c8a;
+      color: white;
+    }
+    .nav-link.active {
+      background-color: rgb(104, 66, 207);
+      color: #6c757d;
     }
     /*
     .bg-body { background-color: #f9f7ed !important; }
