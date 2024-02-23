@@ -1,9 +1,7 @@
 ---
-layout: default
 permalink: /x
 title: "Trade Audit for X"
 sitemap: true
-author_profile: false
 ---
 <h1 class="display-5 fw-bold mb-4 mt-5 text-center">Twitter X Integration</h1>
 
@@ -411,5 +409,3 @@ customElements.define('twitter-tweet', TwitterTweet);
 </div>
 
 {% include influencerlink.html %}
-
-{% include appstorelink.html %}

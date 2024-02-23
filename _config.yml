@@ -54,8 +54,8 @@ navigation:
         url: "/youtube"
       - label: "<img src=\"/assets/influencer-x.svg\" style=\"width:20px;\" alt=\"X\">Twitter / X"
         url: "/x"
-      - label: "<img src=\"/assets/influencer-url.svg\" style=\"width:20px;\" alt=\"URLs\">Web Pages"
-        url: "/urls"
+      - label: "<img src=\"/assets/influencer-webpages.svg\" style=\"width:20px;\" alt=\"Webpage\">Web Pages"
+        url: "/webpages"
   - label: "Data Governance"
     links:
       - label: "Terms of Use"
@@ -66,3 +66,11 @@ navigation:
         url: "/cookie-policy"
       - label: "Account Deletion"
         url: "/account-deletion"
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      layout: "default"
+      author_profile: false
