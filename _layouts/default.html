@@ -51,7 +51,7 @@
       background-color: #ed2c8a;
       color: white;
     }
-    .sidebar-brand, .sidebar-brand:hover {
+    .sidebar-brand, .sidebar-brand:hover, navbar-brand {
       color: white;
       font-weight: bolder;
     }
@@ -78,7 +78,8 @@
 </head>
 <body class2="d-flex flex-column h-100" class="ps-md-sbwidth bg-light">
 <nav id="sidebar" class="sidebar offcanvas-start offcanvas-md bg-light" tabindex="-1">
-  <div class="offcanvas-header border-bottom border-secondary border-opacity-25">
+  <div class="offcanvas-header border-bottom border-secondary border-opacity-25"  data-bs-dismiss="offcanvas" aria-label="Close"
+       data-bs-target="#sidebar" style="cursor:pointer;">
     <div class2="nav nav-item nav-link text-muted me-auto" class="sidebar-brand" style2="padding-left:0;">
       <img
           src="https://tradeaudit.app/assets/images/favicon.png"
@@ -96,8 +97,7 @@
         >For Android</span>
       </div>
     </div>
-    <button type="button" class="btn-close d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"
-            data-bs-target="#sidebar"></button>
+    <button type="button" class="btn-close d-md-none"></button>
   </div>
   <div class="offcanvas-body">
     <div class="card" style="padding:0;border:none;">
@@ -145,7 +145,7 @@
     </div>-->
     <div class="navbar-brand d-flex align-items-center ms-md-0">
       <img src="https://tradeaudit.app/assets/images/favicon.png"
-           style="border-radius:20%;"
+           style="border-radius:20%;margin-right: 10px !important;"
            width="32" height="32"
            title="Trade Audit App"
            alt="Trade Audit App"
