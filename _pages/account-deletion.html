@@ -6,56 +6,71 @@ sitemap: false
 <h1>How to delete your Trade Audit App account and data.</h1>
 
 <p>
-Trade Audit App allows user account deletion within the app.
+    Trade Audit App allows user account deletion within the app.
 </p>
 
 <p>
-For information about the types of data associated with a Trade Audit account, review the
-<a href="/privacy-policy" alt="Privacy Policy">Privacy Policy</a>.
+    For information about the types of data associated with a Trade Audit account, review the
+    <a href="/privacy-policy" alt="Privacy Policy">Privacy Policy</a>.
 </p>
 
-<p>
-    Deleting a Trade Audit account will immediately delete all user added information, with the exception of:
+<div>
+    Deleting a Trade Audit account will immediately delete all user added information, except:
     <ul>
         <li>Access logs, including IP address</li>
-        <li>User feedback explicity submitted by the user account through the Trade Audit App</li>
+        <li>User feedback submitted by the user account through the Trade Audit App</li>
         <li>Crash logs and general system information, and anonymized performance information</li>
     </ul>
-</p>
+</div>
 
 <style>
-    .step {
-        display: flex;
-        flex-wrap: wrap-reverse;
-        margin-bottom: 1em;
-    }
-    .step > img {
+    .carousel-item > img {
         width: 280px;
         border-radius: 10px;
         margin-right: 20px;
         border: 1px solid black;
     }
-    .step > div {
-        margin-top: 2em;
-    }
 </style>
-<div class="step">
-    <img src="/assets/images/account-deletion/account-deletion-1.jpg" alt="Application Side Drawer">
-    <div>
-        <h2>Open the left side navigation</h2>
-        This will open the <strong>Account Page</strong>
+<div id="carousel-example-2" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousel-example-2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carousel-example-2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carousel-example-2" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-</div>
-<div class="step">
-    <img src="/assets/images/account-deletion/account-deletion-2.jpg" alt="Account Page">
-    <div>
-        <h2>On the Account Page</h2>
-        Click the <strong>Delete Account</strong> button.
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <!--
+            <img src="..." class="d-block w-100" alt="First slide">
+            <div class="carousel-caption">
+                <h1>Slide 1</h1>
+                <p class="px-2">Placeholder content that spans across multiple lines.</p>
+            </div>-->
+            <img src="/assets/images/account-deletion/account-deletion-1.jpg" alt="Application Side Drawer">
+            <div>
+                <h2>Open the left side navigation</h2>
+                This will open the <strong>Account Page</strong>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/assets/images/account-deletion/account-deletion-2.jpg" alt="Account Page">
+            <div>
+                <h2>On the Account Page</h2>
+                Click the <strong>Delete Account</strong> button.
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="/assets/images/account-deletion/account-deletion-3.jpg" alt="Delete Account Button">
+            <div>
+                <h2>This screen will delete all user data.</h2>
+            </div>
+        </div>
     </div>
-</div>
-<div class="step">
-    <img src="/assets/images/account-deletion/account-deletion-3.jpg" alt="Delete Account Button">
-    <div>
-        <h2>This screen will delete all user data.</h2>
-    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-example-2" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel-example-2" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
