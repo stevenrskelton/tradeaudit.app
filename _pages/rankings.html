@@ -126,7 +126,7 @@ export class InfluencerSummary extends LitElement {
   profileTypeImage(influencer){
     if (influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/integrations/x.svg" style="width:30px;margin-left:4px">`;
     if (influencer.meta.type == "youtube") return html`<img src="/assets/integrations/youtube.svg">`;
-    if (influencer.meta.type == "web" || influencer.meta.type == "url") return html`<img src="/assets/influencer-webpages.svg">`;
+    if (influencer.meta.type == "web" || influencer.meta.type == "url") return html`<img src="/assets/webpages.svg">`;
     return html``;
   }
 
