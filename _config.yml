@@ -50,11 +50,13 @@ navigation:
         url: "/rankings"
   - label: "Social Media Integrations"
     links:
-      - label: "<img src=\"/assets/influencer-youtube.svg\" style=\"width:20px;\" alt=\"YouTube\">YouTube"
+      - label: "<img src=\"/assets/integrations/youtube.svg\" alt=\"YouTube\">YouTube"
         url: "/youtube"
-      - label: "<img src=\"/assets/influencer-x.svg\" style=\"width:20px;\" alt=\"X\">Twitter / X"
+      - label: "<img src=\"/assets/integrations/x.svg\" alt=\"X\">Twitter / X"
         url: "/x"
-      - label: "<img src=\"/assets/influencer-webpages.svg\" style=\"width:20px;\" alt=\"Webpage\">Web Pages"
+      - label: "<img src=\"/assets/integrations/substack.svg\" alt=\"Substack\">Substack"
+        url: "/substack"
+      - label: "<img src=\"/assets/integrations/webpages.svg\" alt=\"Webpage\">Web Pages"
         url: "/webpages"
   - label: "Data Governance"
     links:
