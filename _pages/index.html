@@ -29,11 +29,12 @@ sitemap: true
   </h2>
 </div>
 
-<div>
+<div class="mb-5" style="text-align:center;">
+  <h4>Import Social Media From</h4>
   {% assign integrations = site.navigation | where: "key", "integrations" | first %}
   {% for navitem in integrations.links %}
   <a
-      class="nav-link {{ active }}"
+      class="btn"
       href="{{ navitem.url }}"
   >
     <img

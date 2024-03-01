@@ -128,10 +128,15 @@
               <a
                   class="nav-link {{ active }}"
                   href="{{ navitem.url }}"
-              ><img
+              >
+                {% if navitem.img %}
+                <img
                   src="{{ navitem.img }}"
                   alt="{{ navitem.label | strip_html }}"
-              >{{ navitem.label }}</a>
+                >
+                {% endif %}
+                {{ navitem.label }}
+              </a>
             </li>
           {% endfor %}
         </ul>
