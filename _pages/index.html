@@ -29,4 +29,20 @@ sitemap: true
   </h2>
 </div>
 
+<div>
+  {% assign integrations = site.navigation | where: "key", "integrations | first %}
+  {% for navitem in integrations.links %}
+  <a
+      class="nav-link {{ active }}"
+      href="{{ navitem.url }}"
+  >
+    <img
+        src="{{ navitem.img }}"
+        alt="{{ navitem.label | strip_html }}"
+    >
+    {{ navitem.label }}
+  </a>
+  {% endfor %}
+</div>
+
 {% include influencerlink.html %}

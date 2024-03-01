@@ -125,7 +125,13 @@
               {% assign active = "" %}
             {% endif %}
             <li class="nav-item">
-              <a class="nav-link {{ active }}" href="{{ navitem.url }}">{{ navitem.label }}</a>
+              <a
+                  class="nav-link {{ active }}"
+                  href="{{ navitem.url }}"
+              ><img
+                  src="{{ navitem.img }}"
+                  alt="{{ navitem.label | strip_html }}"
+              >{{ navitem.label }}</a>
             </li>
           {% endfor %}
         </ul>
