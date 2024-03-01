@@ -30,7 +30,7 @@ sitemap: true
 </div>
 
 <div>
-  {% assign integrations = site.navigation | where: "key", "integrations | first %}
+  {% assign integrations = site.navigation | where: "key", "integrations" | first %}
   {% for navitem in integrations.links %}
   <a
       class="nav-link {{ active }}"
