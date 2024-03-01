@@ -34,7 +34,7 @@ sitemap: true
   {% assign integrations = site.navigation | where: "key", "integrations" | first %}
   {% for navitem in integrations.links %}
   <a
-      class="btn btn-primary"
+      class="btn btn-secondary"
       href="{{ navitem.url }}"
   >
     <img
