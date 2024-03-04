@@ -42,13 +42,13 @@ footer:
       url: "/account-deletion"
 
 navigation:
-  - label: "Auditing Trades"
+  - label: "Tracking Influencers"
     links:
-      - label: "Adding Social Media"
+      - label: "Do Their Trades Make Money?"
         url: "/"
       - label: "Influencer Rankings"
         url: "/rankings"
-  - label: "Social Media Integrations"
+  - label: "Import From Social Media"
     key: "integrations"
     links:
       - label: "YouTube"
@@ -63,7 +63,7 @@ navigation:
       - label: "Web Pages"
         url: "/webpages"
         img: "/assets/integrations/webpages.svg"
-  - label: "Data Governance"
+  - label: "Our Data Governance"
     links:
       - label: "Terms of Use"
         url: "/terms-of-use"

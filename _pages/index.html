@@ -7,7 +7,8 @@ sitemap: true
 
 <div style="text-align:center;text-justify:inter-word;" class="lead mt-4 mb-2">
   <p>
-    Social media <span class="fw-bold">"financial professionals"</span> and <span class="fw-bold">"macro analysts"</span> claim<br>
+    Social media <span class="fw-bold" style="font-style: italic;">financial professionals</span> and
+    <span class="fw-bold" style="font-style: italic;">macro analysts</span> claim<br>
     to know what stocks to buy and how investments can make you money. But!
   </p>
   <div style="display:inline-block;text-align:left">
@@ -30,7 +31,7 @@ sitemap: true
 </div>
 
 <div class="mb-5" style="text-align:center;">
-  <h4>Import Social Media From</h4>
+  <h4 class="mb-4">Import Recommendations Made on Social Media,<br>and Track Trade Performance.</h4>
   {% assign integrations = site.navigation | where: "key", "integrations" | first %}
   {% for navitem in integrations.links %}
   <a
