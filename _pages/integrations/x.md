@@ -1,9 +1,8 @@
 ---
 permalink: /x
-title: "Trade Audit for X"
-sitemap: true
+title: "Import trades from Twitter X into Trade Audit"
 ---
-<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Twitter X Integration</h1>
+<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations made on Twitter X</h1>
 
 <div class="text-center">
   The <span style="text-decoration:italic">FinTwit</span> community on X is notorious for a lack of accountability.

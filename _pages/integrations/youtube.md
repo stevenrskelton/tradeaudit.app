@@ -1,9 +1,8 @@
 ---
 permalink: /youtube
-title: "Trade Audit for Youtube"
-sitemap: true
+title: "Import trades from YouTube into Trade Audit"
 ---
-<h1 class="display-5 fw-bold mb-4 mt-5 text-center">YouTube Integration</h1>
+<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations made on YouTube</h1>
 
 <div class="mt-5 mb-5">
     <p>

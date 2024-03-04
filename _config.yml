@@ -79,5 +79,6 @@ defaults:
     scope:
       path: "" # an empty string here means all files in the project
     values:
+      sitemap: true
       layout: "default"
       author_profile: false
