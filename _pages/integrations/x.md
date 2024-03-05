@@ -6,7 +6,7 @@ title: "Import trades from Twitter X into Trade Audit"
 <span style="color:black;">Twitter <img src="/assets/integrations/x.svg" style="height:0.8em;margin-bottom: 8px;" alt="Twitter X logo"></span>
 </h1>
 
-<div class="text-center">
+<div class="text-center lead">
   The <span style="text-decoration:italic">FinTwit</span> community on X is notorious for a lack of accountability.
 </div>
 
@@ -16,25 +16,32 @@ title: "Import trades from Twitter X into Trade Audit"
   <p>
     The most common strategies to obscure stock picks are:
   </p>
-  <h3>Deleting Bad Picks</h3>
+<section>
+  <h3>❌ Deleting Bad Picks</h3>
   <p>
     By far the easiest way to keep a pristine track record is to delete bad tweets.  There are few ways to recover deleted tweets
      so there is little risk of getting caught.  Many X accounts automatically delete tweets over a few weeks old out of
     precaution and because they have no intention of being held to account.
   </p>
-  <h3>Playing Both Sides</h3>
+</section>
+<section>
+  <h3>❌ Playing Both Sides</h3>
   <p>
     A common strategy often combined with <span>deleting bad picks</span>; is to play both sides of a trade. Pairs of posts are
     tweeted, separating the pro's and con's into separate tweets; capitalizing under the cover of X's character limit.
     Once a outcome is known, the wrong side of the trade's tweet is deleted, only leaving a fully correct prediction.
   </p>
-  <h3>Spam Bots</h3>
+</section>
+<section>
+  <h3>❌ Spam Bots</h3>
   <p>
     These play off of <a href="https://en.wikipedia.org/wiki/Survivorship_bias" target="_blank">survivorship bias</a>. Bot accounts
      with fake followers will make generic market calls in every sort of permutation.<br>
     It takes <span style="font-weight:bold">2<sup>N</sup></span> accounts to make <span style="font-weight:bold">N perfect market calls</span>,
     and X has 1.5 Million new accounts created every day.
   </p>
+</section>
+
 </div>
 
 <script type="module">

@@ -55,7 +55,7 @@ navigation:
         url: "/youtube"
         img: "/assets/integrations/youtube.svg"
         color: "#D7143A"
-      - label: "Twitter / X"
+      - label: "Twitter"
         url: "/x"
         img: "/assets/integrations/x.svg"
         color: "black"
