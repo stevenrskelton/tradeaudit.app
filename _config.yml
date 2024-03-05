@@ -44,7 +44,7 @@ footer:
 navigation:
   - label: "Tracking Influencers"
     links:
-      - label: "Do Their Trades Make Money?"
+      - label: "Which Trades Made Money?"
         url: "/"
       - label: "Influencer Rankings"
         url: "/rankings"
