@@ -40,6 +40,8 @@ title: "Import trades from Twitter X into Trade Audit"
     </section>
 </div>
 
+{% include influencerlink.html %}
+
 <h3 class="display-6 text-center mt-5">Critics of FinTwit Practices</h3>
 <hr style="margin-top: 0;" class="mb-5">
 
