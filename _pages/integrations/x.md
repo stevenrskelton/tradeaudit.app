@@ -40,6 +40,9 @@ title: "Import trades from Twitter X into Trade Audit"
     </section>
 </div>
 
+<h3 class="display-6 text-center mt-5">Critics of FinTwit Practices</h3>
+<hr style="margin-top: 0;" class="mb-5">
+
 <script type="module">
 import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
@@ -337,7 +340,8 @@ customElements.define('twitter-tweet', TwitterTweet);
   
 </div>
 
-{% include influencerlink.html %}
+<h3 class="display-6 text-center mt-5">Fraud on FinTwit</h3>
+<hr style="margin-top: 0;" class="mb-5">
 
 <div class="masonry">
   <twitter-tweet 
@@ -411,5 +415,7 @@ customElements.define('twitter-tweet', TwitterTweet);
   ></twitter-tweet>
   
 </div>
+
+<hr style="margin-top: 0;" class="mb-5">
 
 {% include influencerlink.html %}
