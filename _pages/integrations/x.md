@@ -2,7 +2,9 @@
 permalink: /x
 title: "Import trades from Twitter X into Trade Audit"
 ---
-<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations made on Twitter X</h1>
+<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations Made On<br>
+<span style="color:black;"><img src="/assets/integrations/x.svg" style="height:1.2em;margin-bottom: 5px;">Twitter X</span>
+</h1>
 
 <div class="text-center">
   The <span style="text-decoration:italic">FinTwit</span> community on X is notorious for a lack of accountability.
