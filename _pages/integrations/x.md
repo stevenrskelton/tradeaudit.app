@@ -12,36 +12,32 @@ title: "Import trades from Twitter X into Trade Audit"
 
 <h2 class="display-5 fw-bold mb-4 mt-5 text-center">Common Tactics</h2>
 
-<div class="mt-5 mb-5 text-center">
-  <p>
-    The most common strategies to obscure stock picks are:
-  </p>
-<section>
-  <h3>❌ Deleting Bad Picks</h3>
-  <p>
-    By far the easiest way to keep a pristine track record is to delete bad tweets.  There are few ways to recover deleted tweets
-     so there is little risk of getting caught.  Many X accounts automatically delete tweets over a few weeks old out of
-    precaution and because they have no intention of being held to account.
-  </p>
-</section>
-<section>
-  <h3>❌ Playing Both Sides</h3>
-  <p>
-    A common strategy often combined with <span>deleting bad picks</span>; is to play both sides of a trade. Pairs of posts are
-    tweeted, separating the pro's and con's into separate tweets; capitalizing under the cover of X's character limit.
-    Once a outcome is known, the wrong side of the trade's tweet is deleted, only leaving a fully correct prediction.
-  </p>
-</section>
-<section>
-  <h3>❌ Spam Bots</h3>
-  <p>
-    These play off of <a href="https://en.wikipedia.org/wiki/Survivorship_bias" target="_blank">survivorship bias</a>. Bot accounts
-     with fake followers will make generic market calls in every sort of permutation.<br>
-    It takes <span style="font-weight:bold">2<sup>N</sup></span> accounts to make <span style="font-weight:bold">N perfect market calls</span>,
-    and X has 1.5 Million new accounts created every day.
-  </p>
-</section>
-
+<div class="mb-5 text-center facts">
+    <section>
+      <h3>❌ Deleting Bad Picks</h3>
+      <p>
+        By far the easiest way to keep a pristine track record is to delete bad tweets.  There are few ways to recover deleted tweets
+         so there is little risk of getting caught.  Many X accounts automatically delete tweets over a few weeks old out of
+        precaution and because they have no intention of being held to account.
+      </p>
+    </section>
+    <section>
+      <h3>❌ Playing Both Sides</h3>
+      <p>
+        A common strategy often combined with <span>deleting bad picks</span>; is to play both sides of a trade. Pairs of posts are
+        tweeted, separating the pro's and con's into separate tweets; capitalizing under the cover of X's character limit.
+        Once a outcome is known, the wrong side of the trade's tweet is deleted, only leaving a fully correct prediction.
+      </p>
+    </section>
+    <section>
+      <h3>❌ Spam Bots</h3>
+      <p>
+        These play off of <a href="https://en.wikipedia.org/wiki/Survivorship_bias" target="_blank">survivorship bias</a>. Bot accounts
+         with fake followers will make generic market calls in every sort of permutation.<br>
+        It takes <span style="font-weight:bold">2<sup>N</sup></span> accounts to make <span style="font-weight:bold">N perfect market calls</span>,
+        and X has 1.5 Million new accounts created every day.
+      </p>
+    </section>
 </div>
 
 <script type="module">
@@ -238,7 +234,7 @@ export class TwitterTweet extends LitElement {
             </a>
             <div id="logo">
               <a target="_blank" rel="noopener" href="https://twitter.com/${ this.user_screen_name }/status/${ this.id_str }">
-                <!----><svg id="Logo_FIXED" data-name="Logo — FIXED" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><title>Twitter_Logo_Blue</title><rect class="cls-1" width="400" height="400"></rect><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"></path></svg>
+                <!-- --><svg id="Logo_FIXED" data-name="Logo — FIXED" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><defs><style>.cls-1{fill:none;}.cls-2{fill:#1da1f2;}</style></defs><title>Twitter_Logo_Blue</title><rect class="cls-1" width="400" height="400"></rect><path class="cls-2" d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23"></path></svg>
               </a>
             </div>
           </div>
