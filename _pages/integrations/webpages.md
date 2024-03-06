@@ -8,4 +8,26 @@ title: "Import trades from any webpage into Trade Audit"
 
 <div class="text-center lead mt-4 mb-4">Any web page can be imported into Trade Audit, and trade ideas manually entered through the app UI.</div>
 
+<article class="facts">
+    <section>
+      <h3>✅ Independent Content Creators</h3>
+      <p>
+        There is a diversity of ideas, and competition for followers will usually help promote better content.
+      </p>
+    </section>
+    <section>
+      <h3>❌ No accreditation, education, or legitimacy required</h3>
+      <p>
+       Self-taught creators can have unique perspectives, but be aware that they may have fundamental misunderstandings of reality.
+      </p>
+    </section>
+    <section>
+      <h3>❌ Echo chambers and Ideologies</h3>
+      <p>
+        Much content exists to fulfill viewer's desire to reinforce their own views, and will never
+be critical or objective even when obvious counterarguments and empirical evidence refutes it.
+      </p>
+    </section>
+</article>
+
 {% include influencerlink.html %}

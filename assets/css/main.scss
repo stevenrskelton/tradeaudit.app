@@ -40,10 +40,15 @@
   margin-right: 10px;
 }
 
-.facts > section {
+article.facts {
+ text-align: center;
+ margin-bottom: var(--bs-spacer-5);
+}
+
+article.facts section {
     border: 1px solid grey;
-    border-radius: 20px;
-    padding: 16px;
+    border-radius: 10px;
+    padding: 24px 16px 12px 16px
     margin-bottom: 10px;
     background-color: lightgrey;
 }

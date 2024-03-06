@@ -12,7 +12,7 @@ title: "Import trades from Twitter X into Trade Audit"
 
 <h2 class="display-5 fw-bold mb-4 mt-5 text-center">Common Tactics</h2>
 
-<div class="mb-5 text-center facts">
+<article class="facts">
     <section>
       <h3>❌ Deleting Bad Picks</h3>
       <p>
@@ -24,7 +24,7 @@ title: "Import trades from Twitter X into Trade Audit"
     <section>
       <h3>❌ Playing Both Sides</h3>
       <p>
-        A common strategy often combined with <span>deleting bad picks</span>; is to play both sides of a trade. Pairs of posts are
+        A common strategy often combined with <span class="fw-bold">deleting bad picks</span>; is to play both sides of a trade. Pairs of posts are
         tweeted, separating the pro's and con's into separate tweets; capitalizing under the cover of X's character limit.
         Once a outcome is known, the wrong side of the trade's tweet is deleted, only leaving a fully correct prediction.
       </p>
@@ -34,11 +34,11 @@ title: "Import trades from Twitter X into Trade Audit"
       <p>
         These play off of <a href="https://en.wikipedia.org/wiki/Survivorship_bias" target="_blank">survivorship bias</a>. Bot accounts
          with fake followers will make generic market calls in every sort of permutation.<br>
-        It takes <span style="font-weight:bold">2<sup>N</sup></span> accounts to make <span style="font-weight:bold">N perfect market calls</span>,
+        It takes <span class="fw-bold">2<sup>N</sup></span> accounts to make <span class="fw-bold">N perfect market calls</span>,
         and X has 1.5 Million new accounts created every day.
       </p>
     </section>
-</div>
+</article>
 
 {% include influencerlink.html %}
 
