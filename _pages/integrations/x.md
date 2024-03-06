@@ -7,17 +7,17 @@ title: "Import trades from Twitter X into Trade Audit"
 </h1>
 
 <div class="text-center lead">
-  The <span style="text-decoration:italic">FinTwit</span> community on X is notorious for a lack of accountability.
+The <span class="fst-italic">FinTwit</span> community on X is notorious for a lack of accountability.
 </div>
 
-<h2 class="display-5 fw-bold mb-4 mt-5 text-center">Common Tactics</h2>
+<h2 class="display-6 fw-bold mb-4 mt-5 text-center">Platform Characteristics</h2>
 
 <article class="facts">
     <section>
       <h3>❌ Deleting Bad Picks</h3>
       <p>
-        By far the easiest way to keep a pristine track record is to delete bad tweets.  There are few ways to recover deleted tweets
-         so there is little risk of getting caught.  Many X accounts automatically delete tweets over a few weeks old out of
+        By far the easiest way to keep a pristine track record is to delete bad tweets. There are few ways to recover deleted tweets
+         so there is little risk of getting caught. Many X accounts automatically delete tweets over a few weeks old out of
         precaution and because they have no intention of being held to account.
       </p>
     </section>
