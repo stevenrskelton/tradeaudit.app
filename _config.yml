@@ -51,22 +51,26 @@ navigation:
   - label: "Import From Social Media"
     key: "integrations"
     links:
-      - label: ""
+      - label: "YouTube"
         url: "/youtube"
         img: "/assets/integrations/yt_logo_rgb_light.png"
         color: "#D7143A"
+        has_text: false
       - label: "Twitter"
         url: "/x"
         img: "/assets/integrations/x.svg"
         color: "black"
+        has_text: true
       - label: "Substack"
         url: "/substack"
         img: "/assets/integrations/substack_wordmark.png"
         color: "#FF681A"
+        has_text: false
       - label: "Web"
         url: "/webpages"
         img: "/assets/integrations/webpages.svg"
         color: "#27ae60"
+        has_text: true
   - label: "Our Data Governance"
     links:
       - label: "Terms of Use"

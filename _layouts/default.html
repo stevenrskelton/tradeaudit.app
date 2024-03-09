@@ -81,12 +81,21 @@
                   href="{{ navitem.url }}"
               >
                 {% if navitem.img %}
-                <img
-                  src="{{ navitem.img }}"
-                  alt="{{ navitem.label | strip_html }}"
-                >
+                  {% if navitem.has_text %}
+                    <img
+                        src="{{ navitem.img }}"
+                        alt="{{ navitem.label | strip_html }}"
+                        class="navitem_icon"
+                    >
+                    {{ navitem.label }}
+                  {% else %}
+                    <img
+                        src="{{ navitem.img }}"
+                        alt="{{ navitem.label | strip_html }}"
+                        class="navitem_logo"
+                    >
+                  {% endif %}
                 {% endif %}
-                {{ navitem.label }}
               </a>
             </li>
           {% endfor %}

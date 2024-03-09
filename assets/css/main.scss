@@ -35,9 +35,12 @@
 .bg-light {
   background-color: #282739 !important;
 }
-.sidebar-nav .nav-link img {
+.sidebar-nav .nav-link img.navitem_icon {
   width: 20px;
   margin-right: 10px;
+}
+.sidebar-nav .nav-link img.navitem_logo {
+  height: 20px;
 }
 
 article.facts {
