@@ -87,7 +87,7 @@
                         alt="{{ navitem.label | strip_html }}"
                         class="navitem_icon"
                     >
-                    {{ navitem.label }}
+                    <span style="color:{{ navitem.color }};">{{ navitem.label }}</span>
                   {% else %}
                     <img
                         src="{{ navitem.img }}"
@@ -95,6 +95,8 @@
                         class="navitem_logo"
                     >
                   {% endif %}
+                {% else %}
+                  {{ navitem.label }}
                 {% endif %}
               </a>
             </li>
