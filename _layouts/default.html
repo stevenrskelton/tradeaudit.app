@@ -79,26 +79,7 @@
               <a
                   class="nav-link {{ active }}"
                   href="{{ navitem.url }}"
-              >
-                {% if navitem.img %}
-                  {% if navitem.has_text %}
-                    <img
-                        src="{{ navitem.img }}"
-                        alt="{{ navitem.label | strip_html }}"
-                        class="navitem_icon"
-                    >
-                    <span class="navitem_text" style="color:{{ navitem.color }};">{{ navitem.label }}</span>
-                  {% else %}
-                    <img
-                        src="{{ navitem.img }}"
-                        alt="{{ navitem.label | strip_html }}"
-                        class="navitem_logo"
-                    >
-                  {% endif %}
-                {% else %}
-                  {{ navitem.label }}
-                {% endif %}
-              </a>
+              >{{ navitem.label }}</a>
             </li>
           {% endfor %}
         </ul>

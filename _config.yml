@@ -51,26 +51,14 @@ navigation:
   - label: "Import From Social Media"
     key: "integrations"
     links:
-      - label: "YouTube"
+      - label: <img src="/assets/integrations/yt_logo_rgb_light.png" alt="YouTube" class="navitem_logo">
         url: "/youtube"
-        img: "/assets/integrations/yt_logo_rgb_light.png"
-        color: "#D7143A"
-        has_text: false
-      - label: "Twitter"
+      - label: <img src="/assets/integrations/x.svg" alt="Twitter" class="navitem_icon">
         url: "/x"
-        img: "/assets/integrations/x.svg"
-        color: "black"
-        has_text: true
-      - label: "Substack"
+      - label: <img src="/assets/integrations/substack_wordmark.png" alt="Substack" class="navitem_logo">
         url: "/substack"
-        img: "/assets/integrations/substack_wordmark.png"
-        color: "#FF681A"
-        has_text: false
-      - label: "Web"
+      - label: <img src="/assets/integrations/webpages.svg" alt="Web" class="navitem_icon"><span class="navitem_text" style="color:#27ae60;">Web</span>
         url: "/webpages"
-        img: "/assets/integrations/webpages.svg"
-        color: "#27ae60"
-        has_text: true
   - label: "Our Data Governance"
     links:
       - label: "Terms of Use"

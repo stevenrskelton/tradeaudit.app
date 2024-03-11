@@ -3,8 +3,9 @@ permalink: /x
 title: "Import trades from Twitter X into Trade Audit"
 ---
 <h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations Made On<br>
-<img src="/assets/integrations/x.svg" style="height:0.8em;margin-bottom: 8px;" alt="Twitter X logo">
-<img src="/assets/integrations/twitter-logo.svg" style="height:0.8em;" alt="Twitter X logo">
+<img src="/assets/integrations/x.svg" style="height:0.8em;margin-bottom: 2px;" alt="Twitter X logo">
+<span style="font-size:14px;vertical-align: middle;">/</span>
+<img src="/assets/integrations/twitter-logo.svg" style="height:1em;" alt="Twitter X logo">
 </h1>
 
 <div class="text-center lead">
