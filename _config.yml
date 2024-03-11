@@ -53,7 +53,7 @@ navigation:
     links:
       - label: <img src="/assets/integrations/yt_logo_rgb_light.png" alt="YouTube" class="navitem_logo">
         url: "/youtube"
-      - label: <img src="/assets/integrations/x.svg" alt="Twitter" class="navitem_icon"><span style="color:#657786;vertical-align:middle;">/</span><img src="/assets/integrations/twitter-logo.svg" class="navitem_icon" alt="Twitter X logo">
+      - label: <img src="/assets/integrations/x.svg" alt="Twitter" class="navitem_icon"><span style="color:#657786;vertical-align:middle;margin:0 10px;">/</span><img src="/assets/integrations/twitter-logo.svg" class="navitem_icon" alt="Twitter X logo" style="width:26px;position:relative;top:4px;max-height:26px;margin-top:-8px;">
         url: "/x"
       - label: <img src="/assets/integrations/substack_wordmark.png" alt="Substack" class="navitem_logo">
         url: "/substack"
