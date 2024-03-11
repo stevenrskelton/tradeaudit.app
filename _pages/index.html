@@ -35,20 +35,7 @@ title: "Trade Audit App for Social Media"
   <a
     class="btn btn-secondary integration_logo"
     href="{{ navitem.url }}"
-  >
-    {% if navitem.has_text %}
-      <img
-          src="{{ navitem.img }}"
-          alt="{{ navitem.label | strip_html }}"
-      >
-      <span style="color:{{ navitem.color }};">{{ navitem.label }}</span>
-    {% else %}
-      <img
-          src="{{ navitem.img }}"
-          alt="{{ navitem.label | strip_html }}"
-      >
-    {% endif %}
-  </a>
+  >{{ navitem.label }}</a>
   {% endfor %}
 </div>
 
