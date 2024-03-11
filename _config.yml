@@ -55,7 +55,7 @@ navigation:
         url: "/youtube"
       - label: <img src="/assets/integrations/substack_wordmark.png" alt="Substack" class="navitem_logo">
         url: "/substack"
-      - label: <img src="/assets/integrations/x.svg" alt="Twitter" class="navitem_icon"><span style="color:#657786;vertical-align:middle;margin:0 10px;">/</span><img src="/assets/integrations/twitter-logo.svg" class="navitem_icon" alt="Twitter X logo" style="width:24px;position:relative;top:3px;max-height:24px;margin-top:-4px;">
+      - label: <img src="/assets/integrations/x.svg" alt="Twitter" class="navitem_icon"><span style="color:#657786;vertical-align:middle;margin:0 10px;font-size:1em;">/</span><img src="/assets/integrations/twitter-logo.svg" class="navitem_icon" alt="Twitter X logo">
         url: "/x"
       - label: <img src="/assets/integrations/webpages.svg" alt="Web" class="navitem_icon"><span class="navitem_text" style="color:#27ae60;padding-left:4px">Web Sites</span>
         url: "/webpages"
