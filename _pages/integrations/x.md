@@ -48,7 +48,7 @@ The <span class="fst-italic">FinTwit</span> community on X is notorious for a la
 <hr style="margin-top: 0;" class="mb-5">
 
 <script type="module">
-import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+import {LitElement, html, svg, css} from '{{ site.litCoreJs }}';
 
 export class TwitterTweet extends LitElement {
   //Populate using https://cdn.syndication.twimg.com/tweet-result?id=[id_str]&lang=en

@@ -11,9 +11,9 @@ title: "Trade Audit Influencer Rankings"
 </span>
 
 <script type="module">
-import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+import {LitElement, html, svg, css} from '{{ site.litCoreJs }}';
 
-const halfmoonCssTag = '{{ site.halfmoonCssTag }}';
+const halfmoonCssTag = html`{{ site.halfmoonCssTag }}`;
 
 export function humanNumber(num){
   function intlFormat(num){

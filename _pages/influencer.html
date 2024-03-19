@@ -6,9 +6,9 @@ sitemap: false
 
 <script src="https://d3js.org/d3.v7.js"></script>
 <script type="module">
-import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
+import {LitElement, html, svg, css} from '{{ site.litCoreJs }}';
 
-const halfmoonCssTag = '{{ site.halfmoonCssTag }}';
+const halfmoonCssTag = html`{{ site.halfmoonCssTag }}`;
 
 export class D3UserChart extends LitElement {
   static properties = {
