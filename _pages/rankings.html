@@ -184,10 +184,7 @@ export class InfluencerSummary extends LitElement {
                   return html`
                   <li class="list-group-item">
                     <div style="display:flex;align-items:center;">
-                      ${a}
-                        <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;">
-                        <div style="width:40px">${this.profileTypeImage(item)}</div>
-                      ${a != null ? html`</a>` : null}
+                      ${a}<img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;">${a != null ? html`</a>` : null}
                       <div style="flex-grow:1;padding-left:12px;">
                         <div style="display:flex;">
                           <div style="text-align:left">
@@ -210,26 +207,29 @@ export class InfluencerSummary extends LitElement {
                       }
                       <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
                     </div>
-                    <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
-                      ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
-                      ${item.stocks.map(
-                          (stock) => {
-                              const selected = this.selectedStockItem != null &&
-                                    this.selectedStockItem.symbol == stock.symbol ? "btn-secondary active" : "btn-outline-secondary";
-                              return html`<button
-                                type="button" style="padding:0 10px 0 10px;margin-left:4px;"
-                                @click=${() => this.selectStockEvent(stock) }
-                                class="btn ${selected} btn-sm"
-                              >${stock.symbol}</button>`
-                          }
-                      )}
+                    <div>
+                      <div style="width:40px">${this.profileTypeImage(item)}</div>
+                      <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
+                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
+                        ${item.stocks.map(
+                            (stock) => {
+                                const selected = this.selectedStockItem != null &&
+                                      this.selectedStockItem.symbol == stock.symbol ? "btn-secondary active" : "btn-outline-secondary";
+                                return html`<button
+                                  type="button" style="padding:0 10px 0 10px;margin-left:4px;"
+                                  @click=${() => this.selectStockEvent(stock) }
+                                  class="btn ${selected} btn-sm"
+                                >${stock.symbol}</button>`
+                            }
+                        )}
+                      </div>
                     </div>
                   </li>`
                 } else {
                   const height = this.height ?? 64;
                   return html`
                   <li class="list-group-item" style="display:flex;align-items:center;">
-                    ${a}<div style="width:60px">${this.profileTypeImage(item)}</div><img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>${a != null ? html`</a>` : null}
+                    ${a}<span style="width:60px">${this.profileTypeImage(item)}</span><img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>${a != null ? html`</a>` : null}
                     <div style="flex-grow:1;padding-left:12px;">
                       <div style="display:flex;">
                         <div style="text-align:left">
