@@ -406,7 +406,7 @@ export class StockToolbar extends LitElement {
   }
 
   renderStocks() {
-    const toolbarItemCount = Math.floor((screen.availWidth - 50) / 85) - 1;
+    const toolbarItemCount = Math.min(Math.floor((screen.availWidth - 50) / 85) - 1, maxToolbarItems);
     const staticitems = this.stocks.slice(0, toolbarItemCount);
     const selectedDropDown = (this.selectedStockItem == null || staticitems.findIndex(o => o.symbol == this.selectedStockItem.symbol) > -1)? null : this.selectedStockItem;
     return html`
