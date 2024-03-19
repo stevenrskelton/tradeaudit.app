@@ -13,6 +13,8 @@ title: "Trade Audit Influencer Rankings"
 <script type="module">
 import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
+const halfmoonCssTag = '{{ site.halfmoonCssTag }}';
+
 export function humanNumber(num){
   function intlFormat(num){
     return new Intl.NumberFormat().format(Math.floor(num*10)/10);
@@ -167,8 +169,7 @@ export class InfluencerSummary extends LitElement {
     const height = this.height ?? 64;
     //<link rel="preload" href="https://tradeaudit.app/assets/finance.svg" as="image" />
     return html`
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+       ${halfmoonCssTag}
        <ul class="list-group" id="stock-ul" style="max-width:1024px;margin:auto;">
             ${(this.influencers ?? []).map(
               (item) => {
@@ -372,29 +373,28 @@ export class StockToolbar extends LitElement {
     const isLoading = this.stocks.isEmpty;
 
     return html`
-       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <div class="input-group mb-2" role="group" aria-label="Influencer Sorting" style="margin:auto;justify-content:center;height:48px;">
-            <button
-                @click=${() => this.toggleSort(true)}
-                class="btn btn-outline-secondary btn-lg ${this.isTop ? 'active' : ''}" type="button"
-                title="Top Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
-                style="width:50%;max-width:230pt;${ isLoading ? "display:none;" : "" }"
-            >💰 ▼</button>
-            <button
-                @click=${() => this.toggleSort(false)}
-                class="btn btn-outline-secondary btn-lg ${this.isTop ? '' : 'active'}" type="button"
-                title="Bottom Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
-                style="width:50%;max-width:230pt;${ isLoading ? "display:none;" : "" }"
-            >🤡 ▲</button>
-        </div>
-        <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
-          ${ isLoading ? this.renderLoadingBar() : this.renderStocks() }
-        </div>
-        <influencer-summary 
-          height="80" .selectedStockItem=${this.selectedStockItem} .influencers=${this.influencers}
-          @select-stock-event="${(e) => { this.selectFunction(e.detail) }}"
-        ></influencer-summary>
+      ${halfmoonCssTag}
+      <div class="input-group mb-2" role="group" aria-label="Influencer Sorting" style="margin:auto;justify-content:center;height:48px;">
+          <button
+              @click=${() => this.toggleSort(true)}
+              class="btn btn-outline-secondary btn-lg ${this.isTop ? 'active' : ''}" type="button"
+              title="Top Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
+              style="width:50%;max-width:230pt;${ isLoading ? "display:none;" : "" }"
+          >💰 ▼</button>
+          <button
+              @click=${() => this.toggleSort(false)}
+              class="btn btn-outline-secondary btn-lg ${this.isTop ? '' : 'active'}" type="button"
+              title="Bottom Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
+              style="width:50%;max-width:230pt;${ isLoading ? "display:none;" : "" }"
+          >🤡 ▲</button>
+      </div>
+      <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
+        ${ isLoading ? this.renderLoadingBar() : this.renderStocks() }
+      </div>
+      <influencer-summary
+        height="80" .selectedStockItem=${this.selectedStockItem} .influencers=${this.influencers}
+        @select-stock-event="${(e) => { this.selectFunction(e.detail) }}"
+      ></influencer-summary>
     `;
   }
 

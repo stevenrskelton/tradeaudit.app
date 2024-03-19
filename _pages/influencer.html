@@ -8,6 +8,8 @@ sitemap: false
 <script type="module">
 import {LitElement, html, svg, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
 
+const halfmoonCssTag = '{{ site.halfmoonCssTag }}';
+
 export class D3UserChart extends LitElement {
   static properties = {
       width: { type: Number },
@@ -127,8 +129,7 @@ export class UserStockToolbar extends LitElement {
     } else {
         console.log("render");
         return html`
-           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+           ${halfmoonCssTag}
             <div class="input-group mb-3" style="margin:auto;justify-content:center;padding-top:10px;">
                 ${this.stocks.map(
                   (item) => html`
@@ -193,8 +194,7 @@ export class UserTitle extends LitElement {
             return html`<h1>Not Found</h1>`;
         } else {
             return html`
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-                    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+                ${halfmoonCssTag}
                 <h1 class="display-5 fw-bold">Stock Tracking for</h1>
                 <div style="display:flex;margin-left:auto;margin-right:auto;width:250px;">
                     <img src="${this.userSummary.twitterProfileUrl}" style="width:64px;height:64px;border-radius:50%;"/>

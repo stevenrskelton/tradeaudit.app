@@ -29,6 +29,8 @@ plugins:
 include:
   - _pages
 
+halfmoonCssTag: <link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.1/css/halfmoon.min.css" rel="stylesheet" integrity="sha256-SsJizWSIG9JT9Qxbiy8xnYJfjCAkhEQ0hihxRn7jt2M=" crossorigin="anonymous">
+
 footer:
   links:
     - label: "Terms of Use"
