@@ -17,8 +17,7 @@
   <meta name="twitter:image" content="https://tradeaudit.app/assets/images/opengraph.png">
   <title>{{ page.title }}</title>
   <link rel="shortcut icon" href="https://tradeaudit.app/assets/images/favicon.ico">
-  <link href="https://cdn.jsdelivr.net/npm/halfmoon@2.0.1/css/halfmoon.min.css" rel="stylesheet"
-        integrity="sha256-SsJizWSIG9JT9Qxbiy8xnYJfjCAkhEQ0hihxRn7jt2M=" crossorigin="anonymous">
+  {{ site.halfmoonCssTag }}
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
           integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
           crossorigin="anonymous"></script>
@@ -109,7 +108,7 @@
 </nav>
 
 <main class="bg-body" style="flex-grow:1;display:flex;flex-direction:column;">
-  <div class="container-xl g-5 my-5" style="flex-grow:1;display:flex;flex-direction:column;">
+  <div class="container-xl my-5" style="flex-grow:1;display:flex;flex-direction:column;">
 
     {{ content }}
 

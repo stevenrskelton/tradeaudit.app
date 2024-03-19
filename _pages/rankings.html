@@ -406,8 +406,8 @@ export class StockToolbar extends LitElement {
   }
 
   renderStocks() {
-    const toolbarItemCount = Math.min(Math.floor((screen.availWidth - 50 - 40) / 85), StockToolbar.maxToolbarItems);
-    const searchWidth = toolbarItemCount == StockToolbar.maxToolbarItems ? '65px' : '40px';
+    const stockButtonWidth = 65;
+    const toolbarItemCount = Math.min(Math.floor((screen.availWidth - 25) / stockButtonWidth) - 1, StockToolbar.maxToolbarItems);
     const stockSymbols = this.stocks.slice(0, toolbarItemCount);
     const selectedDropDown = (this.selectedStockItem == null || stockSymbols.findIndex(o => o.symbol == this.selectedStockItem.symbol) > -1)? null : this.selectedStockItem;
     return html`
@@ -416,7 +416,7 @@ export class StockToolbar extends LitElement {
           <button
               @click=${() => this.toggleSelected(item)}
               class="btn btn-outline-secondary ${this.selectedStockItem != null && item.symbol == this.selectedStockItem.symbol ? 'active' : ''}" type="button"
-              title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:85px;padding-left:0;padding-right:0;"
+              title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:${stockButtonWidth}px;padding-left:0;padding-right:0;"
           >
               ${item.symbol}
           </button>`
@@ -439,7 +439,7 @@ export class StockToolbar extends LitElement {
       <button
         @click=${this.toggleDropdown} id="testbtn"
         class="btn btn-outline-secondary ${selectedDropDown == null ? '' : 'active'}" type="button"
-        title="${selectedDropDown == null ? "Select Stock" : selectedDropDown.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:${searchWidth}"
+        title="${selectedDropDown == null ? "Select Stock" : selectedDropDown.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:${stockButtonWidth}px;"
       >
         ${selectedDropDown == null ? "🔍" : selectedDropDown.symbol}
       </button>
