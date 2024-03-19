@@ -406,11 +406,12 @@ export class StockToolbar extends LitElement {
   }
 
   renderStocks() {
-    const toolbarItemCount = Math.min(Math.floor((screen.availWidth - 50) / 85) - 1, StockToolbar.maxToolbarItems);
-    const staticitems = this.stocks.slice(0, toolbarItemCount);
-    const selectedDropDown = (this.selectedStockItem == null || staticitems.findIndex(o => o.symbol == this.selectedStockItem.symbol) > -1)? null : this.selectedStockItem;
+    const toolbarItemCount = Math.min(Math.floor((screen.availWidth - 50 - 40) / 85), StockToolbar.maxToolbarItems);
+    const searchWidth = toolbarItemCount == StockToolbar.maxToolbarItems ? '65px' : '40px';
+    const stockSymbols = this.stocks.slice(0, toolbarItemCount);
+    const selectedDropDown = (this.selectedStockItem == null || stockSymbols.findIndex(o => o.symbol == this.selectedStockItem.symbol) > -1)? null : this.selectedStockItem;
     return html`
-      ${staticitems.map(
+      ${stockSymbols.map(
         (item) => html`
           <button
               @click=${() => this.toggleSelected(item)}
@@ -438,7 +439,7 @@ export class StockToolbar extends LitElement {
       <button
         @click=${this.toggleDropdown} id="testbtn"
         class="btn btn-outline-secondary ${selectedDropDown == null ? '' : 'active'}" type="button"
-        title="${selectedDropDown == null ? "Select Stock" : selectedDropDown.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt"
+        title="${selectedDropDown == null ? "Select Stock" : selectedDropDown.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:${searchWidth}"
       >
         ${selectedDropDown == null ? "🔍" : selectedDropDown.symbol}
       </button>
