@@ -203,9 +203,9 @@ export class InfluencerSummary extends LitElement {
                         </div>
                       </div>
                     </div>
-                    <div>
+                    <div style="display:flex">
                       ${a}${this.profileTypeImage(item)}${a != null ? html`</a>` : null}
-                      <div style="display:inline-block;flex-grow:1;line-height:1.3;" class="card-text text-end">
+                      <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
                         ${item.stocks.map(
                             (stock) => {
                                 const selected = this.selectedStockItem != null &&
