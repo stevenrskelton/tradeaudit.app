@@ -160,7 +160,8 @@ export class InfluencerSummary extends LitElement {
   
   profileLink(influencer) {
     if (influencer.meta.type == "twitter" || influencer.meta.type == "x") {
-      return html`<a style="all:unset;cursor: pointer;display:flex;" href="https://twitter.com/${influencer.meta.twitterName}" target="_blank" title="Open @${influencer.meta.twitterName} on Twitter">`;
+      //style="all:unset;cursor: pointer;display:flex;"
+      return html`<a href="https://twitter.com/${influencer.meta.twitterName}" target="_blank" title="Open @${influencer.meta.twitterName} on Twitter">`;
     }
     return null;
   }
@@ -205,10 +206,6 @@ export class InfluencerSummary extends LitElement {
                             <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
                         </a>` : html`<div style="width:60px"></div>`
                       }
-                      <div>
-                        <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
-                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
-                      </div>
                     </div>
                     <div>
                       ${a}${this.profileTypeImage(item)}${a != null ? html`</a>` : null}
@@ -224,6 +221,10 @@ export class InfluencerSummary extends LitElement {
                                 >${stock.symbol}</button>`
                             }
                         )}
+                      </div>
+                      <div>
+                        <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
+                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
                     </div>
                   </li>`
