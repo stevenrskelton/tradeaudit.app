@@ -191,8 +191,9 @@ export class InfluencerSummary extends LitElement {
                           <div style="text-align:left">
                             <h5 class="card-title">${this.profileTitle(item)}</h5>
                           </div>
-                          <div style="flex-grow:1" class="card-text text-end" style="font-weight:bold">
-                            ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}
+                          <div class="card-text text-end" style="display:inline-block;flex-grow:1;font-weight:bold">
+                            ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}<br>
+                            ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                           </div>
                         </div>
                         <div style="display:flex">
@@ -222,10 +223,7 @@ export class InfluencerSummary extends LitElement {
                             }
                         )}
                       </div>
-                      <div>
-                        <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
-                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
-                      </div>
+                      <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
                     </div>
                   </li>`
                 } else {
