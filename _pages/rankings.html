@@ -184,7 +184,7 @@ export class InfluencerSummary extends LitElement {
                   return html`
                   <li class="list-group-item">
                     <div style="display:flex;align-items:center;">
-                      ${a}<img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;">${a != null ? html`</a>` : null}
+                      <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;">
                       <div style="flex-grow:1;padding-left:12px;">
                         <div style="display:flex;">
                           <div style="text-align:left">
@@ -205,12 +205,14 @@ export class InfluencerSummary extends LitElement {
                             <img src="https://tradeaudit.app/assets/finance.svg" class="showchart" width="60" height="60" alt="Open user conversation chart">
                         </a>` : html`<div style="width:60px"></div>`
                       }
-                      <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
+                      <div>
+                        <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
+                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
+                      </div>
                     </div>
                     <div>
-                      <div style="width:40px">${this.profileTypeImage(item)}</div>
+                      ${a}${this.profileTypeImage(item)}${a != null ? html`</a>` : null}
                       <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
-                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}<br/>
                         ${item.stocks.map(
                             (stock) => {
                                 const selected = this.selectedStockItem != null &&
@@ -229,7 +231,8 @@ export class InfluencerSummary extends LitElement {
                   const height = this.height ?? 64;
                   return html`
                   <li class="list-group-item" style="display:flex;align-items:center;">
-                    ${a}<span style="width:60px">${this.profileTypeImage(item)}</span><img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>${a != null ? html`</a>` : null}
+                    ${a}${this.profileTypeImage(item)}${a != null ? html`</a>` : null}
+                    <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
                     <div style="flex-grow:1;padding-left:12px;">
                       <div style="display:flex;">
                         <div style="text-align:left">
