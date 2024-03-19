@@ -183,11 +183,10 @@ export class InfluencerSummary extends LitElement {
 
                 if (screen.availWidth < 800) {
                   const height = 50;
-                  const pieChart = (ratedPercent == 0) ? null : html`<pie-chart size=$height positive=$positivePercent negative=$negativePercent></pie-chart>`;
                   return html`
                   <li class="list-group-item" style="padding:6px">
                     <div style="display:flex;align-items: center;">
-                      <img src=${item.profileUrl} style="width:${height}px;height:${height}px;border-radius:50%;margin-right:10px;">
+                      <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;margin-right:10px;">
                       <div>
                         <h5 class="card-title">${this.profileTitle(item)}</h5>
                         ${this.profileMeta(item.meta)}
@@ -199,7 +198,8 @@ export class InfluencerSummary extends LitElement {
                         ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}<br>
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
-                      ${pieChart}
+                      ${
+                      <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
                     </div>
                     <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
                       ${item.stocks.map(
@@ -220,7 +220,7 @@ export class InfluencerSummary extends LitElement {
                   return html`
                   <li class="list-group-item" style="display:flex;align-items:center;">
                     ${a}${this.profileTypeImage(item, false)}${a != null ? html`</a>` : null}
-                    <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
+                    <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;margin-left:10px;"/>
                     <div style="flex-grow:1;padding-left:12px;">
                       <div style="display:flex;">
                         <div style="text-align:left">
