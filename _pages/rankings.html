@@ -237,7 +237,7 @@ export class StockToolbar extends LitElement {
   };
 
   static maxDropDownItems = 8;
-  static staticToolbarItems = 9;
+  static maxToolbarItems = 9;
   
   constructor() {
     super();
@@ -379,13 +379,13 @@ export class StockToolbar extends LitElement {
                 @click=${() => this.toggleSort(true)}
                 class="btn btn-outline-secondary btn-lg ${this.isTop ? 'active' : ''}" type="button"
                 title="Top Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
-                style="width:230pt;${ isLoading ? "display:none;" : "" }"
+                style="width:50%;max-width:230pt;${ isLoading ? "display:none;" : "" }"
             >💰 ▼</button>
             <button
                 @click=${() => this.toggleSort(false)}
                 class="btn btn-outline-secondary btn-lg ${this.isTop ? '' : 'active'}" type="button"
                 title="Bottom Influencers" data-bs-toggle="tooltip" data-bs-placement="top"
-                style="width:230pt;${ isLoading ? "display:none;" : "" }"
+                style="width:50%;max-width:230pt;${ isLoading ? "display:none;" : "" }"
             >🤡 ▲</button>
         </div>
         <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
@@ -406,7 +406,8 @@ export class StockToolbar extends LitElement {
   }
 
   renderStocks() {
-    const staticitems = this.stocks.slice(0, StockToolbar.staticToolbarItems);
+    const toolbarItemCount = Math.floor((screen.availWidth - 50) / 85) - 1;
+    const staticitems = this.stocks.slice(0, toolbarItemCount);
     const selectedDropDown = (this.selectedStockItem == null || staticitems.findIndex(o => o.symbol == this.selectedStockItem.symbol) > -1)? null : this.selectedStockItem;
     return html`
       ${staticitems.map(
@@ -414,7 +415,7 @@ export class StockToolbar extends LitElement {
           <button
               @click=${() => this.toggleSelected(item)}
               class="btn btn-outline-secondary ${this.selectedStockItem != null && item.symbol == this.selectedStockItem.symbol ? 'active' : ''}" type="button"
-              title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:65pt;padding-left:0;padding-right:0;"
+              title="${item.name}" data-bs-toggle="tooltip" data-bs-placement="top" style="width:85px;padding-left:0;padding-right:0;"
           >
               ${item.symbol}
           </button>`
