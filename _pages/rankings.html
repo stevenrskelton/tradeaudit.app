@@ -125,10 +125,10 @@ export class InfluencerSummary extends LitElement {
   }
 
   profileTypeImage(influencer, isMini) {
-    const style = isMini ? 'style="width:30px;margin-left:10px;"' : '';
-    if (influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/integrations/x.svg" ${style}>`;
-    if (influencer.meta.type == "youtube") return html`<img src="/assets/integrations/youtube.svg" ${style}>`;
-    if (influencer.meta.type == "web" || influencer.meta.type == "url") return html`<img src="/assets/integrations/webpages.svg" ${style}>`;
+    const style = isMini ? 'width:30px;margin-left:10px;' : '';
+    if (influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/integrations/x.svg" style=${style}>`;
+    if (influencer.meta.type == "youtube") return html`<img src="/assets/integrations/youtube.svg" style=${style}>`;
+    if (influencer.meta.type == "web" || influencer.meta.type == "url") return html`<img src="/assets/integrations/webpages.svg" style=${style}>`;
     return html``;
   }
 
