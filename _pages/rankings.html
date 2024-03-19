@@ -198,7 +198,6 @@ export class InfluencerSummary extends LitElement {
                         ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}<br>
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
-                      ${
                       <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
                     </div>
                     <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
