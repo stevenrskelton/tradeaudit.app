@@ -187,23 +187,17 @@ export class InfluencerSummary extends LitElement {
                     <div style="display:flex;align-items: center;">
                       <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;">
                       <div style="flex-grow:1;padding-left:12px;">
-                        <div style="text-align:left">
-                          <h5 class="card-title">${this.profileTitle(item)}</h5>
-                        </div>
-                        <div style="display:flex">
-                          <div style="text-align:left">
-                            ${this.profileMeta(item.meta)}
-                          </div>
-                          ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
+                        <h5 class="card-title">${this.profileTitle(item)}</h5>
+                        <div style="display:flex;text-align:left">
+                          ${this.profileMeta(item.meta)}
                         </div>
                       </div>
                     </div>
                     <div style="display:flex;align-items: center;">
                       ${a}${this.profileTypeImage(item)}${a != null ? html`</a>` : null}
-                       <div style="display:flex;">
-                        <div class="card-text text-end" style="flex-grow:1;font-weight:bold">
-                          ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}<br>
-                        </div>
+                      <div class="card-text text-end" style="flex-grow:1;font-weight:bold">
+                        ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}<br>
+                        ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
                       <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
                     </div>
