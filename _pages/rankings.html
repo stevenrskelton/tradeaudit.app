@@ -6,8 +6,7 @@ title: "Trade Audit Influencer Rankings"
 <h1 class="display-6 fw-bold text-center">Influencer Rankings</h1>
 
 <span class="lead mb-4 text-center">
-  Add your own favorite social media influencers<br>
-  using the Trade Audit mobile app for Android.
+  Add your own favorite social media influencers using the Trade Audit mobile app for Android.
 </span>
 
 <script type="module">
@@ -200,7 +199,7 @@ export class InfluencerSummary extends LitElement {
                       </div>
                       <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
                     </div>
-                    <div style="flex-grow:1;line-height:1.3;" class="card-text text-end">
+                    <div style="line-height:1.8;" class="card-text text-end">
                       ${item.stocks.map(
                           (stock) => {
                               const selected = this.selectedStockItem != null &&
