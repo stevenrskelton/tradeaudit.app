@@ -124,10 +124,11 @@ export class InfluencerSummary extends LitElement {
     this.dispatchEvent(event);
   }
 
-  profileTypeImage(influencer){
-    if (influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/integrations/x.svg" style="width:30px;margin-left:4px">`;
-    if (influencer.meta.type == "youtube") return html`<img src="/assets/integrations/youtube.svg">`;
-    if (influencer.meta.type == "web" || influencer.meta.type == "url") return html`<img src="/assets/integrations/webpages.svg">`;
+  profileTypeImage(influencer, isMini) {
+    const style = isMini ? 'style="width:30px;margin-left:10px;"' : '';
+    if (influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/integrations/x.svg" ${style}>`;
+    if (influencer.meta.type == "youtube") return html`<img src="/assets/integrations/youtube.svg" ${style}>`;
+    if (influencer.meta.type == "web" || influencer.meta.type == "url") return html`<img src="/assets/integrations/webpages.svg" ${style}>`;
     return html``;
   }
 
@@ -185,17 +186,15 @@ export class InfluencerSummary extends LitElement {
                   return html`
                   <li class="list-group-item" style="padding:6px">
                     <div style="display:flex;align-items: center;">
-                      <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;">
-                      <div style="flex-grow:1;padding-left:12px;">
+                      <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;margin-right:10px;">
+                      <div>
                         <h5 class="card-title">${this.profileTitle(item)}</h5>
-                        <div style="display:flex;text-align:left">
-                          ${this.profileMeta(item.meta)}
-                        </div>
+                        ${this.profileMeta(item.meta)}
                       </div>
                     </div>
-                    <div style="display:flex;align-items: center;">
-                      ${a}${this.profileTypeImage(item)}${a != null ? html`</a>` : null}
-                      <div class="card-text text-end" style="flex-grow:1;font-weight:bold">
+                    <div style="display:flex;align-items:center;">
+                      ${a}${this.profileTypeImage(item, true)}${a != null ? html`</a>` : null}
+                      <div class="card-text text-end" style="flex-grow:1;font-weight:bold;margin-right:10px;">
                         ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}<br>
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
@@ -219,7 +218,7 @@ export class InfluencerSummary extends LitElement {
                   const height = this.height ?? 64;
                   return html`
                   <li class="list-group-item" style="display:flex;align-items:center;">
-                    ${a}${this.profileTypeImage(item)}${a != null ? html`</a>` : null}
+                    ${a}${this.profileTypeImage(item, false)}${a != null ? html`</a>` : null}
                     <img src="${item.profileUrl}" style="width:${height}px;height:${height}px;border-radius:50%;"/>
                     <div style="flex-grow:1;padding-left:12px;">
                       <div style="display:flex;">
