@@ -45,7 +45,7 @@ footer:
       url: "/account-deletion"
 
 navigation:
-  - label: "Tracking Influencers"
+  - label: "Tracking Influencer Trades"
     links:
       - label: "Which Trades Made Money?"
         url: "/"
