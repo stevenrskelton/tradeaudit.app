@@ -2,7 +2,7 @@
 permalink: /youtube
 title: "Import trades from YouTube into Trade Audit"
 ---
-<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations Made On<br>
+<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations made on<br>
 <img src="/assets/integrations/yt_logo_rgb_light.png" style="height:1em" alt="YouTube logo">
 </h1>
 

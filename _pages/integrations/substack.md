@@ -2,7 +2,7 @@
 permalink: /substack
 title: "Import trades from Substack into Trade Audit"
 ---
-<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations Made On<br>
+<h1 class="display-5 fw-bold mb-4 mt-5 text-center">Stock Recommendations made on<br>
 <img src="/assets/integrations/substack_wordmark.png" style="height:1em;" alt="Substack logo">
 </h1>
 
