@@ -197,7 +197,15 @@ export class InfluencerSummary extends LitElement {
                         ${this.profileMeta(item.meta)}
                       </div>
                     </div>
-                    <div style="display:flex;align-items:center;">
+                    <div style="
+                      display:flex;
+                      align-items:center;
+                      border:1px solid var(--bs-list-group-border-color);
+                      border-radius: 10px;
+                      background-color: blanchedalmond;
+                      padding-top: 4px;
+                      margin-top: 4px;
+                    ">
                       ${a}${this.profileTypeImage(item, true)}${a != null ? html`</a>` : null}
                       <div class="card-text text-end" style="flex-grow:1;font-weight:bold;margin-right:10px;">
                         ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}<br>
