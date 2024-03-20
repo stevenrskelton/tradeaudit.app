@@ -198,22 +198,26 @@ export class InfluencerSummary extends LitElement {
                       </div>
                     </div>
                     <div style="
-                      display:flex;
-                      align-items:center;
-                      border:1px solid var(--bs-list-group-border-color);
+                      display: flex;
+                      align-items: center;
+                      border: 1px solid var(--bs-list-group-border-color);
                       border-radius: 10px;
                       background-color: blanchedalmond;
-                      padding-top: 4px;
-                      margin-top: 4px;
+                      margin: 4px 0px;
                     ">
                       ${a}${this.profileTypeImage(item, true)}${a != null ? html`</a>` : null}
                       <div class="card-text text-end" style="flex-grow:1;font-weight:bold;margin-right:10px;">
                         ${tradeCount} Trade${tradeCount == 1 ? '' : 's'}<br>
                         ${ratedPercent == 0 ? 'Zero Rated' : (ratedPercent == 100 ? 'All Rated' : (100 - ratedPercent) + '% Unrated')}
                       </div>
-                      <pie-chart size="${height}" positive="${positivePercent}" negative="${negativePercent}"></pie-chart>
+                      <pie-chart
+                        size="${height}"
+                        positive="${positivePercent}"
+                        negative="${negativePercent}"
+                        style="padding-top: 4px;padding-right: 4px;
+                      "></pie-chart>
                     </div>
-                    <div style="line-height:1.8;" class="card-text text-end">
+                    <div style="line-height:1.8;padding:0px 6px;" class="card-text text-end">
                       ${item.stocks.map(
                           (stock) => {
                               const selected = this.selectedStockItem != null &&
