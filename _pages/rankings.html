@@ -451,7 +451,7 @@ export class StockToolbar extends LitElement {
         ${ isLoading ? this.renderLoadingBar() : this.renderStocks() }
       </div>
     `;
-    if(this.influencers.length > 0){
+    if(this.influencers != null && this.influencers.length > 0){
       return html`
         ${topHtml}
         <influencer-summary
