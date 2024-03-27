@@ -378,7 +378,7 @@ export class StockToolbar extends LitElement {
             transparent 50%, rgba(255, 255, 255, 0.15) 50%,
             rgba(255, 255, 255, 0.15) 75%,transparent 75%)
           left/30px 30px repeat-x,
-          linear-gradient(to right, red 0%, yellow 50%, green 100%) left/var(--p,100%) fixed,
+          linear-gradient(to right, #282739 0%, rgb(104, 66, 207) 50%, black 100%) left/var(--p,100%) fixed,
           lightgray;
       box-shadow: inset 0px -2px 5px rgba(0, 0, 0, 0.5);
       animation: progressbar-change 1s linear infinite;
@@ -429,7 +429,7 @@ export class StockToolbar extends LitElement {
   }
 
   render() {
-    const isLoading = this.stocks.isEmpty;
+    const isLoading = this.stocks == null || this.stocks.length == 0;
 
     const topHtml = html`
       ${halfmoonCssTag}
@@ -448,12 +448,12 @@ export class StockToolbar extends LitElement {
           >🤡 ▲</button>
       </div>
       <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
-        ${ isLoading ? this.renderLoadingBar() : this.renderStocks() }
+        ${ isLoading ? null : this.renderStocks() }
       </div>
     `;
     if(this.influencers != null && this.influencers.length > 0){
       return html`
-        ${topHtml}
+        ${ topHtml }
         <influencer-summary
           height="80" .selectedStockItem=${this.selectedStockItem} .influencers=${this.influencers}
           @select-stock-event="${(e) => { this.selectFunction(e.detail) }}"
@@ -469,7 +469,12 @@ export class StockToolbar extends LitElement {
 
   renderLoadingBar() {
     return html`<div
-      style="width:50%;padding-left:0;padding-right:0;height: 38px;"
+      style="
+        width: 50%;
+        height: 38px;
+        margin: auto;
+        display: block;
+      "
       class="btn btn-outline-secondary progressbar"
     ></div>`;
   }
