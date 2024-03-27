@@ -133,6 +133,7 @@ export class InfluencerSummary extends LitElement {
     const style = isMini ? 'width:30px;margin-left:10px;' : '';
     if (influencer.meta.type == "twitter" || influencer.meta.type == "x") return html`<img src="/assets/integrations/x.svg" style=${style}>`;
     if (influencer.meta.type == "youtube") return html`<img src="/assets/integrations/youtube.svg" style=${style}>`;
+    if (influencer.meta.type == "substack") return html`<img src="/assets/integrations/substack.svg" style=${style}>`;
     if (influencer.meta.type == "web" || influencer.meta.type == "url") return html`<img src="/assets/integrations/webpages.svg" style=${style}>`;
     return html``;
   }
@@ -145,6 +146,9 @@ export class InfluencerSummary extends LitElement {
     if (meta.type == "youtube") {
       return html`<span>${humanNumber(meta.subscriberCount)} Subscribers</span><br>
                   <span>${humanNumber(meta.viewCount)} Total Views</span>`;
+    }
+    if (meta.type == "substack") {
+      return html`<span>${humanNumber(meta.subscriberCount)} Subscribers</span>`;
     }
     if (meta.type == "web") {
       if (meta.author != null && meta.author != "") {
@@ -519,21 +523,21 @@ export class StockToolbar extends LitElement {
   
   fetchInfluencers(){
     
-    const symbol = this.selectedStockItem == null ? '' : '/' + this.selectedStockItem.symbol;
-    const url = 'https://cf.tradeaudit.app/influencers/' + (this.isTop ? 'top' : 'bottom') + symbol;
-    
-    // Making our request
-    fetch(url, { method: 'GET' })
-        .then(Result => Result.json())
-        .then(body => {
-            this.influencers = body.influencers;
-            this.requestUpdate();
-        })
-    .catch(errorMsg => { 
-      console.log(errorMsg);
-      this.influencers = [];
-      this.requestUpdate();
-    });
+<!--    const symbol = this.selectedStockItem == null ? '' : '/' + this.selectedStockItem.symbol;-->
+<!--    const url = 'https://cf.tradeaudit.app/influencers/' + (this.isTop ? 'top' : 'bottom') + symbol;-->
+<!--    -->
+<!--    // Making our request-->
+<!--    fetch(url, { method: 'GET' })-->
+<!--        .then(Result => Result.json())-->
+<!--        .then(body => {-->
+<!--            this.influencers = body.influencers;-->
+<!--            this.requestUpdate();-->
+<!--        })-->
+<!--    .catch(errorMsg => { -->
+<!--      console.log(errorMsg);-->
+<!--      this.influencers = [];-->
+<!--      this.requestUpdate();-->
+<!--    });-->
   }
 }
 customElements.define('stock-toolbar', StockToolbar);
