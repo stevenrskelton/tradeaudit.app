@@ -522,22 +522,23 @@ export class StockToolbar extends LitElement {
   }
   
   fetchInfluencers(){
-    
-<!--    const symbol = this.selectedStockItem == null ? '' : '/' + this.selectedStockItem.symbol;-->
-<!--    const url = 'https://cf.tradeaudit.app/influencers/' + (this.isTop ? 'top' : 'bottom') + symbol;-->
-<!--    -->
-<!--    // Making our request-->
-<!--    fetch(url, { method: 'GET' })-->
-<!--        .then(Result => Result.json())-->
-<!--        .then(body => {-->
-<!--            this.influencers = body.influencers;-->
-<!--            this.requestUpdate();-->
-<!--        })-->
-<!--    .catch(errorMsg => { -->
-<!--      console.log(errorMsg);-->
-<!--      this.influencers = [];-->
-<!--      this.requestUpdate();-->
-<!--    });-->
+    /*
+    const symbol = this.selectedStockItem == null ? '' : '/' + this.selectedStockItem.symbol;
+    const url = 'https://cf.tradeaudit.app/influencers/' + (this.isTop ? 'top' : 'bottom') + symbol;
+
+    // Making our request
+    fetch(url, { method: 'GET' })
+        .then(Result => Result.json())
+        .then(body => {
+            this.influencers = body.influencers;
+            this.requestUpdate();
+        })
+    .catch(errorMsg => {
+      console.log(errorMsg);
+      this.influencers = [];
+      this.requestUpdate();
+    });
+    */
   }
 }
 customElements.define('stock-toolbar', StockToolbar);
