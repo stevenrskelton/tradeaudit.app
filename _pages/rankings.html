@@ -431,7 +431,7 @@ export class StockToolbar extends LitElement {
   render() {
     const isLoading = this.stocks.isEmpty;
 
-    return html`
+    const topHtml = html`
       ${halfmoonCssTag}
       <div class="input-group mb-2" role="group" aria-label="Influencer Sorting" style="margin:auto;justify-content:center;height:48px;">
           <button
@@ -450,11 +450,21 @@ export class StockToolbar extends LitElement {
       <div class="input-group mb-3" role="group" aria-label="Stocks" style="margin:auto;justify-content:center;">
         ${ isLoading ? this.renderLoadingBar() : this.renderStocks() }
       </div>
-      <influencer-summary
-        height="80" .selectedStockItem=${this.selectedStockItem} .influencers=${this.influencers}
-        @select-stock-event="${(e) => { this.selectFunction(e.detail) }}"
-      ></influencer-summary>
     `;
+    if(this.influencers.length > 0){
+      return html`
+        ${topHtml}
+        <influencer-summary
+          height="80" .selectedStockItem=${this.selectedStockItem} .influencers=${this.influencers}
+          @select-stock-event="${(e) => { this.selectFunction(e.detail) }}"
+        ></influencer-summary>
+    `;
+    } else {
+      return html`
+        ${ topHtml }
+        ${ this.renderLoadingBar() }
+      `;
+    }
   }
 
   renderLoadingBar() {
